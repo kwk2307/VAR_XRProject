@@ -17,10 +17,10 @@ public class SpectatorViewUI : MonoBehaviour
     void Update()
     {
         // 밀리카운트에 10배수로 카운트
-        MilliCount += Time.deltaTime * 10;
+        MilliCount += Time.deltaTime*10;
         MilliDisplay = MilliCount.ToString("F0");
         // 계속해서 카운트되는 텍스트를 출력
-        MilliBox.GetComponent<Text>().text = "" + MilliDisplay;
+        MilliBox.GetComponent<Text>().text = "0" + MilliDisplay;
 
         // 밀리카운트가 10이상이 되면 0으로 초기화하고 +1초
         if (MilliCount >= 10)
