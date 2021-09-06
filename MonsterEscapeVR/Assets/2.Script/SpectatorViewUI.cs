@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpectatorViewUI : MonoBehaviour
 {
+    public float startCount;
+
     public static int MinuteCount;
     public static int SecondCount;
     public static float MilliCount;
@@ -22,6 +24,7 @@ public class SpectatorViewUI : MonoBehaviour
 
     void start()
     {
+        
         // 이전에 기록이 존재하는지 확인
         // 기록이 존재하지않는다면 최고 기록은 00::00::00
 
@@ -52,8 +55,12 @@ public class SpectatorViewUI : MonoBehaviour
 
         void Update()
         {
-            // 계속해서 기록 누적
+        startCount += Time.deltaTime;
+        // 계속해서 기록 누적
+        if (startCount >= 3)
+        {
             record();
+        }
             // 만약 게임오버가 되었을때 기록 멈춤
             // 기록을 저장해둠
             //if(게임오버){
@@ -66,13 +73,13 @@ public class SpectatorViewUI : MonoBehaviour
         void record()
         {
             // 밀리카운트에 10배로 카운트
-            MilliCount += Time.deltaTime * 10;
+            MilliCount += Time.deltaTime*100;
             MilliDisplay = MilliCount.ToString("F0");
             // 계속해서 카운트되는 텍스트를 출력
-            MilliBox.GetComponent<Text>().text = "0" + MilliDisplay;
+            MilliBox.GetComponent<Text>().text = "" + MilliDisplay;
 
             // 밀리카운트가 10이상이 되면 0으로 초기화하고 +1초
-            if (MilliCount >= 10)
+            if (MilliCount >= 100)
             {
                 MilliCount = 0;
                 SecondCount += 1;
