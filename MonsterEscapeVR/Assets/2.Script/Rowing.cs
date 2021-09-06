@@ -28,6 +28,7 @@ public class Rowing : MonoBehaviour
 
         
         isRowing = Vector3.Distance(curPos.transform.position, prePos.transform.position);  //현 프레임
+        print("isRowing :" + isRowing);
 
         //로잉기를 당기는지 확인
         if((isRowing - isRowingPre) > 0)
@@ -47,7 +48,7 @@ public class Rowing : MonoBehaviour
 
         prePos = this.gameObject;
         isRowingPre = Vector3.Distance(curPos.transform.position, prePos.transform.position); // 과거 프레임(다음 프레임 입장에서)
-
+        print("isRowingPre : " + isRowingPre);
 
     }
 }
