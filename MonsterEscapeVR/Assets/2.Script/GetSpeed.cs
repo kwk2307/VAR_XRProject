@@ -46,14 +46,5 @@ public class GetSpeed : MonoBehaviour
 
         
         
-
-        
-            
-        
-
-
-
-        
-        
     }
 }
