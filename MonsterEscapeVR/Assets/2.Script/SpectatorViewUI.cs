@@ -52,6 +52,8 @@ public class SpectatorViewUI : MonoBehaviour
 
         void Update()
         {
+        
+
             // 계속해서 기록 누적
             record();
             // 만약 게임오버가 되었을때 기록 멈춤
