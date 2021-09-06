@@ -25,7 +25,7 @@ public class test : MonoBehaviour
             {
                 Debug.Log("print");
 
-               item.GetComponent<Image>().sprite = Resources.Load("circle_2", typeof(Sprite)) as Sprite;
+                item.GetComponentInParent<Image>().sprite = Resources.Load("circle_2", typeof(Sprite)) as Sprite;
 
   
             }
