@@ -7,12 +7,12 @@ public class Rowing : MonoBehaviour
     public GameObject tracker01;
     public GameObject tracker04;
     float distance; //트래커들 사이의 거리를 담을 변수
-    public float speed;
+    public float speed = 1;
 
-    GameObject curPos;
-    GameObject prePos;
     float isRowing;
     float isRowingPre;
+
+    int a = 1;
 
     void Start()
     {
@@ -22,19 +22,27 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curPos = this.gameObject;
 
-        if (prePos == null) return;  // 첫 프레임 예외처리
 
-        
-        isRowing = Vector3.Distance(curPos.transform.position, prePos.transform.position);  //현 프레임
-        print("isRowing :" + isRowing);
+        isRowing = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
+        //print("isRowing : " + isRowing);
+
+        if (isRowing - isRowingPre > 1)
+        {
+            return; // 위치값이 튀는 것에 대한 예외처리
+        }
+
+
 
         //로잉기를 당기는지 확인
-        if((isRowing - isRowingPre) > 0)
+        //print("트래커의 변화 정도" + (isRowing - isRowingPre));
+
+        if ((isRowing - isRowingPre) > 0.03)
         {
             {
+                print(isRowing - isRowingPre);
                 transform.position += new Vector3(1, 0, 0) * distance; // 당긴 것에 비례해 z축으로 이동
+                //this.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * distance);
 
             }
         }
@@ -42,13 +50,12 @@ public class Rowing : MonoBehaviour
 
 
         distance = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);
-        print(distance);
+        
         
 
 
-        prePos = this.gameObject;
-        isRowingPre = Vector3.Distance(curPos.transform.position, prePos.transform.position); // 과거 프레임(다음 프레임 입장에서)
-        print("isRowingPre : " + isRowingPre);
+        isRowingPre = Vector3.Distance(tracker01.transform.position, tracker04.transform.position); // 과거 프레임(다음 프레임 입장에서)
+        //print("isRowingPre : " + isRowingPre);
 
     }
 }
