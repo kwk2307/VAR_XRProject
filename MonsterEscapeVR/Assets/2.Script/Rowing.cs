@@ -41,7 +41,7 @@ public class Rowing : MonoBehaviour
         {
             {
                 print(isRowing - isRowingPre);
-                transform.position += new Vector3(1, 0, 0) * distance; // 당긴 것에 비례해 z축으로 이동
+                transform.position += new Vector3(0, 0, -1) * distance; // 당긴 것에 비례해 z축으로 이동
                 //this.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * distance);
 
             }
