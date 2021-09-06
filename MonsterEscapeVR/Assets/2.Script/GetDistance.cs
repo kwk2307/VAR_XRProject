@@ -15,7 +15,7 @@ public class GetDistance : MonoBehaviour
 
     void Start()
     {
-        enemy = GameObject.Find("Enemy");
+        enemy = GameObject.Find("Shark_Charactor");
         
     }
 
@@ -24,9 +24,11 @@ public class GetDistance : MonoBehaviour
     {
         //목적지와 현재 배 사이의 거리를 구한다.
         distance = Vector3.Distance(endPoint.transform.position, ship.transform.position);
+        distance = (int)(distance); //소수점 이하 버림
 
+        
         //구한거리를 UI에 표시한다
-        distanceText.text = "기준점과의 거리 " + distance + "m";
+        distanceText.text =  distance + "M / 50M";
 
 
 
