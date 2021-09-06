@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     public float speed = 5f;
     public float attackPower = 1f;
-    
+    public float delayCount;
 
     private GameObject player; //플레이어를 담을 변수
     void Start()
@@ -19,9 +19,13 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //플레이어를 쫓아간다.
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+        delayCount += Time.deltaTime;
+        if (delayCount >= 3)
+        {
 
-        
+            //플레이어를 쫓아간다.
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+
+        }
     }
 }
