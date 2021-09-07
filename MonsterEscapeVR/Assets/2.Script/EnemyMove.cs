@@ -18,6 +18,9 @@ public class EnemyMove : MonoBehaviour
     GetDistance getDistance;
     public GameObject distanceUI;
 
+    float delay;
+    bool getAngry = false;
+
 
     void Start()
     {
@@ -53,11 +56,28 @@ public class EnemyMove : MonoBehaviour
 
         }
         
-        if (distance <= angryDistance) // 몇 미터 안으로 들어오면 분노모드로 전환할 것인가?
+        if (distance <= angryDistance && !getAngry) // 몇 미터 안으로 들어오면 분노모드로 전환할 것인가?
         {
             
-            print("분노모드 돌입!");
-            anim.SetBool("Byte", true); //물기 애니매이션 재생.
+            getAngry = true;
+            StartCoroutine( SetAni() );
+            
+            
+            
         }
+
     }
+
+    IEnumerator SetAni()
+    {
+        anim.SetBool("Angry", true); //분노 애니매이션 재생.
+        yield return new WaitForSeconds(0.77f);
+        anim.SetBool("Angry", false);
+
+    }
+
+    
+    
+
+
 }
