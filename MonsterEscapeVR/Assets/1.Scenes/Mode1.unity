@@ -1202,7 +1202,7 @@ MonoBehaviour:
   bestRecordTime: {fileID: 0}
   currentRecordTime: {fileID: 0}
   bestRecord: 0
---- !u!43 &544804109
+--- !u!43 &510330655
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   ship: {fileID: 1075722310}
   endPoint: {fileID: 1204936748}
   distanceText: {fileID: 566347334}
-  angryDistance: 100
+  distance: 0
 --- !u!1001 &568162108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1540,9 +1540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbd40d9d61c2b44b690f482f7e8593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.001
+  speed: 0.01
   attackPower: 1
   delayCount: 0
+  angryDistance: 2
+  distanceUI: {fileID: 1731725027}
 --- !u!1 &602706608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1878,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682401895}
   m_CullTransparentMesh: 1
+--- !u!21 &691019224
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &857117728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2365,7 +2402,6 @@ GameObject:
   - component: {fileID: 1113260240}
   - component: {fileID: 1113260243}
   - component: {fileID: 1113260242}
-  - component: {fileID: 1113260241}
   m_Layer: 0
   m_Name: Warning
   m_TagString: Untagged
@@ -2389,20 +2425,6 @@ Transform:
   m_Father: {fileID: 412782329}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -72.482, z: 0}
---- !u!64 &1113260241
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113260239}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1113260242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2452,41 +2474,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113260239}
   m_Mesh: {fileID: 4300008, guid: fff8b6a534acaed4899a46b3c151b028, type: 3}
---- !u!21 &1150242510
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1166086113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3428,7 @@ GameObject:
   - component: {fileID: 1731725029}
   - component: {fileID: 1731725031}
   m_Layer: 5
-  m_Name: "\uB0A8\uC740\uAC70\uB9AC \uD14D\uC2A4"
+  m_Name: Distance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3523,7 +3510,7 @@ MonoBehaviour:
   ship: {fileID: 1075722310}
   endPoint: {fileID: 1204936748}
   distanceText: {fileID: 1731725029}
-  angryDistance: 100
+  distance: 0
 --- !u!1 &1739541403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,11 +3788,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1150242510}
+      objectReference: {fileID: 691019224}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 544804109}
+      objectReference: {fileID: 510330655}
     - target: {fileID: 4000013889601590, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8

@@ -100,5 +100,6 @@ public class GetSpeed : MonoBehaviour
         warningEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         warningEffect.SetActive(false);
+        yield return new WaitForSeconds(2f);
     }
 }
