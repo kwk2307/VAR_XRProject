@@ -34,9 +34,9 @@ public class GetDistance : MonoBehaviour
 
 
         angryDistance = Vector3.Distance(ship.transform.position, enemy.transform.position);
-        if(5f >= angryDistance) // 몇 미터 안으로 들어오면 분노모드로 전환할 것인가?
+        if(distance <= angryDistance) // 몇 미터 안으로 들어오면 분노모드로 전환할 것인가?
         {
-            //print("분노모드 돌입!");
+            print("분노모드 돌입!");
         }
         
     }
