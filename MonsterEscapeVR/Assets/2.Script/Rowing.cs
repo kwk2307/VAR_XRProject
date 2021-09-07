@@ -42,7 +42,7 @@ public class Rowing : MonoBehaviour
         print("트래커의 변화 정도" + (isRowing - isRowingPre));
         if ((isRowing - isRowingPre) > 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * (isRowing - isRowingPre) * speed);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
         }
 
         isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
@@ -52,9 +52,9 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.GetComponent<Rigidbody>().velocity.x > 0)
+        if(this.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0) * 300 * Time.deltaTime);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 300 * Time.deltaTime);
         }
         else
         {
@@ -67,7 +67,7 @@ public class Rowing : MonoBehaviour
     {
         if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * 300);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 300);
         }
     }
 }
