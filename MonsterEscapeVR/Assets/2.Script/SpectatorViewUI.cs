@@ -24,9 +24,10 @@ public class SpectatorViewUI : MonoBehaviour
     public Text BestRecordMinute;
     public Text BestRecordSecond;
     public Text BestRecordMilli;
-    public string best;
-    int bestMinute;
-    int bestSecond;
+     string best;
+     int bestMinute;
+     int bestSecond;
+    
     float bestMilli;
     string bestMilliDisplay;
     // 이전기록(분,초,밀리초)
@@ -36,13 +37,14 @@ public class SpectatorViewUI : MonoBehaviour
     void Awake()
     {
         // 최고점수 값 불러오기
-        bestMinute=PlayerPrefs.GetInt("Best Minute");
-        bestSecond=PlayerPrefs.GetInt("Best Second");
-        bestMilli=PlayerPrefs.GetFloat("Best MilliSecond");
+        PlayerPrefs.GetInt("Best Minute");
+        PlayerPrefs.GetInt("Best Second");
+        PlayerPrefs.GetFloat("Best MilliSecond");
 
-        beforeMinute= PlayerPrefs.GetInt("Best Minute");
-        beforeSecond= PlayerPrefs.GetInt("Best Second");
-        beforeMilli= PlayerPrefs.GetFloat("Best MilliSecond");
+        // 과거 기록을 가져와야하는데..
+        PlayerPrefs.GetInt("Before Minute");
+        PlayerPrefs.GetInt("Before Second");
+        PlayerPrefs.GetFloat("Before Milli");
 
         // 밀리세컨드의 소수점 표시않기위해
         bestMilliDisplay = PlayerPrefs.GetFloat("Best MilliSecond").ToString("F0");
@@ -77,6 +79,12 @@ public class SpectatorViewUI : MonoBehaviour
         if (startCount >= 3)
         {
             record();
+            PlayerMove pm = GameObject.Find("Player").GetComponent<PlayerMove>();
+            if (pm.gameWinUI==true)
+            {
+                print("gameWinUI는 정상 작동");
+                Recordcompare();
+            }
         }
         // 만약 게임오버가 되었을때 기록 멈춤
         // 기록을 저장해둠
@@ -136,17 +144,21 @@ public class SpectatorViewUI : MonoBehaviour
         // 최고기록인지 아닌지 비교
         // 1. 이전의 최고 기록(A)과 현재의 기록(B)비교. 만약 A의 분값이 B의 분값보다 크면 B가 최고기록.
         // 2. 만약 서로 분값이 같다면 초값으로 또 다시 비교. 초값도 같으면 milli초값으로 비교
-        print("최고" + bestMinute + "분" + "이전" + beforeMinute + "분");
+       
        
             
             PlayerPrefs.SetInt("Best Minute", MinuteCount); // 분값 저장
             PlayerPrefs.SetInt("Best Second", SecondCount); // 초값 저장
             PlayerPrefs.SetFloat("Best MilliSecond", MilliCount); // 밀리초값 저장
 
-        
-            
-          
-        
+        PlayerPrefs.GetInt("Before Minute"); // before값 불러오기
+        PlayerPrefs.GetInt("Before Second"); // before값 불러오기
+        PlayerPrefs.GetFloat("Before Milli"); // before값 불러오기
+
+        print("이전" + PlayerPrefs.GetInt("Before Second") + "초" + "현재" + PlayerPrefs.GetInt("Best Second") + "초");
+
+
+
 
         // 맨처음 시작할때 00:00:00인경우
         //if (bestMinute == 0 && bestSecond == 0 && bestMilli == 0)
@@ -163,25 +175,42 @@ public class SpectatorViewUI : MonoBehaviour
 
         //}
         // 00:00:00이 아닌경우(기존에 기록이 있는 경우)
-       
-        
-            if (beforeMinute > PlayerPrefs.GetInt("Best Minute"))
+
+
+        if (PlayerPrefs.GetInt("Before Minute") > PlayerPrefs.GetInt("Best Minute"))
             {
+           
                 // 최고기록으로 넣어준다.
                 bestMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
                 bestSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
                 bestMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
 
                 // 비교를 위해 넣어준다.
-                beforeMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
-                beforeSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
-                beforeMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
+                PlayerPrefs.SetInt("Before Minute",bestMinute); // 분값 저장
+                PlayerPrefs.SetInt("Before Second",bestSecond); // 초값 저장
+                PlayerPrefs.SetFloat("Before MilliSecond",bestMilli); // 밀리초값 저장
 
 
             }
-            else if(beforeMinute==PlayerPrefs.GetInt("Best Minute"))
+            else if(PlayerPrefs.GetInt("Before Minute") == PlayerPrefs.GetInt("Best Minute"))
             {
-                if(beforeSecond>PlayerPrefs.GetInt("Best Second"))
+            print("분이 똑같을때 초는"+PlayerPrefs.GetInt("Before Second")+ ","+ PlayerPrefs.GetInt("Best Second"));
+            if (PlayerPrefs.GetInt("Before Second") > PlayerPrefs.GetInt("Best Second"))
+            {
+                print(2);
+                // 최고기록으로 넣어준다.
+                bestMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
+                bestSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
+                bestMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
+
+                // 비교를 위해 넣어준다.
+                PlayerPrefs.SetInt("Before Minute", bestMinute); // 분값 저장
+                PlayerPrefs.SetInt("Before Second", bestSecond); // 초값 저장
+                PlayerPrefs.SetFloat("Before MilliSecond", bestMilli); // 밀리초값 저장
+            }
+            else if (PlayerPrefs.GetInt("Best Second") == PlayerPrefs.GetInt("Best Second"))
+            {
+                if (PlayerPrefs.GetFloat("Before Milli") > PlayerPrefs.GetFloat("Best MilliSecond"))
                 {
                     // 최고기록으로 넣어준다.
                     bestMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
@@ -189,28 +218,14 @@ public class SpectatorViewUI : MonoBehaviour
                     bestMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
 
                     // 비교를 위해 넣어준다.
-                    beforeMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
-                    beforeSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
-                    beforeMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
-                }
-                else if(beforeSecond==PlayerPrefs.GetInt("Best Second"))
-                {
-                    if(bestMilli>PlayerPrefs.GetFloat("Best MilliSecond"))
-                    {
-                        // 최고기록으로 넣어준다.
-                        bestMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
-                        bestSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
-                        bestMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
-
-                        // 비교를 위해 넣어준다.
-                        beforeMinute = PlayerPrefs.GetInt("Best Minute"); // 분값 저장
-                        beforeSecond = PlayerPrefs.GetInt("Best Second"); // 초값 저장
-                        beforeMilli = PlayerPrefs.GetFloat("Best MilliSecond"); // 밀리초값 저장
-                    }
+                    PlayerPrefs.SetInt("Before Minute", bestMinute); // 분값 저장
+                    PlayerPrefs.SetInt("Before Second", bestSecond); // 초값 저장
+                    PlayerPrefs.SetFloat("Before MilliSecond", bestMilli); // 밀리초값 저장
                 }
             }
-            
-               
+            }
+
+        print(bestMinute + "분" + bestSecond + "초" + bestMilli+"밀리");
             
         }
 
