@@ -11,7 +11,7 @@ public class Bingo : MonoBehaviour
     int randNum3;
     int randNum4;
     int temp;
-    [SerializeField] GameObject[] dd;
+    [SerializeField] public GameObject[] dd;
 
     void Start()
     {
