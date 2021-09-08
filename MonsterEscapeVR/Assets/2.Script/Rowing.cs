@@ -24,8 +24,25 @@ public class Rowing : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float tmp = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
 
-        if(isRowingPre == 0)
+        if (tmp <= 1)
+        {
+            isRowing = tmp;
+            if (anim_boat.GetBool("isRow"))
+            {
+                anim_boat.SetFloat("Move", isRowing);
+            }
+            else
+            {
+                anim_boat.SetFloat("Move", 1 - isRowing);
+            }
+
+            anim_men.SetFloat("Move", isRowing);
+
+        }
+
+        if (isRowingPre == 0)
         {
             //isRowingPre 일때를 처리해 준다.
             isRowingPre = isRowing;
@@ -71,23 +88,7 @@ public class Rowing : MonoBehaviour
 
         //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
         
-        float tmp = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
-
-        if (tmp <= 1)
-        {
-            isRowing = tmp;
-            if (anim_boat.GetBool("isRow"))
-            {
-                anim_boat.SetFloat("Move", isRowing);
-            }
-            else
-            {
-                anim_boat.SetFloat("Move", 1-isRowing);
-            }
-            
-            anim_men.SetFloat("Move", isRowing);
-
-        }
+        
         //print("isRowing : " + isRowing);
 
     }
