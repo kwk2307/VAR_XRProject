@@ -7,6 +7,8 @@ public class Rowing : MonoBehaviour
 {
     [SerializeField] private GameObject tracker01;
     [SerializeField] private GameObject tracker04;
+    [SerializeField] private Animator anim_boat;
+    [SerializeField] private Animator anim_men;
     private float distance; //트래커들 사이의 거리를 담을 변수
     [SerializeField] private float speed = 1;
 
@@ -22,9 +24,7 @@ public class Rowing : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
-        isRowing = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
-        //print("isRowing : " + isRowing);
+        
 
         if(isRowingPre == 0)
         {
@@ -54,12 +54,26 @@ public class Rowing : MonoBehaviour
     {
         if(this.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 300 * Time.deltaTime);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * speed * Time.deltaTime);
         }
         else
         {
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+
+        //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
+        
+        float tmp = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
+
+        if (tmp <= 1)
+        {
+            isRowing = tmp;
+            anim_boat.SetFloat("Move", isRowing);
+            anim_men.SetFloat("Move", isRowing);
+
+            
+        }
+        //print("isRowing : " + isRowing);
 
     }
 
