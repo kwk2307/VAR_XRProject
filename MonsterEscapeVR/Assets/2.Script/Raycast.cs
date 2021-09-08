@@ -1,18 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Image img;
+
+    private float timeElapsed;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        RaycastHit hit;//오브젝트 정보
+
+        Vector3 forward = transform.TransformDirection(Vector3.forward * 1000);//방향
+
+        if (Physics.Raycast(this.transform.position, forward, out hit))
+        {
+            timeElapsed += Time.deltaTime;//시간 증가
+            img.fillAmount = timeElapsed / 3;//이미지 fill 채워줌
+
+            if (timeElapsed >= 3)//3초가 되면
+            {
+                //버튼 onClick 이벤트 발생
+                hit.transform.GetComponent<Button>().onClick.Invoke();
+            }
+        }
+        else
+        {
+            timeElapsed -= Time.deltaTime;
+            img.fillAmount = timeElapsed / 3;
+
+            if (timeElapsed <= 0) timeElapsed = 0;
+        }
     }
 }
