@@ -39,7 +39,7 @@ public class Rowing : MonoBehaviour
         }
 
         //로잉기를 당기는지 확인
-        print("트래커의 변화 정도" + (isRowing - isRowingPre));
+        //print("트래커의 변화 정도" + (isRowing - isRowingPre));
         if ((isRowing - isRowingPre) > 0)
         {
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
