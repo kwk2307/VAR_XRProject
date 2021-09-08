@@ -63,11 +63,11 @@ public class Rowing : MonoBehaviour
 
     }
 
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
-        {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 300);
-        }
-    }
+    //private void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
+    //    {
+    //        this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 300);
+    //    }
+    //}
 }
