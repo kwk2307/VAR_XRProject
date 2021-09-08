@@ -24,13 +24,21 @@ public class Rowing : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
 
         if(isRowingPre == 0)
         {
             //isRowingPre 일때를 처리해 준다.
             isRowingPre = isRowing;
             return;
+        }
+
+        if(isRowing - isRowingPre > 0.05)
+        {
+            anim_boat.SetBool("isRow", true);
+        }
+        else if(isRowing - isRowingPre < -0.05)
+        {
+            anim_boat.SetBool("isRow", false);
         }
 
         if (isRowing - isRowingPre > 0.7)
@@ -68,10 +76,17 @@ public class Rowing : MonoBehaviour
         if (tmp <= 1)
         {
             isRowing = tmp;
-            anim_boat.SetFloat("Move", isRowing);
+            if (anim_boat.GetBool("isRow"))
+            {
+                anim_boat.SetFloat("Move", isRowing);
+            }
+            else
+            {
+                anim_boat.SetFloat("Move", 1-isRowing);
+            }
+            
             anim_men.SetFloat("Move", isRowing);
 
-            
         }
         //print("isRowing : " + isRowing);
 
