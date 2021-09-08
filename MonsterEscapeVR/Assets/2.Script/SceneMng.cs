@@ -26,7 +26,10 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("Mode3"));
     }
-
+    public void Gamerule()
+    {
+        StartCoroutine(LoadScene("Mode1"));
+    }
 
     IEnumerator LoadScene(string sceneName)
     {
