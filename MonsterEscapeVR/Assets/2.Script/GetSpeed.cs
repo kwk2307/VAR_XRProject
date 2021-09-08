@@ -14,41 +14,21 @@ public class GetSpeed : MonoBehaviour
     int a = 1;
 
     float speed;
-   
+    void Start()
+    {
+        
+    }
 
     private Vector3 m_LastPosition;
     public float m_Speed;
-    float pre_Speed;
     public Text m_MeterPerSecond, m_KilometersPerHour;
-
-    public GameObject warningEffect; //경고를 표시할 UI
-    public int warningSpeed = 5; // 속도가 얼마이하로 되야 경고할 것인가?
 
     void FixedUpdate()
     {
-        delay += Time.deltaTime;
-        if (delay >= 3)
-        {
-            m_Speed = GetSpeed2();
-            m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
-                                    
-            m_Speed = (int)(m_Speed);
+        m_Speed = GetSpeed2();
 
-            if (warningSpeed > m_Speed)
-            {
-                StartCoroutine(PlayWarning());
-            }
-            
-
-            speedText.text = string.Format("{0:00} m/s", m_Speed);
-
-
-            //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
-
-            pre_Speed = m_Speed;
-
-        }
-       
+        speedText.text = string.Format("{0:00.00} m/s", m_Speed);
+        //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
     }
 
     float GetSpeed2()
@@ -62,9 +42,9 @@ public class GetSpeed : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //delay += Time.deltaTime;
-        //if(delay >= 1)
-        //{
+        delay += Time.deltaTime;
+        if(delay >= 1)
+        {
             /*
             currentPosition = this.transform; // 해당 프레임에서의 위치
 
@@ -88,18 +68,7 @@ public class GetSpeed : MonoBehaviour
 
             prePosition = currentPosition;  // 다음프레임의 입장에서는 비교할 프레임이다.
             */
-        //}
+        }
 
-        
-
-        
-
-    }
-    IEnumerator PlayWarning()
-    {
-        warningEffect.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        warningEffect.SetActive(false);
-        yield return new WaitForSeconds(2f);
     }
 }
