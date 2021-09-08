@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
-    [SerializeField] private Image img;
+    [SerializeField] private Image Gazepointer;
 
     private float timeElapsed;
 
@@ -24,7 +24,7 @@ public class Raycast : MonoBehaviour
         if (Physics.Raycast(this.transform.position, forward, out hit))
         {
             timeElapsed += Time.deltaTime;//시간 증가
-            img.fillAmount = timeElapsed / 3;//이미지 fill 채워줌
+            Gazepointer.fillAmount = timeElapsed / 3;//이미지 fill 채워줌
 
             if (timeElapsed >= 3)//3초가 되면
             {
@@ -35,9 +35,10 @@ public class Raycast : MonoBehaviour
         else
         {
             timeElapsed -= Time.deltaTime;
-            img.fillAmount = timeElapsed / 3;
+            Gazepointer.fillAmount = timeElapsed / 3;
 
             if (timeElapsed <= 0) timeElapsed = 0;
         }
+        Debug.DrawRay(transform.position, forward, Color.gray);
     }
 }
