@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameMng : MonoBehaviour
 {
 
@@ -17,18 +18,22 @@ public class GameMng : MonoBehaviour
     [SerializeField] private int[] enemyAngryPos;
     private int enemyAngryPosCnt = 0;
 
-    private void Start()
+   
+     void Start()
     {
         //시작할때 랜덤한 위치에 enemyAngryPos를 넣어준다.
         //한 두곳 정도..?
         //랜덤 함수를 구현해야함
 
+        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(velocity < warning_velocity)
+        
+        if (velocity < warning_velocity)
         {
             //속도가 느릴때
             //속도 경고 UI를 표시한다.
@@ -67,6 +72,23 @@ public class GameMng : MonoBehaviour
             //플레이어가 골에 도달했을때
             //게임 성공
         }
-
+        
     }
+    public void SceneChange()
+    {
+        
+        
+            SceneManager.LoadScene(3);
+
+
+        
+
+
+
+
+
+    
+        
+    }
+    
 }
