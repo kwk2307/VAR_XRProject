@@ -10,8 +10,8 @@ public class GetSpeed : MonoBehaviour
     Transform prePosition;
     public Text speedText;
     float delay = 0;
+    float count = 0;
 
-    int a = 1;
 
     float speed;
    
@@ -26,28 +26,37 @@ public class GetSpeed : MonoBehaviour
 
     void FixedUpdate()
     {
+        count += Time.deltaTime;
         delay += Time.deltaTime;
-        if (delay >= 3)
+        if(count >= 3) //처음 카운트다운이 있으니까
         {
-            m_Speed = GetSpeed2();
-            m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
-                                    
-            m_Speed = (int)(m_Speed);
-
-            if (warningSpeed > m_Speed)
+            if (delay >= 1.5f)
             {
-                StartCoroutine(PlayWarning());
+                m_Speed = GetSpeed2();
+                m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
+
+                m_Speed = (int)(m_Speed);
+                speedText.text = string.Format("{0:00} m/s", m_Speed);
+
+                if (warningSpeed > m_Speed)
+                {
+                    StartCoroutine(PlayWarning());
+                }
+
+
+                
+
+
+                //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
+
+                pre_Speed = m_Speed;
+
+                delay = 0;
+
             }
-            
-
-            speedText.text = string.Format("{0:00} m/s", m_Speed);
-
-
-            //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
-
-            pre_Speed = m_Speed;
 
         }
+        
        
     }
 
@@ -98,8 +107,8 @@ public class GetSpeed : MonoBehaviour
     IEnumerator PlayWarning()
     {
         warningEffect.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         warningEffect.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
     }
 }
