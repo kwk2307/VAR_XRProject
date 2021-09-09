@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,24 +25,17 @@ public class Rowing : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         float tmp = Vector3.Distance(tracker01.transform.position, tracker04.transform.position);  //현 프레임
 
         if (tmp <= 1)
         {
             isRowing = tmp;
-            if (anim_boat.GetBool("isRow"))
-            {
-                anim_boat.SetFloat("Move", isRowing);
-            }
-            else
-            {
-                anim_boat.SetFloat("Move", 1 - isRowing);
-            }
-
-            anim_men.SetFloat("Move", isRowing);
-
+            anim_boat.SetFloat("Position", isRowing);
         }
 
+        print(Math.Round(isRowing - isRowingPre,2));
+        anim_boat.SetFloat("isRow", (float)Math.Round(isRowing - isRowingPre, 2));
         if (isRowingPre == 0)
         {
             //isRowingPre 일때를 처리해 준다.
@@ -56,7 +50,7 @@ public class Rowing : MonoBehaviour
         }
 
         //로잉기를 당기는지 확인
-        //print("트래커의 변화 정도" + (isRowing - isRowingPre));
+        
         if ((isRowing - isRowingPre) > 0)
         {
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
@@ -69,7 +63,8 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.GetComponent<Rigidbody>().velocity.z < 0)
+        
+        if (this.GetComponent<Rigidbody>().velocity.z < 0)
         {
             this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * speed * Time.deltaTime);
         }
