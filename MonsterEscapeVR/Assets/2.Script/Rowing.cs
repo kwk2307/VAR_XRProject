@@ -18,6 +18,15 @@ public class Rowing : MonoBehaviour
 
     private int a = 1;
 
+    // 게임오버(성공) 부분 
+
+    public GameObject gameWinUI;
+    public Text time;
+
+    // 최고기록 확인 부분
+    public string bestRecord;
+    // 최고기록(분,초,밀리초) 
+
     void Start()
     {
         
@@ -81,12 +90,58 @@ public class Rowing : MonoBehaviour
         //print("isRowing : " + isRowing);
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("EndPoint"))
+        {
+            // 테스트용 (삭제가능)
 
-    //private void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
-    //    {
-    //        this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 300);
-    //    }
-    //}
+            // 성공사운드 재생
+
+            // 성공 이팩트 실행
+
+            // 상어가 추격을 멈춘다.(애니메이션도 나중에 넣어야함 9/7)
+            EnemyMove em = GameObject.Find("Shark_Charactor").GetComponent<EnemyMove>();
+            em.speed = 0;
+
+
+            // 게임 종료(승리)UI 활성화(여기에 시간,속도 정보 텍스트로 나타냄)
+            gameWinUI.SetActive(true);
+
+            // 시간 정지(정지 및 저장)
+            SpectatorViewUI sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI>();
+            sv.count = 0;
+            // 정지된 기록이 텍스트로 표시
+            time.text = "Time: " + sv.MinuteBox.GetComponent<Text>().text + sv.SecondBox.GetComponent<Text>().text + sv.MilliBox.GetComponent<Text>().text;
+            // 최고기록인지 아닌지 확인
+
+            // 만약 현재기록이 최고기록이라면 신기록 이팩트+사운드 생성
+
+
+
+
+
+            // 속도 정보(평균 속도,최고 속도)값 가져오기
+
+
+        }
+
+    }
+    
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
+        {
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 300);
+        }
+        if (GUI.Button(new Rect(300, 0, 300, 150), "다시하기"))
+        {
+            // 다시하기(실험용)
+            GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
+
+
+            gm.SceneChange();
+        }
+    }
+    
 }

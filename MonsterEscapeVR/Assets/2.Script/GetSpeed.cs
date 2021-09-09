@@ -18,11 +18,16 @@ public class GetSpeed : MonoBehaviour
 
     private Vector3 m_LastPosition;
     public float m_Speed;
-    float pre_Speed;
+    
     public Text m_MeterPerSecond, m_KilometersPerHour;
 
     public GameObject warningEffect; //경고를 표시할 UI
     public int warningSpeed = 5; // 속도가 얼마이하로 되야 경고할 것인가?
+
+    private void Awake()
+    {
+        m_Speed = 0;
+    }
 
     void FixedUpdate()
     {
@@ -30,13 +35,14 @@ public class GetSpeed : MonoBehaviour
         delay += Time.deltaTime;
         if(count >= 3) //처음 카운트다운이 있으니까
         {
+            
             if (delay >= 1.5f)
             {
                 m_Speed = GetSpeed2();
-                m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
+                //m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
 
                 m_Speed = (int)(m_Speed);
-                speedText.text = string.Format("{0:00} m/s", m_Speed);
+                speedText.text = string.Format("{0:00} k/s", m_Speed);
 
                 if (warningSpeed > m_Speed)
                 {
@@ -49,7 +55,6 @@ public class GetSpeed : MonoBehaviour
 
                 //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
 
-                pre_Speed = m_Speed;
 
                 delay = 0;
 
