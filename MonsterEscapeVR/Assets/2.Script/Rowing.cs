@@ -49,15 +49,7 @@ public class Rowing : MonoBehaviour
             return;
         }
 
-        if(isRowing - isRowingPre > 0.05)
-        {
-            anim_boat.SetBool("isRow", true);
-        }
-        else if(isRowing - isRowingPre < -0.05)
-        {
-            anim_boat.SetBool("isRow", false);
-        }
-
+        
         if (isRowing - isRowingPre > 0.7)
         {
             return; // 위치값이 튀는 것에 대한 예외처리
