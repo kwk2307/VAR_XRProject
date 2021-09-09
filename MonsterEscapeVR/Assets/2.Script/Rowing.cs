@@ -32,10 +32,12 @@ public class Rowing : MonoBehaviour
         {
             isRowing = tmp;
             anim_boat.SetFloat("Position", isRowing);
+            anim_men.SetFloat("Position", isRowing);
         }
 
         print(Math.Round(isRowing - isRowingPre,2));
         anim_boat.SetFloat("isRow", (float)Math.Round(isRowing - isRowingPre, 2));
+        anim_men.SetFloat("isRow", (float)Math.Round(isRowing - isRowingPre, 2));
         if (isRowingPre == 0)
         {
             //isRowingPre 일때를 처리해 준다.
