@@ -14,7 +14,8 @@ public class Rowing : MonoBehaviour
     [SerializeField] private float speed = 1;
 
     private float isRowing;
-    private float isRowingPre = 0;
+    private float isRowingPre;
+    private float Rowrate = -0.1f;
 
     private int a = 1;
 
@@ -44,21 +45,27 @@ public class Rowing : MonoBehaviour
             anim_men.SetFloat("Position", isRowing);
         }
 
-        print(Math.Round(isRowing - isRowingPre,2));
-        anim_boat.SetFloat("isRow", (float)Math.Round(isRowing - isRowingPre, 2));
-        anim_men.SetFloat("isRow", (float)Math.Round(isRowing - isRowingPre, 2));
-        if (isRowingPre == 0)
-        {
-            //isRowingPre 일때를 처리해 준다.
-            isRowingPre = isRowing;
-            return;
-        }
-
-        
         if (isRowing - isRowingPre > 0.7)
         {
             return; // 위치값이 튀는 것에 대한 예외처리
         }
+
+
+        /*if(Rowrate - (float)Math.Round(isRowing - isRowingPre, 3) < 0.1 && 
+            Rowrate - (float)Math.Round(isRowing - isRowingPre, 3) > -0.1)
+        {
+            Rowrate -= (float)Math.Round(isRowing - isRowingPre, 3);
+        }*/
+
+        if (Rowrate - (isRowing - isRowingPre) < 0.1 &&
+            Rowrate - (isRowing - isRowingPre) > -0.1)
+        {
+            Rowrate -= (isRowing - isRowingPre);
+        }
+
+        //print(Rowrate);
+        anim_boat.SetFloat("isRow", Rowrate);
+        anim_men.SetFloat("isRow", Rowrate);
 
         //로잉기를 당기는지 확인
         
@@ -77,7 +84,7 @@ public class Rowing : MonoBehaviour
         
         if (this.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * speed * Time.deltaTime);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * speed/5 * Time.deltaTime);
         }
         else
         {
@@ -85,8 +92,6 @@ public class Rowing : MonoBehaviour
         }
 
         //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
-        
-        
         //print("isRowing : " + isRowing);
 
     }
