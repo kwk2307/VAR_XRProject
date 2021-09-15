@@ -14,6 +14,8 @@ public class EnemyMove : MonoBehaviour
     {
         //플레이어를 찾아서 담는다
         player = GameObject.Find("Player");
+
+        Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
         
     }
 
