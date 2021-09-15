@@ -33,7 +33,7 @@ public class GameMng : MonoBehaviour
     void Update()
     {
         
-        if (velocity < warning_velocity)
+        /*if (velocity < warning_velocity)
         {
             //속도가 느릴때
             //속도 경고 UI를 표시한다.
@@ -71,7 +71,7 @@ public class GameMng : MonoBehaviour
 
             //플레이어가 골에 도달했을때
             //게임 성공
-        }
+        }*/
         
     }
     public void SceneChange()
