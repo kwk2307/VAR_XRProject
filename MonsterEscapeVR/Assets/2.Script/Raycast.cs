@@ -9,8 +9,13 @@ public class Raycast : MonoBehaviour
 
     private float timeElapsed;
 
+    public GameObject Toggle;
+    AudioSource ToggleSound;
+
     void Start()
     {
+        ToggleSound = Toggle.GetComponent<AudioSource>();
+        ToggleSound.Stop();
 
     }
 
@@ -23,14 +28,18 @@ public class Raycast : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit))
         {
-            print("이프문에 들어옴");
             timeElapsed += Time.deltaTime;//시간 증가
             Gazepointer.fillAmount = timeElapsed / 3;//이미지 fill 채워줌
 
             if (timeElapsed >= 3)//3초가 되면
             {
+                //버튼 효과음 재생
+                ToggleSound.Play();
+
                 //버튼 onClick 이벤트 발생
                 hit.transform.GetComponent<Button>().onClick.Invoke();
+
+                DontDestroyOnLoad(Toggle); //씬 전환해도 소리가 계속 나도록.
             }
         }
         else
@@ -40,6 +49,5 @@ public class Raycast : MonoBehaviour
 
             if (timeElapsed <= 0) timeElapsed = 0;
         }
-        Debug.DrawRay(transform.position, forward, Color.gray);
     }
 }
