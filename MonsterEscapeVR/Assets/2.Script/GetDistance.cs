@@ -12,6 +12,10 @@ public class GetDistance : MonoBehaviour
 
     private GameObject enemy;
 
+    // 프로그래스바 부분
+    //public Slider progress;
+    public float moveDistance;
+
     void Start()
     {
 
@@ -29,7 +33,9 @@ public class GetDistance : MonoBehaviour
         //구한거리를 UI에 표시한다
         distanceText.text =  distance + "M / 50M";
 
-        
+        // 프로그래스바 부분
+        moveDistance = 50 - distance;
+        //progress.value = moveDistance / 50;
         
     }
 }

@@ -85,7 +85,7 @@ public class PlayerMove : MonoBehaviour
             gameWinUI.SetActive(true);
             
             // 시간 정지(정지 및 저장)
-            SpectatorViewUI sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI>();
+            SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             sv.count = 0;
             // 정지된 기록이 텍스트로 표시
             time.text = "Time: " + sv.MinuteBox.GetComponent<Text>().text  + sv.SecondBox.GetComponent<Text>().text  + sv.MilliBox.GetComponent<Text>().text;
