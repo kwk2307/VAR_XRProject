@@ -106,7 +106,7 @@ public class Rowing : MonoBehaviour
             // 성공 이팩트 실행
 
             // 상어가 추격을 멈춘다.(애니메이션도 나중에 넣어야함 9/7)
-            EnemyMove em = GameObject.Find("Shark_Charactor").GetComponent<EnemyMove>();
+            EnemyMove em = GameObject.Find("Enermy").GetComponent<EnemyMove>();
             em.speed = 0;
 
 
@@ -114,7 +114,7 @@ public class Rowing : MonoBehaviour
             gameWinUI.SetActive(true);
 
             // 시간 정지(정지 및 저장)
-            SpectatorViewUI sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI>();
+            SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             sv.count = 0;
             // 정지된 기록이 텍스트로 표시
             time.text = "Time: " + sv.MinuteBox.GetComponent<Text>().text + sv.SecondBox.GetComponent<Text>().text + sv.MilliBox.GetComponent<Text>().text;

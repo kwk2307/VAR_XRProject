@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class SpectatorViewUI : MonoBehaviour
+public class SpectatorViewUI1 : MonoBehaviour
 {
     public float startCount;
 
@@ -73,11 +73,11 @@ public class SpectatorViewUI : MonoBehaviour
         if (startCount >= 3)
         {
             record();
-            PlayerMove pm = GameObject.Find("Player").GetComponent<PlayerMove>();
-            if (pm.gameWinUI==true)
+           // PlayerMove pm = GameObject.Find("Player").GetComponent<PlayerMove>();
+           // if (pm.gameWinUI==true)
             {
-                print("gameWinUI는 정상 작동");
-                Recordcompare();
+           //     print("gameWinUI는 정상 작동");
+           //     Recordcompare();
             }
         }
         // 만약 게임오버가 되었을때 기록 멈춤

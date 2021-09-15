@@ -32,6 +32,7 @@ public class EnemyMove : MonoBehaviour
     // 충돌했을경우
     private void OnCollisionEnter(Collision collision)
     {
+        print("충돌");
         if (collision.gameObject.name.Contains("Player"))
         {
             // 게임오버(실패) 사운드가 재생
@@ -41,7 +42,7 @@ public class EnemyMove : MonoBehaviour
             // 상어가 제자리에 멈춘다
             speed = 0;
             // 경과시간 카운트가 멈춘다
-            SpectatorViewUI sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI>();
+            SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             sv.count = 0;
 
             // 게임오버 UI가 활성화된다.
