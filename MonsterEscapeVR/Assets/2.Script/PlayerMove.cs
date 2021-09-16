@@ -22,11 +22,18 @@ public class PlayerMove : MonoBehaviour
     public string bestRecord;
     // 최고기록(분,초,밀리초) 
 
+    public GameObject warningEffect;
+    public float warnDis = 5; //얼마나 적과 가까워지면 경고할 것인가?
 
-   
-   
+
+    float enemyDis;
+    GameObject enemy;
+
+
+
     void Start()
     {
+         enemy = GameObject.Find("Enemy");
 
     }
 
@@ -90,15 +97,23 @@ public class PlayerMove : MonoBehaviour
             // 정지된 기록이 텍스트로 표시
             time.text = "Time: " + sv.MinuteBox.GetComponent<Text>().text  + sv.SecondBox.GetComponent<Text>().text  + sv.MilliBox.GetComponent<Text>().text;
             // 최고기록인지 아닌지 확인
-            
+
             // 만약 현재기록이 최고기록이라면 신기록 이팩트+사운드 생성
 
-           
-                
-            
+
+
+
 
             // 속도 정보(평균 속도,최고 속도)값 가져오기
 
+
+
+            // 적과 일정거리 이상 가까워지면 경고!!
+            enemyDis =  Vector3.Distance(this.transform.position, enemy.transform.position);
+            if(warnDis > enemyDis)
+            {
+                StartCoroutine(PlayWarning());
+            }
 
         }
 
@@ -113,5 +128,14 @@ public class PlayerMove : MonoBehaviour
 
             gm.SceneChange();
         }
+    }
+
+    IEnumerator PlayWarning()
+    {
+        warningEffect.SetActive(true);
+        yield return new WaitForSeconds(3f);
+
+        warningEffect.SetActive(false);
+        //yield return new WaitForSeconds(2f);
     }
 }

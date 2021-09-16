@@ -22,9 +22,17 @@ public class Rowing : MonoBehaviour
 
     private int a = 1;
 
+    public GameObject warningEffect;
+    public float warnDis = 20; //얼마나 적과 가까워지면 경고할 것인가?
+
+
+    float enemyDis;
+    GameObject enemy;
+
     void Start()
     {
-        
+        enemy = GameObject.Find("Enemy");
+
     }
 
     private void FixedUpdate()
@@ -85,6 +93,13 @@ public class Rowing : MonoBehaviour
         //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
         //print("isRowing : " + isRowing);
 
+        // 적과 일정거리 이상 가까워지면 경고!!
+        enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
+        if (warnDis > enemyDis)
+        {
+            StartCoroutine(PlayWarning());
+        }
+
     }
    
     
@@ -103,5 +118,16 @@ public class Rowing : MonoBehaviour
             gm.SceneChange();
         }
     }
-    
+
+
+    IEnumerator PlayWarning()
+    {
+        warningEffect.SetActive(true);
+        yield return new WaitForSeconds(3f);
+
+        warningEffect.SetActive(false);
+        //yield return new WaitForSeconds(2f);
+    }
+
+
 }
