@@ -16,21 +16,28 @@ public class CountDown : MonoBehaviour
     void Update()
     {
         
-        if (setTime >= 1)
-        {
+       
 
             setTime -= Time.deltaTime;
 
             countdownText.text = Mathf.Round(setTime).ToString();
-            if (setTime < 1)
+        if(countdownText.text == "0")
+        {
+            countdownText.text = "1";
+        }
+
+            if (setTime <= 0.1f)
             {
                 countdownText.text = "½ÃÀÛ!";
                 Destroy(timer, 1.0f);
             }
             
-        }
+     
        
-
+            if(setTime <= -1)
+        {
+            Destroy(gameObject);
+        }
 
 
 
