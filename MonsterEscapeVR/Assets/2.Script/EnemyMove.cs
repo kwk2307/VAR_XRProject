@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour
 
     private GameObject player; //플레이어를 담을 변수
     public GameObject GameOverUI; // 게임오버(실패)UI
+    public GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임어보 UI
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -50,6 +51,8 @@ public class EnemyMove : MonoBehaviour
 
             // 게임오버 UI가 활성화된다.
             GameOverUI.SetActive(true);
+            //플레이어 캔버스에 있는 게임오버 UI도 활성화
+            GameOverUI_player.SetActive(true);
         }
     }
     

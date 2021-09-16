@@ -8,6 +8,7 @@ public class EndPointTrig : MonoBehaviour
     // 게임오버(성공) 부분 
 
     public GameObject gameWinUI;
+    public GameObject gameWinUI_Player;
     public Text time;
 
     // 최고기록 확인 부분
@@ -40,6 +41,7 @@ public class EndPointTrig : MonoBehaviour
 
             // 게임 종료(승리)UI 활성화(여기에 시간,속도 정보 텍스트로 나타냄)
             gameWinUI.SetActive(true);
+            gameWinUI_Player.SetActive(true); //플레이어 UI에도 띄우기
 
             // 시간 정지(정지 및 저장)
             SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
