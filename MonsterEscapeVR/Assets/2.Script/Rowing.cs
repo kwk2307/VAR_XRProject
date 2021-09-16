@@ -58,8 +58,8 @@ public class Rowing : MonoBehaviour
         anim_men.SetFloat("isRow", Rowrate);
 
         //로잉기를 당기는지 확인
-        
-        if ((isRowing - isRowingPre) > 0 && this.GetComponent<Rigidbody>().velocity.magnitude <300)
+
+        if ((isRowing - isRowingPre) > 0 /*&& this.GetComponent<Rigidbody>().velocity.magnitude < 20*/)
         {
             // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
             // 

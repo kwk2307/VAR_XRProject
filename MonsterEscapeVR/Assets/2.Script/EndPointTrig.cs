@@ -50,13 +50,6 @@ public class EndPointTrig : MonoBehaviour
 
             // 만약 현재기록이 최고기록이라면 신기록 이팩트+사운드 생성
 
-
-
-
-
-            
-
-
         }
 
     }

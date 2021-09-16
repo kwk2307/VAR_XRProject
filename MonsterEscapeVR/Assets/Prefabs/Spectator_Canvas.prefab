@@ -937,6 +937,7 @@ MonoBehaviour:
   endPoint: {fileID: 0}
   distanceText: {fileID: 6303395550202591170}
   distance: 0
+  progress: {fileID: 0}
   moveDistance: 0
 --- !u!1 &6303395550239022420
 GameObject:
@@ -1105,7 +1106,6 @@ GameObject:
   - component: {fileID: 6303395550334346885}
   - component: {fileID: 6303395550334346884}
   - component: {fileID: 6303395550334347131}
-  - component: {fileID: 6303395550334346880}
   - component: {fileID: 3001096518831494628}
   m_Layer: 5
   m_Name: Spectator_Canvas
@@ -1205,22 +1205,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6303395550334346880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6303395550334347130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f574508401722be44aae3b8d73200a61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setTime: 3
-  countdownText: {fileID: 6303395550750947331}
-  timer: {fileID: 6303395550750947330}
-  destroyCount: 0
 --- !u!114 &3001096518831494628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,6 +1476,7 @@ GameObject:
   - component: {fileID: 6303395550750947341}
   - component: {fileID: 6303395550750947340}
   - component: {fileID: 6303395550750947331}
+  - component: {fileID: 6680723363791875931}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1560,6 +1545,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uCE74\uC6B4\uD2B8"
+--- !u!114 &6680723363791875931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303395550750947330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f574508401722be44aae3b8d73200a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setTime: 3
+  countdownText: {fileID: 0}
+  timer: {fileID: 0}
+  destroyCount: 0
 --- !u!1 &6303395550898600392
 GameObject:
   m_ObjectHideFlags: 0

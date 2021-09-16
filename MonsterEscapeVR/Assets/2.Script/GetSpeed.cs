@@ -11,9 +11,6 @@ public class GetSpeed : MonoBehaviour
     public Text speedText;
     float delay = 0;
     float count = 0;
-
-
-    float speed;
    
 
     private Vector3 m_LastPosition;
@@ -38,11 +35,10 @@ public class GetSpeed : MonoBehaviour
             
             if (delay >= 0.5f)
             {
-                m_Speed = GetSpeed2();
+                m_Speed = this.GetComponentInParent<Rigidbody>().velocity.magnitude;
                 //m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
 
-                m_Speed = (int)(m_Speed);
-                speedText.text = string.Format("{0:00} k/s", m_Speed);
+                speedText.text = string.Format("{0:00} k/s", (int)m_Speed);
 
                 if (warningSpeed > m_Speed)
                 {
@@ -59,13 +55,6 @@ public class GetSpeed : MonoBehaviour
         }
         
        
-    }
-
-    public float GetSpeed2()
-    {
-
-        float speed = this.GetComponentInParent<Rigidbody>().velocity.magnitude;
-        return speed;
     }
 
     // Update is called once per frame
