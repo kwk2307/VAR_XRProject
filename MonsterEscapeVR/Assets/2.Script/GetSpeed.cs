@@ -49,10 +49,6 @@ public class GetSpeed : MonoBehaviour
                     StartCoroutine(PlayWarning());
                 }
 
-
-                
-
-
                 //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
 
 
@@ -65,11 +61,10 @@ public class GetSpeed : MonoBehaviour
        
     }
 
-    float GetSpeed2()
+    public float GetSpeed2()
     {
-        float speed = (((transform.position - m_LastPosition).magnitude) / Time.deltaTime);
-        m_LastPosition = transform.position;
 
+        float speed = this.GetComponentInParent<Rigidbody>().velocity.magnitude;
         return speed;
     }
 
@@ -113,6 +108,7 @@ public class GetSpeed : MonoBehaviour
     {
         warningEffect.SetActive(true);
         yield return new WaitForSeconds(3f);
+
         warningEffect.SetActive(false);
         //yield return new WaitForSeconds(2f);
     }

@@ -27,7 +27,8 @@ public class EnemyMove : MonoBehaviour
         {
 
             //플레이어를 쫓아간다.
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+            transform.position -= Vector3.forward * speed;
+
 
         }
     }
