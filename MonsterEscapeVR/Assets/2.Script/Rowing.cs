@@ -59,7 +59,7 @@ public class Rowing : MonoBehaviour
 
         //로잉기를 당기는지 확인
 
-        if ((isRowing - isRowingPre) > 0 /*&& this.GetComponent<Rigidbody>().velocity.magnitude < 20*/)
+        if ((isRowing - isRowingPre) > 0 && this.GetComponent<Rigidbody>().velocity.magnitude < 15)
         {
             // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
             // 
@@ -75,7 +75,7 @@ public class Rowing : MonoBehaviour
         
         if (this.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) *100 * Time.deltaTime);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 100 * Time.deltaTime);
         }
         else
         {
