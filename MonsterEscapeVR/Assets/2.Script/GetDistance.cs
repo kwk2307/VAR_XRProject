@@ -13,7 +13,7 @@ public class GetDistance : MonoBehaviour
     private GameObject enemy;
 
     // 프로그래스바 부분
-    //public Slider progress;
+    public Slider progress;
     public float moveDistance;
 
     void Start()
@@ -35,7 +35,7 @@ public class GetDistance : MonoBehaviour
 
         // 프로그래스바 부분
         moveDistance = 50 - distance;
-        //progress.value = moveDistance / 50;
+        progress.value = moveDistance / 50;
         
     }
 }
