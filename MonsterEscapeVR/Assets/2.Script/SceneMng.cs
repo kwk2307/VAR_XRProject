@@ -30,6 +30,10 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("Mode1"));
     }
+    public void GoToMain()
+    {
+        StartCoroutine(LoadScene("MainMenu"));
+    }
 
     IEnumerator LoadScene(string sceneName)
     {
