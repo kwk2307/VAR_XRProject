@@ -36,7 +36,7 @@ public class GetSpeed : MonoBehaviour
         if(count >= 3) //처음 카운트다운이 있으니까
         {
             
-            if (delay >= 1.5f)
+            if (delay >= 0.5f)
             {
                 m_Speed = GetSpeed2();
                 //m_Speed = m_Speed * 10; //스피드 수치가 너무 적게 나와서
