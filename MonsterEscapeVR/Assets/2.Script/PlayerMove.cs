@@ -89,7 +89,8 @@ public class PlayerMove : MonoBehaviour
             sv.count = 0;
             // 정지된 기록이 텍스트로 표시
             time.text = "Time: " + sv.MinuteBox.GetComponent<Text>().text  + sv.SecondBox.GetComponent<Text>().text  + sv.MilliBox.GetComponent<Text>().text;
-            // 최고기록인지 아닌지 확인
+            // 랭킹 확인
+            sv.RankingCompare();
             
             // 만약 현재기록이 최고기록이라면 신기록 이팩트+사운드 생성
 

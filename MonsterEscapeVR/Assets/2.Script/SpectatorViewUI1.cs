@@ -26,14 +26,23 @@ public class SpectatorViewUI1 : MonoBehaviour
     public Text BestRecordMilli;
 
 
-    int bestMinute;
-    int bestSecond;
-    float bestMilli;
-    string bestMilliDisplay;
+    public int bestMinute;
+    public int bestSecond;
+    public float bestMilli;
+    public string bestMilliDisplay;
 
     EndPointTrig ept;
-    // 체크용
-    int num;
+    // 랭킹용
+    public int tempMinute;
+    public int tempSecond;
+    public float tempMilli;
+
+    public int[] rankMinute= { 99, 99, 99, 99, 99, 99, 99, 99, 99, 99 };
+    public int[] rankSecond= { 99, 99, 99, 99, 99, 99, 99, 99, 99, 99 };
+    public float[] rankMilli= { 99, 99, 99, 99, 99, 99, 99, 99, 99, 99 };
+   
+    
+
     void Awake()
     {
         if (PlayerPrefs.HasKey("Best Minute"))
@@ -43,7 +52,7 @@ public class SpectatorViewUI1 : MonoBehaviour
             bestSecond = PlayerPrefs.GetInt("Best Second");
             bestMilli = PlayerPrefs.GetFloat("Best MilliSecond");
 
-            print("awake기록은 " + bestMinute + " : " + bestSecond + " : " + bestMilli);
+
 
 
             // 밀리세컨드의 소수점 표시않기위해
@@ -79,8 +88,8 @@ public class SpectatorViewUI1 : MonoBehaviour
             PlayerPrefs.SetInt("Best Second", 99); // 초값 저장
             PlayerPrefs.SetFloat("Best MilliSecond", 99); // 밀리초값 저장
 
-            print("저장완료");
-          
+
+
         }
     }
 
@@ -169,10 +178,47 @@ public class SpectatorViewUI1 : MonoBehaviour
         PlayerPrefs.SetInt("New Second", SecondCount); // 초값 저장
         PlayerPrefs.SetFloat("New MilliSecond", MilliCount); // 밀리초값 저장
 
+        // 랭킹 저장하는 용도로 temp값에 저장해준다
 
-        //PlayerPrefs.GetInt("Best Minute");
-        //PlayerPrefs.GetInt("Best Second");
-        //PlayerPrefs.GetFloat("Best MilliSecond");
+
+       
+
+        PlayerPrefs.SetInt("Temp Minute", tempMinute); // 분값 저장
+        PlayerPrefs.SetInt("Temp Second", tempSecond); // 초값 저장
+        PlayerPrefs.SetFloat("Temp Milli", tempMilli); // 밀리초값 저장
+
+        for (int i = 0; i < 10; i++)
+        {
+            // if(tempMinute<rankMinute[i]){
+            for (int j = i + 1; j <= 10; j++)
+            {
+                // temp=rank[i];
+                //rank[i]=rank[j];
+                //rank[j]=rank[i];
+            }
+            //}
+            // else if(tempMinute==rankMinute[i]){
+            // if(tempSecond<rankSecond[i]){
+            for (int j = i + 1; j <= 10; j++)
+            {
+                // temp=rank[i];
+                // rank[i]=rank[j];
+                // rank[j]=rank[i];
+            }
+            //}
+            // else if(tempSecond==rankSecond[i]){
+            // if(tempMilli<rankMilli[i]){
+            for (int j = i + 1; j <= 10; j++)
+            {
+                // temp=rank[i];
+                //rank[i]=rank[j];
+                //rank[j]=rank[i];
+            }
+        //}
+        //}
+        }
+
+       
         print("기존의 최고기록은: " + PlayerPrefs.GetInt("Best Minute") + ":" + "분" +
         PlayerPrefs.GetInt("Best Second") + ":" + "초" +
         PlayerPrefs.GetFloat("Best MilliSecond") + "밀리");
@@ -196,6 +242,7 @@ public class SpectatorViewUI1 : MonoBehaviour
         //}
         if (PlayerPrefs.GetInt("Best Minute") > PlayerPrefs.GetInt("New Minute"))
         {
+            
 
             // 최고기록으로 넣어준다.
             bestMinute = PlayerPrefs.GetInt("New Minute"); // 분값 저장
@@ -207,7 +254,7 @@ public class SpectatorViewUI1 : MonoBehaviour
             PlayerPrefs.SetInt("Best Second", bestSecond); // 초값 저장
             PlayerPrefs.SetFloat("Best MilliSecond", bestMilli); // 밀리초값 저장
 
-            print("바뀜");
+            
 
         }
         else if (PlayerPrefs.GetInt("Best Minute") == PlayerPrefs.GetInt("New Minute"))
@@ -245,6 +292,122 @@ public class SpectatorViewUI1 : MonoBehaviour
         }
         print(bestMinute + "분" + bestSecond + "초" + bestMilli + "밀리");
         
+    }
+    public void RankingCompare()
+    {
+        PlayerPrefs.GetInt("Temp Minute");
+        PlayerPrefs.GetInt("Temp Second"); 
+        PlayerPrefs.GetFloat("Temp Milli");
+
+        tempMinute = PlayerPrefs.GetInt("Temp Minute");
+        tempSecond=PlayerPrefs.GetInt("Temp Second");
+        tempMilli = PlayerPrefs.GetFloat("Temp MilliSecond");
+        for (int i = 0; i < 10; i++)
+        {
+            if (tempMinute < rankMinute[i])
+            {
+                for (int j = i + 1; j<=10; j++)
+                {
+                    tempMinute = rankMinute[i];
+                    rankMinute[i] = rankMinute[j];
+                    rankMinute[j] = rankMinute[i];
+
+                    tempSecond = rankSecond[i];
+                    rankMinute[i] = rankSecond[j];
+                    rankMinute[j] = rankSecond[i];
+
+                    tempMilli = rankMilli[i];
+                    rankMilli[i] = rankMilli[j];
+                    rankMilli[j] = rankMilli[i];
+
+                    PlayerPrefs.SetInt("Ranking i Minute", rankMinute[i]);
+                    PlayerPrefs.SetInt("Ranking i Second", rankSecond[i]);
+                    PlayerPrefs.SetFloat("Ranking i Milli", rankMilli[i]);
+
+                    PlayerPrefs.SetInt("Ranking j Minute", rankMinute[j]);
+                    PlayerPrefs.SetInt("Ranking j Second", rankSecond[j]);
+                    PlayerPrefs.SetFloat("Ranking j Milli", rankMilli[j]);
+
+                }
+            }
+            else if (tempMinute == rankMinute[i])
+            {
+                if (tempSecond < rankSecond[i])
+                {
+                    for (int j = i + 1; j <= 10; j++)
+                    {
+                        tempMinute = rankMinute[i];
+                        rankMinute[i] = rankMinute[j];
+                        rankMinute[j] = rankMinute[i];
+
+                        tempSecond = rankSecond[i];
+                        rankMinute[i] = rankSecond[j];
+                        rankMinute[j] = rankSecond[i];
+
+                        tempMilli = rankMilli[i];
+                        rankMilli[i] = rankMilli[j];
+                        rankMilli[j] = rankMilli[i];
+
+                        PlayerPrefs.SetInt("Ranking i Minute", rankMinute[i]);
+                        PlayerPrefs.SetInt("Ranking i Second", rankSecond[i]);
+                        PlayerPrefs.SetFloat("Ranking i Milli", rankMilli[i]);
+
+                        PlayerPrefs.SetInt("Ranking j Minute", rankMinute[j]);
+                        PlayerPrefs.SetInt("Ranking j Second", rankSecond[j]);
+                        PlayerPrefs.SetFloat("Ranking j Milli", rankMilli[j]);
+
+                    }
+                }
+                else if (tempSecond == rankSecond[i])
+                {
+                    if (tempMilli < rankMilli[i])
+                    {
+                        for (int j = i + 1; j <= 10; j++)
+                        {
+                            tempMinute = rankMinute[i];
+                            rankMinute[i] = rankMinute[j];
+                            rankMinute[j] = rankMinute[i];
+
+                            tempSecond = rankSecond[i];
+                            rankMinute[i] = rankSecond[j];
+                            rankMinute[j] = rankSecond[i];
+
+                            tempMilli = rankMilli[i];
+                            rankMilli[i] = rankMilli[j];
+                            rankMilli[j] = rankMilli[i];
+
+                            PlayerPrefs.SetInt("Ranking i Minute", rankMinute[i]);
+                            PlayerPrefs.SetInt("Ranking i Second", rankSecond[i]);
+                            PlayerPrefs.SetFloat("Ranking i Milli", rankMilli[i]);
+
+                            PlayerPrefs.SetInt("Ranking j Minute", rankMinute[j]);
+                            PlayerPrefs.SetInt("Ranking j Second", rankSecond[j]);
+                            PlayerPrefs.SetFloat("Ranking j Milli", rankMilli[j]);
+                        }
+                    }
+                }
+                else
+                {
+                    tempMinute = rankMinute[i + 1];
+                    tempSecond = rankSecond[i + 1];
+                    tempMilli = rankMilli[i + 1];
+
+                    PlayerPrefs.SetInt("Ranking i Minute", rankMinute[i+1]);
+                    PlayerPrefs.SetInt("Ranking i Second", rankSecond[i+1]);
+                    PlayerPrefs.SetFloat("Ranking i Milli", rankMilli[i+1]);
+                }
+            }
+            else
+            {
+                tempMinute = rankMinute[i + 1];
+                tempSecond = rankSecond[i + 1];
+                tempMilli = rankMilli[i + 1];
+
+                PlayerPrefs.SetInt("Ranking i Minute", rankMinute[i + 1]);
+                PlayerPrefs.SetInt("Ranking i Second", rankSecond[i + 1]);
+                PlayerPrefs.SetFloat("Ranking i Milli", rankMilli[i + 1]);
+            }
+        }
     }
 
 
