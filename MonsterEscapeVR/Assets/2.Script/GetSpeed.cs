@@ -18,8 +18,6 @@ public class GetSpeed : MonoBehaviour
     
     public Text m_MeterPerSecond, m_KilometersPerHour;
 
-    public GameObject warningEffect; //경고를 표시할 UI
-    public int warningSpeed = 5; // 속도가 얼마이하로 되야 경고할 것인가?
 
     private void Awake()
     {
@@ -40,10 +38,6 @@ public class GetSpeed : MonoBehaviour
 
                 speedText.text = string.Format("{0:00} k/s", (int)m_Speed);
 
-                if (warningSpeed > m_Speed)
-                {
-                    StartCoroutine(PlayWarning());
-                }
 
                 //m_KilometersPerHour.text = string.Format("{0:00.00} km/h", m_Speed * 3.6f);
 
@@ -93,12 +87,5 @@ public class GetSpeed : MonoBehaviour
         
 
     }
-    IEnumerator PlayWarning()
-    {
-        warningEffect.SetActive(true);
-        yield return new WaitForSeconds(3f);
-
-        warningEffect.SetActive(false);
-        //yield return new WaitForSeconds(2f);
-    }
+    
 }

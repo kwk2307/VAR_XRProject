@@ -22,9 +22,17 @@ public class Rowing : MonoBehaviour
 
     private int a = 1;
 
+    public GameObject warningEffect;
+    public float warnDis = 20; //얼마나 적과 가까워지면 경고할 것인가?
+
+
+    float enemyDis;
+    GameObject enemy;
+
     void Start()
     {
-        
+        enemy = GameObject.Find("Enemy");
+
     }
 
     private void FixedUpdate()
@@ -59,7 +67,7 @@ public class Rowing : MonoBehaviour
 
         //로잉기를 당기는지 확인
 
-        if ((isRowing - isRowingPre) > 0 /*&& this.GetComponent<Rigidbody>().velocity.magnitude < 20*/)
+        if ((isRowing - isRowingPre) > 0 && this.GetComponent<Rigidbody>().velocity.magnitude < 15)
         {
             // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
             // 
@@ -75,7 +83,7 @@ public class Rowing : MonoBehaviour
         
         if (this.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) *100 * Time.deltaTime);
+            this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 100 * Time.deltaTime);
         }
         else
         {
@@ -84,6 +92,13 @@ public class Rowing : MonoBehaviour
 
         //isRowing = tracker01.transform.position.x  - tracker04.transform.position.x;
         //print("isRowing : " + isRowing);
+
+        // 적과 일정거리 이상 가까워지면 경고!!
+        enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
+        if (warnDis > enemyDis)
+        {
+            StartCoroutine(PlayWarning());
+        }
 
     }
    
@@ -103,5 +118,16 @@ public class Rowing : MonoBehaviour
             gm.SceneChange();
         }
     }
-    
+
+
+    IEnumerator PlayWarning()
+    {
+        warningEffect.SetActive(true);
+        yield return new WaitForSeconds(3f);
+
+        warningEffect.SetActive(false);
+        //yield return new WaitForSeconds(2f);
+    }
+
+
 }
