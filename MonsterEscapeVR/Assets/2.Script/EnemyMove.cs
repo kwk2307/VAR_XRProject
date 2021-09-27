@@ -10,14 +10,15 @@ public class EnemyMove : MonoBehaviour
 
     private GameObject player; //플레이어를 담을 변수
     public GameObject GameOverUI; // 게임오버(실패)UI
-    public GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임어보 UI
+     GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
     void Start()
     {
         //플레이어를 찾아서 담는다
         player = GameObject.Find("Player");
 
         Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
-        
+
+        GameOverUI_player = GameObject.Find("GameOverUI_Fail");
     }
 
     // Update is called once per frame
