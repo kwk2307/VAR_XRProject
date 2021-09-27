@@ -35,7 +35,7 @@ public class EndPointTrig : MonoBehaviour
             // 성공 이팩트 실행
 
             // 상어가 추격을 멈춘다.(애니메이션도 나중에 넣어야함 9/7)
-            EnemyMove em = GameObject.Find("Enermy").GetComponent<EnemyMove>();
+            EnemyMove em = GameObject.Find("Enemy").GetComponent<EnemyMove>();
             em.speed = 0;
 
 
