@@ -11,6 +11,7 @@ public class EnemyMove : MonoBehaviour
     private GameObject player; //플레이어를 담을 변수
     public GameObject GameOverUI; // 게임오버(실패)UI
      GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
+    Animator ani; //상어 애니
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -18,7 +19,8 @@ public class EnemyMove : MonoBehaviour
 
         Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
 
-        GameOverUI_player = GameObject.Find("GameOverUI_Fail");
+        GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,17 @@ public class EnemyMove : MonoBehaviour
         delayCount += Time.deltaTime;
         if (delayCount >= 3)
         {
+            //크아아앙
+            ani.SetBool("Angry", true);
+
+            
+
+
+        }
+        if(delayCount >= 6)
+        {
+            //크아앙은 멈추고
+            ani.SetBool("Angry", false);
 
             //플레이어를 쫓아간다.
             transform.position -= Vector3.forward * speed;
@@ -54,6 +67,8 @@ public class EnemyMove : MonoBehaviour
             GameOverUI.SetActive(true);
             //플레이어 캔버스에 있는 게임오버 UI도 활성화
             GameOverUI_player.SetActive(true);
+
+            ani.SetBool("Byte", true); //게임이 끝나면 상어가 입을 앙앙거린다.
         }
     }
     
