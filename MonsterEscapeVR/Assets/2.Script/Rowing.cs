@@ -29,6 +29,8 @@ public class Rowing : MonoBehaviour
     float enemyDis;
     GameObject enemy;
 
+    bool warn; //경고 UI가 지나치게 반복되는 것 막기 위해 만든 변수
+
     void Start()
     {
         enemy = GameObject.Find("Enemy");
@@ -95,8 +97,10 @@ public class Rowing : MonoBehaviour
 
         // 적과 일정거리 이상 가까워지면 경고!!
         enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
-        if (warnDis > enemyDis)
+        if (warnDis > enemyDis && warn == false)
         {
+            print("경고하는 이프문에 들어옴");
+            warn = true;
             StartCoroutine(PlayWarning());
         }
 
@@ -123,10 +127,14 @@ public class Rowing : MonoBehaviour
     IEnumerator PlayWarning()
     {
         warningEffect.SetActive(true);
+        
         yield return new WaitForSeconds(3f);
 
         warningEffect.SetActive(false);
         //yield return new WaitForSeconds(2f);
+
+        warn = false;
+        yield return new WaitForSeconds(3f);
     }
 
 
