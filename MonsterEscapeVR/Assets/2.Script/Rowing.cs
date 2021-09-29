@@ -107,7 +107,7 @@ public class Rowing : MonoBehaviour
     }
    
     
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (GUI.Button(new Rect(0, 0, 300, 150), "¹öÆ°"))
         {
@@ -121,7 +121,7 @@ public class Rowing : MonoBehaviour
 
             gm.SceneChange();
         }
-    }
+    }*/
 
 
     IEnumerator PlayWarning()
