@@ -27,7 +27,6 @@ public class SoundFadeOut : MonoBehaviour
     IEnumerator FadeOut()
     {
         sound.volume -= Time.deltaTime;
-        print(sound.volume);
         yield return 1;
     }
 }

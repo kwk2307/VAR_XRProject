@@ -14,6 +14,8 @@ public class EnemyMove : MonoBehaviour
     Animator ani; //상어 애니
     AudioSource sound; //상어 크아아앙 소리
 
+    Light lit;
+
     bool start = false;
     float delayTime;
     void Start()
@@ -28,6 +30,8 @@ public class EnemyMove : MonoBehaviour
 
         //크아아앙 소리 할당
         sound = GetComponent<AudioSource>();
+
+        lit = GameObject.Find("Directional Light").GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -91,6 +95,14 @@ public class EnemyMove : MonoBehaviour
 
         }
 
+        //조명도 어둡게 해봅시다
+        StartCoroutine(FadeOut());
+
+    }
+    IEnumerator FadeOut()
+    {
+        lit.intensity -= Time.deltaTime;
+        yield return 1;
     }
 
 
