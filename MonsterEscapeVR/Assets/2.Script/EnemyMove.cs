@@ -12,6 +12,9 @@ public class EnemyMove : MonoBehaviour
     public GameObject GameOverUI; // 게임오버(실패)UI
      GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
     Animator ani; //상어 애니
+    AudioSource sound; //상어 크아아앙 소리
+
+    bool start = false;
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -21,18 +24,25 @@ public class EnemyMove : MonoBehaviour
 
         GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
         ani = GetComponent<Animator>();
+
+        //크아아앙 소리 할당
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         delayCount += Time.deltaTime;
-        if (delayCount >= 3)
+        if (delayCount >= 3 && start == false)
         {
             //크아아앙
             ani.SetBool("Angry", true);
 
-            
+            //포효 소리 재생
+            sound.Play();
+
+            //다시 이 곳에 안들어오도록 막는다
+            start = true;
 
 
         }
@@ -71,5 +81,6 @@ public class EnemyMove : MonoBehaviour
             ani.SetBool("Byte", true); //게임이 끝나면 상어가 입을 앙앙거린다.
         }
     }
+    
     
 }
