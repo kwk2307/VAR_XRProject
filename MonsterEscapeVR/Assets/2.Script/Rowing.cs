@@ -137,5 +137,10 @@ public class Rowing : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //경고 UI안뜨도록
+        Destroy(warningEffect);
+    }
 
 }
