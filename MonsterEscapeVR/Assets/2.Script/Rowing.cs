@@ -140,7 +140,7 @@ public class Rowing : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //경고 UI안뜨도록
-        Destroy(warningEffect);
+        Destroy(this);
     }
 
 }
