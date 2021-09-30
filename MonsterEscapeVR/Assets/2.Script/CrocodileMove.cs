@@ -47,7 +47,6 @@ public class CrocodileMove : MonoBehaviour
     // 충돌했을경우
     private void OnCollisionEnter(Collision collision)
     {
-        print("충돌");
         if (collision.gameObject.name.Contains("Player"))
         {
             // 게임오버(실패) 사운드가 재생
