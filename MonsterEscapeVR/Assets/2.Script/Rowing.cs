@@ -22,6 +22,22 @@ public class Rowing : MonoBehaviour
     private float rowRate = -0.1f;
     //Rowrate = 애니메이션을 위해 만든 수치 rowrate에 따라 당겨지는 모션인지 미는 모션인지를 결정한다.
 
+    public GameObject warningEffect;
+
+    public float warnDis = 20; //얼마나 적과 가까워지면 경고할 것인가?
+
+
+    float enemyDis;
+    GameObject enemy;
+
+    bool warn; //경고 UI가 지나치게 반복되는 것 막기 위해 만든 변수
+
+    void Start()
+    {
+        enemy = GameObject.Find("Enemy");
+
+    }
+
     private void FixedUpdate()
     {
         
@@ -76,6 +92,16 @@ public class Rowing : MonoBehaviour
         {
             water.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+
+        // 적과 일정거리 이상 가까워지면 경고!!
+        enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
+        if (warnDis > enemyDis && warn == false)
+        {
+            print("경고하는 이프문에 들어옴");
+            warn = true;
+            StartCoroutine(PlayWarning());
+        }
+
     }
    
     
@@ -96,5 +122,22 @@ public class Rowing : MonoBehaviour
     //}
 
 
-    
+    IEnumerator PlayWarning()
+    {
+        warningEffect.SetActive(true);
+        
+        yield return new WaitForSeconds(3f);
+
+        warningEffect.SetActive(false);
+        //yield return new WaitForSeconds(2f);
+
+        warn = false;
+        yield return new WaitForSeconds(3f);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //경고 UI안뜨도록
+        Destroy(this);
+    }
+
 }
