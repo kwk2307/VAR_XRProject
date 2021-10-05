@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 2885600508186653999}
   - component: {fileID: 2885600508186653996}
   - component: {fileID: 2885600508186653997}
-  - component: {fileID: 2885600508186653998}
   m_Layer: 5
   m_Name: SecondTime
   m_TagString: Untagged
@@ -176,20 +175,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '00:'
---- !u!114 &2885600508186653998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885600508186653992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a44926bf412ac458ef6982c383ccf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerLabel: {fileID: 2885600508186653997}
-  delayTimer: 0
 --- !u!1 &2885600508195747920
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +186,6 @@ GameObject:
   - component: {fileID: 2885600508195747927}
   - component: {fileID: 2885600508195747925}
   - component: {fileID: 2885600508195747926}
-  - component: {fileID: 2885600508195747924}
   m_Layer: 5
   m_Name: Distance
   m_TagString: Untagged
@@ -270,24 +254,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 50M / 50M
---- !u!114 &2885600508195747924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885600508195747920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0b854560b1248448dcb68f2c9cdb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 0}
-  endPoint: {fileID: 0}
-  distanceText: {fileID: 2885600508195747926}
-  distance: 0
-  progress: {fileID: 0}
-  moveDistance: 0
 --- !u!1 &2885600508457351832
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +418,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2885600508478237302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +447,6 @@ GameObject:
   - component: {fileID: 2885600508844977513}
   - component: {fileID: 2885600508844977518}
   - component: {fileID: 2885600508844977519}
-  - component: {fileID: 2885600508844977512}
   m_Layer: 5
   m_Name: Speed
   m_TagString: Untagged
@@ -550,22 +515,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC18D\uB3C4\uD45C\uC2DC"
---- !u!114 &2885600508844977512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885600508844977514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b4630ab9a1be54e9f4287ac5364d26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedText: {fileID: 2885600508844977519}
-  m_Speed: 0
-  m_MeterPerSecond: {fileID: 2885600508871351477}
-  m_KilometersPerHour: {fileID: 2885600508186653997}
 --- !u!1 &2885600508871351472
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +526,6 @@ GameObject:
   - component: {fileID: 2885600508871351479}
   - component: {fileID: 2885600508871351476}
   - component: {fileID: 2885600508871351477}
-  - component: {fileID: 2885600508871351478}
   m_Layer: 5
   m_Name: MiliTime
   m_TagString: Untagged
@@ -646,20 +594,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: ' 00'
---- !u!114 &2885600508871351478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885600508871351472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a44926bf412ac458ef6982c383ccf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerLabel: {fileID: 2885600508871351477}
-  delayTimer: 0
 --- !u!1 &2885600509040996427
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +778,6 @@ GameObject:
   - component: {fileID: 2885600509150565661}
   - component: {fileID: 2885600509150565634}
   - component: {fileID: 2885600509150565635}
-  - component: {fileID: 2885600509150565660}
   m_Layer: 5
   m_Name: MiniteTime
   m_TagString: Untagged
@@ -915,20 +848,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Timer8888
---- !u!114 &2885600509150565660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885600509150565662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a44926bf412ac458ef6982c383ccf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerLabel: {fileID: 2885600509150565635}
-  delayTimer: 0
 --- !u!1 &6863071581258728557
 GameObject:
   m_ObjectHideFlags: 0

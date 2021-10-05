@@ -16,8 +16,6 @@ public class CountDown : MonoBehaviour
     void Update()
     {
 
-
-
         setTime -= Time.deltaTime;
 
         countdownText.text = Mathf.Round(setTime).ToString();
@@ -35,10 +33,6 @@ public class CountDown : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-
-
-
+        
     }
 }

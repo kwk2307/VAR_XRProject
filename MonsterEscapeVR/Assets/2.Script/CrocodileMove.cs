@@ -16,8 +16,6 @@ public class CrocodileMove : MonoBehaviour
 
     Light lit;
 
-    AudioSource GameOverSound;
-
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -29,8 +27,6 @@ public class CrocodileMove : MonoBehaviour
         ani = GetComponent<Animator>();
 
         lit = GameObject.Find("Directional Light").GetComponent<Light>();
-
-        GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,7 +50,6 @@ public class CrocodileMove : MonoBehaviour
         if (collision.gameObject.name.Contains("Player"))
         {
             // 게임오버(실패) 사운드가 재생
-            GameOverSound.Play();
 
             // 게임오버(실패) 이팩트가 실행
 
