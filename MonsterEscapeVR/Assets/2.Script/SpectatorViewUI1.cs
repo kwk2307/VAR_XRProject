@@ -107,7 +107,7 @@ public class SpectatorViewUI1 : MonoBehaviour
             record();
 
             
-            if (ept.gameWinUI.activeSelf == true)
+            //if (ept.gameWinUI.activeSelf == true)
             {
                 Recordcompare();
                 
