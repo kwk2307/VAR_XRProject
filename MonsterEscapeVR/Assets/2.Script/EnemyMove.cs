@@ -16,6 +16,7 @@ public class EnemyMove : MonoBehaviour
 
     Light lit;
 
+    bool start = false;
     float delayTime;
     void Start()
     {
@@ -37,13 +38,16 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         delayCount += Time.deltaTime;
-        if (delayCount >= 3)
+        if (delayCount >= 3 && start == false)
         {
             //크아아앙
             ani.SetBool("Angry", true);
 
             //포효 소리 재생
             sound.Play();
+
+            //다시 이 곳에 안들어오도록 막는다
+            start = true;
 
 
         }
@@ -101,9 +105,5 @@ public class EnemyMove : MonoBehaviour
         yield return 1;
     }
 
-    void SharkSoundPlay()
-    {
-        sound.Play();
-    }
 
 }
