@@ -5,27 +5,37 @@ using UnityEngine.UI;
 
 public class GetDistance : MonoBehaviour
 {
-    [SerializeField] GameObject water;
-    private Vector3 f_pos;
-    private Vector3 pos;
+    public GameObject ship;  // 배
+    public GameObject endPoint; // 목적지
+    public Text distanceText;
+    public float distance;
 
-    
-    private void Start()
+    private GameObject enemy;
+
+    // 프로그래스바 부분
+    public Slider progress;
+    public float moveDistance;
+
+    void Start()
     {
-        f_pos = water.transform.position;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos = water.transform.position;
+        //목적지와 현재 배 사이의 거리를 구한다.
+        distance = Vector3.Distance(endPoint.transform.position, ship.transform.position);
+        distance = (int)(distance); //소수점 이하 버림
 
-        GameMng.Instance.currentdistance += pos.z - f_pos.z;
-        GameMng.Instance.currentspeed = (int)((f_pos.z - pos.z) / Time.deltaTime);
+        
+        //구한거리를 UI에 표시한다
+        distanceText.text =  distance + "M / 50M";
 
-        UIMng.Instance.update_distance();
-        UIMng.Instance.update_speed();
-
-        f_pos = pos;
+        // 프로그래스바 부분
+        moveDistance = 50 - distance;
+        progress.value = moveDistance / 50;
+        
     }
 }
