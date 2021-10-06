@@ -66,8 +66,19 @@ public class EnemyMove : MonoBehaviour
         {
             if (GameMode == 1 && delayCount >= 6) //악어 
             {
-                    //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                if ( start == false)
+                {
+                    print(1);
+                    //포효 소리 재생
+                    sound.Play();
+
+                    //다시 이 곳에 안들어오도록 막는다
+                    start = true;
+
+
+                }
+                //플레이어를 쫓아간다.
+                transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
                 
 
             }
@@ -121,13 +132,17 @@ public class EnemyMove : MonoBehaviour
 
         }
 
+        /*
        if(angDis > GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
+            color.a = Mathf.Lerp(0.2f, 1, 1);
+
             sound.Play(); //포효소리 재생
 
             StartCoroutine(AngryAlpha());
 
         }
+        */
 
 
     }
