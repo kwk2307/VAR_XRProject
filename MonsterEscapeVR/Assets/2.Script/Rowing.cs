@@ -84,6 +84,8 @@ public class Rowing : MonoBehaviour
         {
             print("sucess!!");
             GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Win").gameObject.SetActive(true); //게임성공 UI활성화
+            //적의 이동 멈춤
+            EnemyMove.enumSpeed = GameMng.Instance.currentspeed;
 
         }
 

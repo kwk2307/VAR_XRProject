@@ -20,7 +20,7 @@ public class EnemyMove : MonoBehaviour
 
     bool start = false;
     float delayTime;
-    [SerializeField] float enumSpeed; //적의 속도
+    public static float enumSpeed; //적의 속도
 
     void Start()
     {
@@ -127,8 +127,8 @@ public class EnemyMove : MonoBehaviour
 
             // 게임오버(실패) 이팩트가 실행
 
-            // 상어가 제자리에 멈춘다
-            speed = 0;
+            // 적이 제자리에 멈춘다
+            enumSpeed = GameMng.Instance.currentspeed;
             // 경과시간 카운트가 멈춘다
             //SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             //sv.count = 0;
@@ -137,7 +137,7 @@ public class EnemyMove : MonoBehaviour
             GameOverUI.SetActive(true);
 
             //적의 이동 멈춤
-            enumSpeed = GameMng.Instance.currentspeed;
+            
 
 
 
