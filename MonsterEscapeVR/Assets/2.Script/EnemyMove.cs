@@ -24,6 +24,7 @@ public class EnemyMove : MonoBehaviour
     public static float enumSpeed; //적의 속도
     float angDis; //분노모드에 들어갈 수치
     Color color;
+    bool angEnter=false;
 
     void Start()
     {
@@ -132,17 +133,27 @@ public class EnemyMove : MonoBehaviour
 
         }
 
-        /*
        if(angDis > GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
-            color.a = Mathf.Lerp(0.2f, 1, 1);
+            if (angEnter == false)
+            {
+                color.a = 1;
 
-            sound.Play(); //포효소리 재생
+                sound.Play(); //포효소리 재생
+                angEnter = true;
+
+            }
+           
 
             StartCoroutine(AngryAlpha());
 
+            if(angDis < GameMng.Instance.currentdistance - 10) //분노모드는 10m동안 유지
+            {
+                angDis -= 100;
+            }
+
         }
-        */
+       
 
 
     }

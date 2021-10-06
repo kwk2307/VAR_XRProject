@@ -80,7 +80,7 @@ public class Rowing : MonoBehaviour
             water.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
-        if(GameMng.Instance.currentdistance > 10)  //성공하면
+        if(GameMng.Instance.currentdistance > 1000)  //성공하면
         {
             print("sucess!!");
             GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Win").gameObject.SetActive(true); //게임성공 UI활성화
