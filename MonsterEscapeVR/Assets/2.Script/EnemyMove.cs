@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class EnemyMove : MonoBehaviour
     bool start = false;
     float delayTime;
     public static float enumSpeed; //적의 속도
+    float angDis; //분노모드에 들어갈 수치
+    Color color;
 
     void Start()
     {
@@ -40,15 +43,19 @@ public class EnemyMove : MonoBehaviour
         if (GameMode == 1)
         {
             enumSpeed = 2; //악어의 스피트
+            angDis = 900;
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 2.5f; //상어의 스피드
+            enumSpeed = 2f; //상어의 스피드
+            angDis = 900;
         }
         else
         {
-            enumSpeed = 5; // 크라켄의 스피드
+            enumSpeed = 2; // 크라켄의 스피드
+            angDis = 900;
         }
+        color = GameObject.Find("Angry").GetComponent<Image>().color;
     }
 
     // Update is called once per frame
@@ -114,7 +121,13 @@ public class EnemyMove : MonoBehaviour
 
         }
 
-       
+       if(angDis > GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
+        {
+            sound.Play(); //포효소리 재생
+
+            StartCoroutine(AngryAlpha());
+
+        }
 
 
     }
@@ -165,5 +178,11 @@ public class EnemyMove : MonoBehaviour
         yield return 1;
     }
 
+    IEnumerator AngryAlpha() //분노모드 이미지 알파값 왔다갔다
+    {
+        color.a = Mathf.Lerp(1, 0.8f, 2);
+        yield return new WaitForSeconds(3f);
+        color.a = Mathf.Lerp(0.8f, 1, 2);
+    }
 
 }
