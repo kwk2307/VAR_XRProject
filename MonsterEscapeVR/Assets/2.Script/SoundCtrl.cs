@@ -52,6 +52,7 @@ public class SoundCtrl : MonoBehaviour
             if(gameOver == false)
             {
                 GameOverSound.Play();
+                print("게임오버 사운드 플레이");
                 gameOver = true;
 
             }

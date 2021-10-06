@@ -92,10 +92,18 @@ public class EnemyMove : MonoBehaviour
             }
             if (GameMode == 3) //크라켄
             {
-                if (delayCount >= 4)
+                //크라켄의 포효
+                if(delayCount >= 3.5 && start ==false)
+                {
+                    sound.Play();
+                    start = true;
+                }
+                if (delayCount >= 6)
                 {
                     //플레이어를 쫓아간다.
                     transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+
+                    
 
                 }
                     
