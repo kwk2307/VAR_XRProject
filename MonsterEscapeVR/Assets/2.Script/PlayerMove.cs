@@ -21,9 +21,6 @@ public class PlayerMove : MonoBehaviour
     // 최고기록 확인 부분
     public string bestRecord;
     // 최고기록(분,초,밀리초) 
-
-
-   
    
     void Start()
     {
@@ -104,15 +101,15 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(300, 0, 300, 150), "다시하기"))
-        {
-            // 다시하기(실험용)
-            GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
+    //private void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(300, 0, 300, 150), "다시하기"))
+    //    {
+    //        // 다시하기(실험용)
+    //        GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
 
 
-            gm.SceneChange();
-        }
-    }
+    //        gm.SceneChange();
+    //    }
+    //}
 }
