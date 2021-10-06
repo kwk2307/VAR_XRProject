@@ -22,9 +22,12 @@ public class EnemyMove : MonoBehaviour
     bool start = false;
     float delayTime;
     public static float enumSpeed; //적의 속도
+
+    GameObject angImage;
     float angDis; //분노모드에 들어갈 수치
     Color color;
     bool angEnter=false;
+    bool angry = false;
 
     void Start()
     {
@@ -56,7 +59,10 @@ public class EnemyMove : MonoBehaviour
             enumSpeed = 2; // 크라켄의 스피드
             angDis = 900;
         }
-        color = GameObject.Find("Angry").GetComponent<Image>().color;
+        angImage = GameObject.Find("Angry");
+        color = angImage.GetComponent<Image>().color;
+        color.a = 0f;
+        angImage.GetComponent<Image>().color = color;
     }
 
     // Update is called once per frame
@@ -133,11 +139,13 @@ public class EnemyMove : MonoBehaviour
 
         }
 
-       if(angDis > GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
+       if(angDis > GameMng.Instance.currentdistance && angry==false) //분노모드에 들어가기 위한 조건
         {
+            angry = true;
             if (angEnter == false)
             {
                 color.a = 1;
+                angImage.GetComponent<Image>().color = color;
 
                 sound.Play(); //포효소리 재생
                 angEnter = true;
@@ -147,9 +155,12 @@ public class EnemyMove : MonoBehaviour
 
             StartCoroutine(AngryAlpha());
 
-            if(angDis < GameMng.Instance.currentdistance - 10) //분노모드는 10m동안 유지
+            if(angDis < GameMng.Instance.currentdistance - 100) //분노모드는 100m동안 유지
             {
-                angDis -= 100;
+                angDis -= 200;
+                color.a = 0;
+                angImage.GetComponent<Image>().color = color;
+
             }
 
         }
@@ -206,9 +217,16 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator AngryAlpha() //분노모드 이미지 알파값 왔다갔다
     {
-        color.a = Mathf.Lerp(1, 0.8f, 2);
-        yield return new WaitForSeconds(3f);
-        color.a = Mathf.Lerp(0.8f, 1, 2);
+        print("분노모드 코루틴 진입");
+        color.a = Mathf.Lerp(1, 0.7f, 2);
+        angImage.GetComponent<Image>().color = color;
+        yield return new WaitForSeconds(2f);
+        color.a = Mathf.Lerp(0.7f, 1, 2);
+        angImage.GetComponent<Image>().color = color;
+        yield return new WaitForSeconds(2f);
+
+        angry = false;
+
     }
 
 }
