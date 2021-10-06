@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGM_Delay : MonoBehaviour
+public class SoundCtrl : MonoBehaviour
 {
     AudioSource bm;
     float count;
@@ -10,10 +10,26 @@ public class BGM_Delay : MonoBehaviour
     Animator ani; //각 적의 애니를 담을 것임
     AudioSource GameOverSound;
 
+    public int gameMode = 1;
+
     bool gameOver = false;
     void Start()
     {
-        bm = this.gameObject.GetComponent<AudioSource>();
+        if (gameMode == 1) //각 모드에 맞는 브금 가져오기
+        {
+            bm = GameObject.Find("BGM_1").GetComponent<AudioSource>();
+        }
+        if (gameMode == 2)
+        {
+            bm = GameObject.Find("BGM_2").GetComponent<AudioSource>();
+            print(2+gameMode);
+        }
+        if (gameMode == 3)
+        {
+            bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
+            print(3);
+        }
+
         bm.Stop();
         isPlay = false;
 
