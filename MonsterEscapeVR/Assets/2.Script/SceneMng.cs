@@ -34,6 +34,10 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("MainMenu"));
     }
+    public void ReGame()
+    {
+        StartCoroutine(LoadScene("Mode1"));
+    }
 
     IEnumerator LoadScene(string sceneName)
     {
