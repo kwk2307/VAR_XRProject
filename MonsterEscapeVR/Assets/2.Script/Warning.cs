@@ -23,7 +23,6 @@ public class Warning : MonoBehaviour
     void Update()
     {
         enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
-        print(enemyDis);
         if (warnDis > enemyDis && warn == false)
         {
             warn = true;

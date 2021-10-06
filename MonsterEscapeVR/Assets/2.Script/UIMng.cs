@@ -10,7 +10,6 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private Slider progress;
 
 
-
     public void update_distance()
     {
         ui_distance.text = GameMng.Instance.currentdistance + "M / 50M";

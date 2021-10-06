@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -20,7 +21,13 @@ public class EnemyMove : MonoBehaviour
 
     bool start = false;
     float delayTime;
-    [SerializeField] float enumSpeed; //적의 속도
+    public static float enumSpeed; //적의 속도
+
+    GameObject angImage;
+    float angDis; //분노모드에 들어갈 수치
+    Color color;
+    bool angEnter=false;
+    bool angry = false;
 
     void Start()
     {
@@ -40,15 +47,22 @@ public class EnemyMove : MonoBehaviour
         if (GameMode == 1)
         {
             enumSpeed = 2; //악어의 스피트
+            angDis = 900;
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 2.5f; //상어의 스피드
+            enumSpeed = 2f; //상어의 스피드
+            angDis = 900;
         }
         else
         {
-            enumSpeed = 5; // 크라켄의 스피드
+            enumSpeed = 2; // 크라켄의 스피드
+            angDis = 900;
         }
+        angImage = GameObject.Find("Angry");
+        color = angImage.GetComponent<Image>().color;
+        color.a = 0f;
+        angImage.GetComponent<Image>().color = color;
     }
 
     // Update is called once per frame
@@ -59,8 +73,19 @@ public class EnemyMove : MonoBehaviour
         {
             if (GameMode == 1 && delayCount >= 6) //악어 
             {
-                    //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                if ( start == false)
+                {
+                    print(1);
+                    //포효 소리 재생
+                    sound.Play();
+
+                    //다시 이 곳에 안들어오도록 막는다
+                    start = true;
+
+
+                }
+                //플레이어를 쫓아간다.
+                transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
                 
 
             }
@@ -92,10 +117,18 @@ public class EnemyMove : MonoBehaviour
             }
             if (GameMode == 3) //크라켄
             {
-                if (delayCount >= 4)
+                //크라켄의 포효
+                if(delayCount >= 3.5 && start ==false)
+                {
+                    sound.Play();
+                    start = true;
+                }
+                if (delayCount >= 6)
                 {
                     //플레이어를 쫓아간다.
                     transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+
+                    
 
                 }
                     
@@ -106,6 +139,31 @@ public class EnemyMove : MonoBehaviour
 
         }
 
+       if(angDis > GameMng.Instance.currentdistance && angry==false) //분노모드에 들어가기 위한 조건
+        {
+            angry = true;
+            if (angEnter == false)
+            {
+                color.a = 1;
+                angImage.GetComponent<Image>().color = color;
+
+                sound.Play(); //포효소리 재생
+                angEnter = true;
+
+            }
+           
+
+            StartCoroutine(AngryAlpha());
+
+            if(angDis < GameMng.Instance.currentdistance - 100) //분노모드는 100m동안 유지
+            {
+                angDis -= 200;
+                color.a = 0;
+                angImage.GetComponent<Image>().color = color;
+
+            }
+
+        }
        
 
 
@@ -119,8 +177,8 @@ public class EnemyMove : MonoBehaviour
 
             // 게임오버(실패) 이팩트가 실행
 
-            // 상어가 제자리에 멈춘다
-            speed = 0;
+            // 적이 제자리에 멈춘다
+            enumSpeed = GameMng.Instance.currentspeed;
             // 경과시간 카운트가 멈춘다
             //SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             //sv.count = 0;
@@ -129,7 +187,7 @@ public class EnemyMove : MonoBehaviour
             GameOverUI.SetActive(true);
 
             //적의 이동 멈춤
-            enumSpeed = GameMng.Instance.currentspeed;
+            
 
 
 
@@ -157,5 +215,18 @@ public class EnemyMove : MonoBehaviour
         yield return 1;
     }
 
+    IEnumerator AngryAlpha() //분노모드 이미지 알파값 왔다갔다
+    {
+        print("분노모드 코루틴 진입");
+        color.a = Mathf.Lerp(1, 0.7f, 2);
+        angImage.GetComponent<Image>().color = color;
+        yield return new WaitForSeconds(2f);
+        color.a = Mathf.Lerp(0.7f, 1, 2);
+        angImage.GetComponent<Image>().color = color;
+        yield return new WaitForSeconds(2f);
+
+        angry = false;
+
+    }
 
 }

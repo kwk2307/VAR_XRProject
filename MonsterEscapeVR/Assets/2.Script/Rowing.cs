@@ -22,7 +22,7 @@ public class Rowing : MonoBehaviour
     private float rowRate = -0.1f;
     //Rowrate = 애니메이션을 위해 만든 수치 rowrate에 따라 당겨지는 모션인지 미는 모션인지를 결정한다.
 
-
+    
 
     private void FixedUpdate()
     {
@@ -72,7 +72,7 @@ public class Rowing : MonoBehaviour
     {
         
         if (water.GetComponent<Rigidbody>().velocity.z > 0)
-{
+        {
             water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 100 * Time.deltaTime);
         }
         else
@@ -80,9 +80,16 @@ public class Rowing : MonoBehaviour
             water.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
+        if(GameMng.Instance.currentdistance > 1000)  //성공하면
+        {
+            print("sucess!!");
+            GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Win").gameObject.SetActive(true); //게임성공 UI활성화
+            //적의 이동 멈춤
+            EnemyMove.enumSpeed = GameMng.Instance.currentspeed;
+
+        }
 
 
-        
     }
 
 
@@ -103,5 +110,5 @@ public class Rowing : MonoBehaviour
     //}
 
 
-
+    
 }
