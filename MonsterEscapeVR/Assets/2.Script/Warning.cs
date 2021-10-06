@@ -7,7 +7,7 @@ public class Warning : MonoBehaviour
 
     public GameObject warningEffect;
 
-    public float warnDis = 20; //얼마나 적과 가까워지면 경고할 것인가?
+    public float warnDis = 15; //얼마나 적과 가까워지면 경고할 것인가?
 
     float enemyDis;
     GameObject enemy;
@@ -23,9 +23,9 @@ public class Warning : MonoBehaviour
     void Update()
     {
         enemyDis = Vector3.Distance(this.transform.position, enemy.transform.position);
+        print(enemyDis);
         if (warnDis > enemyDis && warn == false)
         {
-            print("경고하는 이프문에 들어옴");
             warn = true;
             StartCoroutine(PlayWarning());
         }
@@ -47,7 +47,7 @@ public class Warning : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //경고 UI안뜨도록
-        Destroy(this);
+        Destroy(warningEffect);
     }
 
 }
