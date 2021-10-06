@@ -127,8 +127,12 @@ public class EnemyMove : MonoBehaviour
 
             // 게임오버 UI가 활성화된다.
             GameOverUI.SetActive(true);
-            
-            
+
+            //적의 이동 멈춤
+            enumSpeed = GameMng.Instance.currentspeed;
+
+
+
 
             ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
         }
