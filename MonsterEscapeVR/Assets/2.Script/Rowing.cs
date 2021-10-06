@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,27 +10,29 @@ public class Rowing : MonoBehaviour
     [SerializeField] private GameObject tracker02;
     [SerializeField] private Animator anim_boat;
     [SerializeField] private Animator anim_men;
-    private float distance; //Æ®·¡Ä¿µé »çÀÌÀÇ °Å¸®¸¦ ´ãÀ» º¯¼ö
+    private float distance; //íŠ¸ë˜ì»¤ë“¤ ì‚¬ì´ì˜ ê±°ë¦¬ë¥¼ ë‹´ì„ ë³€ìˆ˜
     [SerializeField] private float speed = 1;
 
     [SerializeField] private GameObject water;
 
     private float isRowing;
-    //ÇöÀç °Å¸®°ª
+    //í˜„ì¬ ê±°ë¦¬ê°’
     private float isRowingPre;
-    //ÀÌÀü °Å¸®°ª
+    //ì´ì „ ê±°ë¦¬ê°’
     private float rowRate = -0.1f;
-    //Rowrate = ¾Ö´Ï¸ŞÀÌ¼ÇÀ» À§ÇØ ¸¸µç ¼öÄ¡ rowrate¿¡ µû¶ó ´ç°ÜÁö´Â ¸ğ¼ÇÀÎÁö ¹Ì´Â ¸ğ¼ÇÀÎÁö¸¦ °áÁ¤ÇÑ´Ù.
+    //Rowrate = ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•´ ë§Œë“  ìˆ˜ì¹˜ rowrateì— ë”°ë¼ ë‹¹ê²¨ì§€ëŠ” ëª¨ì…˜ì¸ì§€ ë¯¸ëŠ” ëª¨ì…˜ì¸ì§€ë¥¼ ê²°ì •í•œë‹¤.
+
+
 
     private void FixedUpdate()
     {
         
-        distance = Vector3.Distance(tracker01.transform.position, tracker02.transform.position);  //Çö ÇÁ·¹ÀÓÀÇ Æ®·¡°Å°£ÀÇ À§Ä¡
+        distance = Vector3.Distance(tracker01.transform.position, tracker02.transform.position);  //í˜„ í”„ë ˆì„ì˜ íŠ¸ë˜ê±°ê°„ì˜ ìœ„ì¹˜
 
         if (distance <= 1)
         {
-            //Æ®·¡°Å °£ÀÇ °Å¸®°¡ 1ÀÌÇÏÀÏ¶§
-            //ÇöÀç°Å¸®°ª¿¡ ³Ö¾îÁÖ°í º¸Æ®ÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼öÁ¤ÇÑ´Ù.
+            //íŠ¸ë˜ê±° ê°„ì˜ ê±°ë¦¬ê°€ 1ì´í•˜ì¼ë•Œ
+            //í˜„ì¬ê±°ë¦¬ê°’ì— ë„£ì–´ì£¼ê³  ë³´íŠ¸ì˜ ì• ë‹ˆë©”ì´ì…˜ì„ ìˆ˜ì •í•œë‹¤.
             isRowing = distance;
             anim_boat.SetFloat("Position", isRowing);
             anim_men.SetFloat("Position", isRowing);
@@ -38,13 +40,13 @@ public class Rowing : MonoBehaviour
 
         if (isRowing - isRowingPre > 0.7)
         {
-            return; // À§Ä¡°ªÀÌ Æ¢´Â °Í¿¡ ´ëÇÑ ¿¹¿ÜÃ³¸®
+            return; // ìœ„ì¹˜ê°’ì´ íŠ€ëŠ” ê²ƒì— ëŒ€í•œ ì˜ˆì™¸ì²˜ë¦¬
         }
 
         if (rowRate - (isRowing - isRowingPre) < 0.1 && rowRate - (isRowing - isRowingPre) > -0.1)
 
         {
-            //Rowrate¸¦ Á¶ÀıÇØÁØ´Ù.-> ¾Ö´Ï¸ŞÀÌ¼ÇÀ» À§ÇÔ
+            //Rowrateë¥¼ ì¡°ì ˆí•´ì¤€ë‹¤.-> ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•¨
             rowRate -= (isRowing - isRowingPre);
             
         }
@@ -52,16 +54,17 @@ public class Rowing : MonoBehaviour
         anim_boat.SetFloat("isRow", rowRate);
         anim_men.SetFloat("isRow", rowRate);
 
-        //·ÎÀ×±â¸¦ ´ç±â´ÂÁö È®ÀÎ
+        //ë¡œì‰ê¸°ë¥¼ ë‹¹ê¸°ëŠ”ì§€ í™•ì¸
 
         if ((isRowing - isRowingPre) > 0 && water.GetComponent<Rigidbody>().velocity.magnitude < 15)
         {
-            // ÀÌÀü °Å¸®°ªº¸´Ù ÇöÀç °Å¸®°ªÀÌ ´õ Å©´Ù == ·ÎÀ®¸Ó½ÅÀ» ´ç±â°íÀÖ´Ù.
+            // ì´ì „ ê±°ë¦¬ê°’ë³´ë‹¤ í˜„ì¬ ê±°ë¦¬ê°’ì´ ë” í¬ë‹¤ == ë¡œìœ™ë¨¸ì‹ ì„ ë‹¹ê¸°ê³ ìˆë‹¤.
             // 
             water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * (isRowing - isRowingPre) * speed);
         }
 
-        isRowingPre = isRowing; // °ú°Å ÇÁ·¹ÀÓ(´ÙÀ½ ÇÁ·¹ÀÓ ÀÔÀå¿¡¼­)
+        isRowingPre = isRowing; // ê³¼ê±° í”„ë ˆì„(ë‹¤ìŒ í”„ë ˆì„ ì…ì¥ì—ì„œ)
+
     }
 
     // Update is called once per frame
@@ -76,18 +79,22 @@ public class Rowing : MonoBehaviour
         {
             water.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+
+
+
+        
     }
-   
-    
+
+
     //private void OnGUI()
     //{
-    //    if (GUI.Button(new Rect(0, 0, 300, 150), "¹öÆ°"))
+    //    if (GUI.Button(new Rect(0, 0, 300, 150), "ë²„íŠ¼"))
     //    {
     //        water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 300);
     //    }
-    //    if (GUI.Button(new Rect(300, 0, 300, 150), "´Ù½ÃÇÏ±â"))
+    //    if (GUI.Button(new Rect(300, 0, 300, 150), "ë‹¤ì‹œí•˜ê¸°"))
     //    {
-    //        // ´Ù½ÃÇÏ±â(½ÇÇè¿ë)
+    //        // ë‹¤ì‹œí•˜ê¸°(ì‹¤í—˜ìš©)
     //        GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
 
 
@@ -96,5 +103,5 @@ public class Rowing : MonoBehaviour
     //}
 
 
-    
+
 }
