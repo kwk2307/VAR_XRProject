@@ -22,12 +22,10 @@ public class SoundCtrl : MonoBehaviour
         if (gameMode == 2)
         {
             bm = GameObject.Find("BGM_2").GetComponent<AudioSource>();
-            print(2+gameMode);
         }
         if (gameMode == 3)
         {
             bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
-            print(3);
         }
 
         bm.Stop();

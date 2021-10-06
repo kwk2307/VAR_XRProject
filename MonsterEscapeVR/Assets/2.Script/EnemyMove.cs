@@ -20,6 +20,8 @@ public class EnemyMove : MonoBehaviour
 
     bool start = false;
     float delayTime;
+    [SerializeField] float enumSpeed; //적의 속도
+
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -34,48 +36,79 @@ public class EnemyMove : MonoBehaviour
         sound = GetComponent<AudioSource>();
 
         lit = GameObject.Find("Directional Light").GetComponent<Light>(); //빛을 찾아 담는다
+
+        if (GameMode == 1)
+        {
+            enumSpeed = 5; //악어의 스피트
+        }
+        else if(GameMode == 2)
+        {
+            enumSpeed = 7; //상어의 스피드
+        }
+        else
+        {
+            enumSpeed = 15; // 크라켄의 스피드
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         delayCount += Time.deltaTime;
-
-        if (GameMode == 1) //악어 
+        if(delayCount >= 3)
         {
-
-        }
-        if (GameMode == 2) //상어 
-        {
-            if (delayCount >= 3 && start == false)
+            if (GameMode == 1 && delayCount >= 6) //악어 
             {
-                //크아아앙
-                ani.SetBool("Angry", true);
-
-                //포효 소리 재생
-                sound.Play();
-
-                //다시 이 곳에 안들어오도록 막는다
-                start = true;
-
+                    //플레이어를 쫓아간다.
+                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                
 
             }
-            if (delayCount >= 6)
+            if (GameMode == 2) //상어 
             {
-                //크아앙은 멈추고
-                ani.SetBool("Angry", false);
+                if (delayCount >= 3 && start == false)
+                {
+                    //크아아앙
+                    ani.SetBool("Angry", true);
 
-                //플레이어를 쫓아간다.
+                    //포효 소리 재생
+                    sound.Play();
 
+                    //다시 이 곳에 안들어오도록 막는다
+                    start = true;
+
+
+                }
+                if (delayCount >= 6)
+                {
+                    //크아앙은 멈추고
+                    ani.SetBool("Angry", false);
+
+                    //플레이어를 쫓아간다.
+                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+
+                }
+
+            }
+            if (GameMode == 3) //크라켄
+            {
+                if (delayCount >= 4)
+                {
+                    //플레이어를 쫓아간다.
+                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+
+                }
+                    
 
             }
 
-        }
-        if (GameMode == 3) //크라켄
-        {
+            
 
         }
-        
+
+       
+
+
     }
     // 충돌했을경우
     private void OnCollisionEnter(Collision collision)
