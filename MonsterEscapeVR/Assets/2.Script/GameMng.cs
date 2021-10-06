@@ -7,7 +7,7 @@ public class GameMng : Singleton<GameMng>
     //현재 거리
     public float currentdistance;
     public float goaldistance;
-    public int currentspeed;
+    public float currentspeed;
 
     [SerializeField] private float currenttime;
     public int minutes;
