@@ -39,15 +39,15 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 5; //악어의 스피트
+            enumSpeed = 2; //악어의 스피트
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 7; //상어의 스피드
+            enumSpeed = 2.5f; //상어의 스피드
         }
         else
         {
-            enumSpeed = 15; // 크라켄의 스피드
+            enumSpeed = 5; // 크라켄의 스피드
         }
     }
 
