@@ -71,7 +71,7 @@ public class KrakenMove : MonoBehaviour
             // 게임오버 UI가 활성화된다.
             GameOverUI.SetActive(true);
 
-            ani.SetBool("Hit", true); //게임이 끝나면 상어가 입을 앙앙거린다.
+            ani.SetBool("Hit", true); //게임이 끝나면 크라켄이 입을 앙앙거린다.
         }
     }
 
