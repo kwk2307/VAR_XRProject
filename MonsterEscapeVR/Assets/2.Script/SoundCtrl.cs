@@ -47,7 +47,7 @@ public class SoundCtrl : MonoBehaviour
         }
 
 
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite"))
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite")) //게임오버에 사운드 내기
         {
             if(gameOver == false)
             {
