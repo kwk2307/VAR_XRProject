@@ -24,7 +24,6 @@ public class GetDistance : MonoBehaviour
         GameMng.Instance.currentspeed = player.GetComponent<Rigidbody>().velocity.magnitude;
 
         UIMng.Instance.update_distance();
-        UIMng.Instance.update_speed();
 
         f_pos = pos;
     }
