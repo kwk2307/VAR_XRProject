@@ -18,6 +18,8 @@ public class GetDistance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+ 
+
         pos = player.transform.position;
 
         GameMng.Instance.currentdistance += pos.z - f_pos.z;
