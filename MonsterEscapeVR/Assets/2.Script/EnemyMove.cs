@@ -76,11 +76,10 @@ public class EnemyMove : MonoBehaviour
         delayCount += Time.deltaTime;
         if(delayCount >= 3)
         {
-            if (GameMode == 1 && delayCount >= 6) //악어 
+            if (GameMode == 1 && delayCount >= 5.5) //악어 
             {
                 if ( start == false)
                 {
-                    print(1);
                     //포효 소리 재생
                     sound.Play();
 
@@ -89,8 +88,13 @@ public class EnemyMove : MonoBehaviour
 
 
                 }
-                //플레이어를 쫓아간다.
-                transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                if(delayCount >= 6)
+                {
+                    //플레이어를 쫓아간다.
+                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ;
+
+                }
+                
                 
 
             }

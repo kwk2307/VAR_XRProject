@@ -14,11 +14,14 @@ public class Warning : MonoBehaviour
     GameObject player;
 
     bool warn; //경고 UI가 지나치게 반복되는 것 막기 위해 만든 변수
+    Animator ani;
+
 
     void Start()
     {
         enemy = GameObject.Find("Enemy");
         player = GameObject.Find("Player");
+        ani = GameObject.Find("Enemy").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,12 @@ public class Warning : MonoBehaviour
         {
             warn = true;
             StartCoroutine(PlayWarning());
+        }
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite")) //게임오버에 사운드 내기
+        {
+            //경고 UI안뜨도록
+            Destroy(warningEffect);
+
         }
     }
 
@@ -45,10 +54,6 @@ public class Warning : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //경고 UI안뜨도록
-        Destroy(warningEffect);
-    }
 
+    
 }
