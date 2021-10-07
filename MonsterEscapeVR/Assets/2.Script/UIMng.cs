@@ -9,6 +9,7 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private Text ui_time;
     [SerializeField] private Slider progress;
 
+
     public void update_distance()
     {
         ui_distance.text = GameMng.Instance.currentdistance + "M / 50M";
@@ -26,6 +27,9 @@ public class UIMng : Singleton<UIMng>
         ui_time.text = string.Format("{0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
+
+    
+
     
 
 }
