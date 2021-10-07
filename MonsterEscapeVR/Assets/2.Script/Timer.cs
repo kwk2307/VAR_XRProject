@@ -8,6 +8,10 @@ public class Timer : MonoBehaviour
 {
     private float delayTimer = 0;
 
+    private void Start()
+    {
+        GameMng.Instance.isPlaying = true;
+    }
     void Update()
     {
         delayTimer += Time.deltaTime;
