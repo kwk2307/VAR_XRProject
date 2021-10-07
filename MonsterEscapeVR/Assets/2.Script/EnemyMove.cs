@@ -156,6 +156,7 @@ public class EnemyMove : MonoBehaviour
                 angImage.GetComponent<Image>().color = color;
 
                 sound.Play(); //포효소리 재생
+                ani.SetBool("Angry", true); //계속 포효한다
                 angEnter = true;
 
             }
@@ -164,11 +165,11 @@ public class EnemyMove : MonoBehaviour
             StartCoroutine(AngryAlpha());
 
             if(angDuration <= time) //분노모드는 angDuration 동안 유지
-            {
+            {//분노종료
                 angDis -= 200;
                 color.a = 0;
                 angImage.GetComponent<Image>().color = color;
-                print("분노 종료");
+                ani.SetBool("Angry", false); //포효 애니 중지
 
             }
 
