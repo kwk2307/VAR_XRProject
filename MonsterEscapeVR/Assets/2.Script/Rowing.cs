@@ -50,16 +50,6 @@ public class Rowing : MonoBehaviour
         anim_boat.SetFloat("isRow", rowRate);
         anim_men.SetFloat("isRow", rowRate);
 
-        //로잉기를 당기는지 확인
-
-        if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
-        {
-            // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
-            // 
-            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
-        }
-
-        isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
     }
 
     // Update is called once per frame
@@ -74,6 +64,17 @@ public class Rowing : MonoBehaviour
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+       
+        //로잉기를 당기는지 확인
+
+        if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
+        {
+            // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
+            // 
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
+        }
+
+        isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
     }
    
     

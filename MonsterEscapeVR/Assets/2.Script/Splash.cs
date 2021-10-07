@@ -26,7 +26,7 @@ public class Splash : MonoBehaviour
         pos = transform.position.y;
 
         
-        if (pre_pos > 0 ^ pos > 0)
+        if (pre_pos > 0 && pos < 0)
         {
             Instantiate(slpash, transform.position + tmp , transform.rotation);
         }

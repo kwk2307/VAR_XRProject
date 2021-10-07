@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class TrailNote : MonoBehaviour
 {
-    
+    private TrailRenderer tr;
+    private ParticleSystem ps;
+    private void Start()
+    {
+        tr = this.GetComponentInChildren<TrailRenderer>();
+        ps = this.GetComponentInChildren<ParticleSystem>();     
+    }
     // Update is called once per frame
     void Update()
     {
-
-        float temp = GameMng.Instance.currentspeed / 30;
-        this.transform.localScale = new Vector3(temp, 1, temp);
-
-        if (this.transform.position.y < 0)
+        if(this.transform.position.y < 0)
         {
-            this.GetComponent<ParticleSystem>().Play();
+            tr.emitting = true;
+            ps.Play();
         }
         else
         {
-            this.GetComponent<ParticleSystem>().Stop();
-        }       
+            tr.emitting = false;
+            //tr.Clear();
+            ps.Pause();
+        }
     }
 }
