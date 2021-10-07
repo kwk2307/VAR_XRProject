@@ -85,7 +85,7 @@ public class EnemyMove : MonoBehaviour
 
                 }
                 //플레이어를 쫓아간다.
-                transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
                 
 
             }
@@ -110,7 +110,7 @@ public class EnemyMove : MonoBehaviour
                     ani.SetBool("Angry", false);
 
                     //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
 
                 }
 
@@ -126,7 +126,7 @@ public class EnemyMove : MonoBehaviour
                 if (delayCount >= 6)
                 {
                     //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * (enumSpeed - GameMng.Instance.currentspeed) * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
 
                     
 
