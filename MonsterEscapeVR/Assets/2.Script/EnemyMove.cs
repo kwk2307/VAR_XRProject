@@ -49,19 +49,19 @@ public class EnemyMove : MonoBehaviour
         if (GameMode == 1)
         {
             enumSpeed = 10; //악어의 스피트
-            angDis = -20; //angDis만큼 가면 분노모드!
+            angDis = -40; //angDis만큼 가면 분노모드!
             angDuration = 5; //얼마동안 분노할 것인가?
         }
         else if(GameMode == 2)
         {
             enumSpeed = 2f; //상어의 스피드
-            angDis = 40;
+            angDis = -30;
             angDuration = 10;
         }
         else
         {
             enumSpeed = 2; // 크라켄의 스피드
-            angDis = 30;
+            angDis = -20;
             angDuration = 15;
         }
         angImage = GameObject.Find("Angry");
@@ -170,7 +170,7 @@ public class EnemyMove : MonoBehaviour
 
             if(angDuration <= time) //분노모드는 angDuration 동안 유지
             {//분노종료
-                angDis -= 200;
+                angDis -= 20;
                 color.a = 0;
                 angImage.GetComponent<Image>().color = color;
                 ani.SetBool("Angry", false); //포효 애니 중지
@@ -197,8 +197,6 @@ public class EnemyMove : MonoBehaviour
             //SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
             //sv.count = 0;
 
-            // 게임오버 UI가 활성화된다.
-            GameOverUI.SetActive(true);
 
             //적의 이동 멈춤
             
