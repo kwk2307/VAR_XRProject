@@ -13,8 +13,6 @@ public class Rowing : MonoBehaviour
     private float distance; //트래커들 사이의 거리를 담을 변수
     [SerializeField] private float speed = 1;
 
-    [SerializeField] private GameObject water;
-
     private float isRowing;
     //현재 거리값
     private float isRowingPre;
@@ -54,11 +52,11 @@ public class Rowing : MonoBehaviour
 
         //로잉기를 당기는지 확인
 
-        if ((isRowing - isRowingPre) > 0 && water.GetComponent<Rigidbody>().velocity.magnitude < 15)
+        if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
         {
             // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
             // 
-            water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * (isRowing - isRowingPre) * speed);
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
         }
 
         isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
@@ -68,13 +66,13 @@ public class Rowing : MonoBehaviour
     void Update()
     {
         
-        if (water.GetComponent<Rigidbody>().velocity.z > 0)
+        if (transform.GetComponent<Rigidbody>().velocity.z < 0)
 {
-            water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * 100 * Time.deltaTime);
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 100 * Time.deltaTime);
         }
         else
         {
-            water.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
    
