@@ -48,7 +48,7 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 10; //악어의 스피트
+            enumSpeed = 5; //악어의 스피트
             angDis = -20; //angDis만큼 가면 분노모드!
             angDuration = 5; //얼마동안 분노할 것인가?
         }
@@ -80,7 +80,6 @@ public class EnemyMove : MonoBehaviour
             {
                 if ( start == false)
                 {
-                    print(1);
                     //포효 소리 재생
                     sound.Play();
 
