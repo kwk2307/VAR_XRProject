@@ -48,8 +48,8 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 2; //악어의 스피트
-            angDis = 50; //angDis만큼 가면 분노모드!
+            enumSpeed = 10; //악어의 스피트
+            angDis = -20; //angDis만큼 가면 분노모드!
             angDuration = 5; //얼마동안 분노할 것인가?
         }
         else if(GameMode == 2)
@@ -144,9 +144,11 @@ public class EnemyMove : MonoBehaviour
 
         }
 
-       if(angDis <= GameMng.Instance.currentdistance && angry==false) //분노모드에 들어가기 위한 조건
+        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
+       if(angDis >= GameMng.Instance.currentdistance && angry==false) //분노모드에 들어가기 위한 조건
         {
-            time = Time.deltaTime;
+            print("분노모드 돌입");
+            time += Time.deltaTime;
             angry = true;
             if (angEnter == false)
             {
@@ -161,11 +163,12 @@ public class EnemyMove : MonoBehaviour
 
             StartCoroutine(AngryAlpha());
 
-            if(angDuration <= time) //분노모드는 n초 동안 유지
+            if(angDuration <= time) //분노모드는 angDuration 동안 유지
             {
                 angDis -= 200;
                 color.a = 0;
                 angImage.GetComponent<Image>().color = color;
+                print("분노 종료");
 
             }
 

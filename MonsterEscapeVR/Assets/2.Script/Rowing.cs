@@ -58,7 +58,7 @@ public class Rowing : MonoBehaviour
         
         if (transform.GetComponent<Rigidbody>().velocity.z < 0)
 {
-            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 100 * Time.deltaTime);
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
         }
         else
         {
