@@ -13,7 +13,6 @@ public class EnemyMove : MonoBehaviour
 
     private GameObject player; //플레이어를 담을 변수
     public GameObject GameOverUI; // 게임오버(실패)UI
-     GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
     Animator ani; //적의 애니 컨트롤러
     AudioSource sound; //포효 소리
 
@@ -38,7 +37,6 @@ public class EnemyMove : MonoBehaviour
 
         Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
 
-        GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
         ani = GetComponent<Animator>(); //애니매이터 담기
 
         //크아아앙 소리 할당
@@ -209,7 +207,7 @@ public class EnemyMove : MonoBehaviour
         delayTime += Time.deltaTime;
         if (delayTime >= 3) //3초 동안은 실패연출 봐라
         {
-            GameOverUI_player.SetActive(true);
+            GameOverUI.SetActive(true);
 
         }
 
