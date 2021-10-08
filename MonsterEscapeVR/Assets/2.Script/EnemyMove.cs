@@ -54,13 +54,13 @@ public class EnemyMove : MonoBehaviour
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 2f; //상어의 스피드
+            enumSpeed = 15f; //상어의 스피드
             angDis = -30;
             angDuration = 10;
         }
         else
         {
-            enumSpeed = 2; // 크라켄의 스피드
+            enumSpeed = 17; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
         }
@@ -154,6 +154,7 @@ public class EnemyMove : MonoBehaviour
             print("분노모드 돌입");
             time += Time.deltaTime;
             angry = true;
+            
             if (angEnter == false)
             {
                 color.a = 1;
@@ -162,18 +163,20 @@ public class EnemyMove : MonoBehaviour
                 sound.Play(); //포효소리 재생
                 ani.SetBool("Angry", true); //계속 포효한다
                 angEnter = true;
+                enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
 
             }
            
 
             StartCoroutine(AngryAlpha());
 
-            if(angDuration <= time) //분노모드는 angDuration 동안 유지
+            if(angDuration >= time) //분노모드는 angDuration 동안 유지
             {//분노종료
                 angDis -= 20;
                 color.a = 0;
                 angImage.GetComponent<Image>().color = color;
                 ani.SetBool("Angry", false); //포효 애니 중지
+                enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
 
             }
 
