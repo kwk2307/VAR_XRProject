@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
             {
                 GameMng.Instance.isPlaying = true;
                 chk = true;
+                print(GameMng.Instance.isPlaying);
             }
             if(GameMng.Instance.isPlaying == true)
             {

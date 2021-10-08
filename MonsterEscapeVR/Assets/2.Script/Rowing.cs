@@ -70,7 +70,6 @@ public class Rowing : MonoBehaviour
 
             if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
             {
-
                 // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
                 transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
 

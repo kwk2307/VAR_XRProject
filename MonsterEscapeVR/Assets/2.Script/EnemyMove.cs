@@ -196,7 +196,6 @@ public class EnemyMove : MonoBehaviour
         if (delayTime >= 3) //3초 동안은 실패연출 봐라
         {
             GameOverUI_player.SetActive(true);
-            print("실패 UI활성화");
         }
 
         //조명도 어둡게 해봅시다

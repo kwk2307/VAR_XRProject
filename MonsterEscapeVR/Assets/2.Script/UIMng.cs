@@ -11,7 +11,7 @@ public class UIMng : Singleton<UIMng>
 
     public void update_distance()
     {
-        ui_distance.text = GameMng.Instance.currentdistance + "M / 50M";
+        ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
         if(progress != null)
         {
             progress.value = (50 - GameMng.Instance.currentdistance) / 50;
