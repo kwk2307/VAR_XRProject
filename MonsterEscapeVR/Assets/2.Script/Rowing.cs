@@ -55,26 +55,33 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (transform.GetComponent<Rigidbody>().velocity.z < 0)
-{
-            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
+        if (GameMng.Instance.isPlaying == true)
+        {
+            if (transform.GetComponent<Rigidbody>().velocity.z < 0)
+            {
+                transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+
+            //로잉기를 당기는지 확인
+
+            if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
+            {
+                // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
+                transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
+
+            }
+            isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
         }
         else
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
-       
-        //로잉기를 당기는지 확인
 
-        if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
-        {
-            // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
-            // 
-            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
-        }
-
-        isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
+        
     }
    
     

@@ -13,7 +13,7 @@ public class EnemyMove : MonoBehaviour
 
     private GameObject player; //플레이어를 담을 변수
     public GameObject GameOverUI; // 게임오버(실패)UI
-     GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
+    GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
     Animator ani; //적의 애니 컨트롤러
     AudioSource sound; //포효 소리
 
@@ -48,7 +48,7 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 10; //악어의 스피트
+            enumSpeed = 3; //악어의 스피트
             angDis = -40; //angDis만큼 가면 분노모드!
             angDuration = 5; //얼마동안 분노할 것인가?
         }
@@ -85,13 +85,11 @@ public class EnemyMove : MonoBehaviour
 
                     //다시 이 곳에 안들어오도록 막는다
                     start = true;
-
-
                 }
-                if(delayCount >= 6)
+                if(delayCount >= 6 && GameMng.Instance.isPlaying == true)
                 {
                     //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ;
+                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
 
                 }
                 
@@ -182,45 +180,38 @@ public class EnemyMove : MonoBehaviour
 
 
     }
-    // 충돌했을경우
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name.Contains("Player"))
+        if (other.gameObject.name.Contains("Player"))
         {
-            // 게임오버(실패) 사운드가 재생
-
-            // 게임오버(실패) 이팩트가 실행
-
-            // 적이 제자리에 멈춘다
-            enumSpeed = GameMng.Instance.currentspeed;
-            // 경과시간 카운트가 멈춘다
-            //SpectatorViewUI1 sv = GameObject.Find("Spectator_Canvas").GetComponent<SpectatorViewUI1>();
-            //sv.count = 0;
-
+            GameMng.Instance.isPlaying = false;
 
             //적의 이동 멈춤
-            
-
-
-
-
             ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
         }
     }
-    private void OnCollisionStay(Collision collision)//플레이어 캔버스에 있는 게임오버 UI도 활성화
+    private void OnTriggerStay(Collider other)
     {
-        //바로 게임오버 UI가 뜨면 어색하자너
         delayTime += Time.deltaTime;
         if (delayTime >= 3) //3초 동안은 실패연출 봐라
         {
             GameOverUI_player.SetActive(true);
-
         }
 
         //조명도 어둡게 해봅시다
         StartCoroutine(FadeOut());
+    }
+    // 충돌했을경우
+    private void OnCollisionEnter(Collision collision)
+    {
+    
+    }
+    private void OnCollisionStay(Collision collision)//플레이어 캔버스에 있는 게임오버 UI도 활성화
+    {
+        //바로 게임오버 UI가 뜨면 어색하자너
 
     }
+
     IEnumerator FadeOut()
     {
         lit.intensity -= Time.deltaTime;

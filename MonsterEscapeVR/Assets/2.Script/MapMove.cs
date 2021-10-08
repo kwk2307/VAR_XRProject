@@ -8,8 +8,8 @@ public class MapMove : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
       
-        water.transform.GetChild(6).transform.position -= new Vector3(0, 0, 70);
-        water.transform.GetChild(6).SetAsFirstSibling();
+        water.transform.GetChild(9).transform.position -= new Vector3(0, 0, 100);
+        water.transform.GetChild(9).SetAsFirstSibling();
         this.transform.position += new Vector3(0, 0, -10);
     }
 }
