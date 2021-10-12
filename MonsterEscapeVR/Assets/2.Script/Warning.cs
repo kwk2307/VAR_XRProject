@@ -35,8 +35,9 @@ public class Warning : MonoBehaviour
         }
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite")) //게임오버에 사운드 내기
         {
+            warningEffect.SetActive(false);
+            Destroy(this);
             //경고 UI안뜨도록
-            Destroy(warningEffect);
 
         }
     }
