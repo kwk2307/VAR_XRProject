@@ -18,16 +18,16 @@ public class Tutorial : MonoBehaviour
     void Start()
     {
         text= GameObject.Find("Text").GetComponent<Text>();
-        StartCoroutine("Greet");
         WarmUpVideo.Stop();
-
-
+        StartCoroutine("Greet");
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-       print(anim_boat.GetFloat("isRow"));
+       //print(anim_boat.GetFloat("isRow"));
+        //print(WarmUpVideo.isPlaying);
     }
     IEnumerator Greet()
     {
@@ -39,14 +39,18 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(2);
         WarnUp.SetActive(true);
         WarmUpVideo.Play();
-        if(WarmUpVideo.isPlaying == false)
+        yield return new WaitForSeconds(2);
+        
+        if(WarmUpVideo.isPlaying == true)
         {
+            WarnUp.SetActive(false);
             StartCoroutine(GuideRowing());
         }
 
     }
     IEnumerator GuideRowing()
     {
+
         text.text = "본격적으로 로잉머신의 사용법을 배워보겠습니다";
         yield return new WaitForSeconds(5);
         //로잉머신 동영상 재생
