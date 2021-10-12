@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205390319335852}
   - component: {fileID: 205058934831550012}
+  - component: {fileID: 1814809553637531993}
   m_Layer: 0
   m_Name: Foliage_Grass_Clump
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1339872423694806}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 4910838646277700}
   - {fileID: 4942782589518470}
@@ -56,6 +57,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23897883727431946}
   m_Enabled: 1
+--- !u!65 &1814809553637531993
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339872423694806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1513538132267004
 GameObject:
   m_ObjectHideFlags: 0

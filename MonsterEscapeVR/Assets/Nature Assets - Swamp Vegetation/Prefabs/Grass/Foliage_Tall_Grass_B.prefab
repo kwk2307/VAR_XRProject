@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4134470676249488}
   - component: {fileID: 205165699885724614}
+  - component: {fileID: -2467310125665162280}
   m_Layer: 0
   m_Name: Foliage_Tall_Grass_B
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1672945236145376}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 4509818831082368}
   - {fileID: 4436547858607328}
@@ -56,6 +57,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23680929742716366}
   m_Enabled: 1
+--- !u!65 &-2467310125665162280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672945236145376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1836420121634590
 GameObject:
   m_ObjectHideFlags: 0
