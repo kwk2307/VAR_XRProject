@@ -10,6 +10,9 @@ public class Tutorial : MonoBehaviour
     float time;
     public GameObject WarnUp;//워밍업 영상
     public VideoPlayer WarmUpVideo;
+    public GameObject rowing; //로잉영상
+    public VideoPlayer rowingPlayer;
+
     [SerializeField] private Animator anim_boat;
     float waitTime;
 
@@ -24,6 +27,9 @@ public class Tutorial : MonoBehaviour
     {
         text= GameObject.Find("Text").GetComponent<Text>();
         WarmUpVideo.Stop();
+        rowingPlayer.Stop();
+       
+
         StartCoroutine("Greet");
 
         sideCam = GameObject.Find("SideView");
@@ -87,6 +93,10 @@ public class Tutorial : MonoBehaviour
         text.text = "본격적으로 로잉머신의 사용법을 배워보겠습니다";
         yield return new WaitForSeconds(1);
         //로잉머신 동영상 재생
+        rowing.SetActive(true);
+        rowingPlayer.Play();
+        yield return new WaitForSeconds((float)(rowingPlayer.length)); //동영상 길이만큼 기다린다.
+        rowing.SetActive(false);
 
         text.text = "이제 한 번 해보겠습니다";
         sideCam.SetActive(true);
