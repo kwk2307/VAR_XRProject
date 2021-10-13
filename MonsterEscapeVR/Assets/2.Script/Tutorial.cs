@@ -23,6 +23,8 @@ public class Tutorial : MonoBehaviour
     AudioSource clear;
     public GameObject[] announce;
 
+    public GameObject[] Enemy;
+
 
 
 
@@ -33,20 +35,21 @@ public class Tutorial : MonoBehaviour
         rowingPlayer.Stop();
        
 
-        StartCoroutine("Greet");
+        //StartCoroutine("Greet");
 
         sideCam = GameObject.Find("SideView");
         sideCam.SetActive(false);
 
         clear = GameObject.Find("ClearSound").GetComponent<AudioSource>();
 
-        
+        StartCoroutine(EnemySay());
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
 
         if (startRowing == true)
         {
@@ -70,6 +73,8 @@ public class Tutorial : MonoBehaviour
                 text.text = "잘 하셨습니다.";
                 announce[4].SetActive(true);
                 cancelRowing = false;
+                sideCam.SetActive(false);
+                StartCoroutine(EnemySay());
             }
 
 
@@ -113,6 +118,30 @@ public class Tutorial : MonoBehaviour
         text.text = "당겨보세요";
         announce[2].SetActive(true);
         startRowing = true;
+
+    }
+    IEnumerator EnemySay()
+    {
+        yield return new WaitForSeconds(1);
+        text.text = "이제 적에 대해 알려드리겠습니다.";
+        yield return new WaitForSeconds(5);
+        text.text = "적은 모드에 따라 악어, 상어, 크라켄이 있습니다.";
+        Instantiate(Enemy[0]);
+        Enemy[0].transform.position = new Vector3(-50, 0, 50);
+        Destroy(Enemy[0].GetComponent<EnemyMove>());
+
+        Instantiate(Enemy[1]);
+        Enemy[1].transform.position = new Vector3(0, 0, 50);
+        Destroy(Enemy[1].GetComponent<EnemyMove>());
+
+        Destroy(Enemy[2].GetComponent<EnemyMove>());
+        Instantiate(Enemy[2]).transform.position = new Vector3(50, 0, 50);
+        
+
+        yield return new WaitForSeconds(5);
+        text.text = "당신은 이 괴물들에게서 노를 저어 도망쳐야 합니다.";
+        yield return new WaitForSeconds(5);
+
 
     }
 }

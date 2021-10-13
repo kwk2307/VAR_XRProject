@@ -7,7 +7,6 @@ public class EnemyMove : MonoBehaviour
 {
     public int GameMode; //1번 - 악어, 2번 - 상어, 3번 - 크라켄
 
-    public float speed = 5f;
     public float attackPower = 1f;
     public float delayCount;
 
@@ -21,7 +20,7 @@ public class EnemyMove : MonoBehaviour
 
     bool start = false;
     float delayTime;
-    public static float enumSpeed; //적의 속도
+    public float enumSpeed; //적의 속도
 
     GameObject angImage;
     float angDis; //분노모드에 들어갈 수치
