@@ -8,6 +8,7 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private Text ui_time;
     [SerializeField] private Slider progress;
     [SerializeField] private GameObject gameWinUI;
+    [SerializeField] private GameObject countdown;
 
     public void update_distance()
     {
@@ -31,8 +32,31 @@ public class UIMng : Singleton<UIMng>
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
 
+    public void CountDown()
+    {
 
+        StartCoroutine(Count());
+    }
 
+    IEnumerator Count()
+    {
+        countdown.SetActive(true);
+        Text countdownText = countdown.GetComponent<Text>();
+
+        countdownText.text = "3";
+        yield return new WaitForSeconds(1f);
+
+        countdownText.text = "2";
+        yield return new WaitForSeconds(1f);
+
+        countdownText.text = "1";
+        yield return new WaitForSeconds(1f);
+
+        countdownText.text = "Ω√¿€!";
+        yield return new WaitForSeconds(1f);
+
+        countdown.SetActive(false);
+    }
 
 }
 

@@ -8,7 +8,7 @@ public class GameMng : Singleton<GameMng>
     public float currentdistance;
     public float goaldistance;
     public float currentspeed;
-    //플레이어의 현재 플레
+    //플레이어의 현재 플레이상태
     public bool isPlaying = false;
 
     [SerializeField] private float currenttime;

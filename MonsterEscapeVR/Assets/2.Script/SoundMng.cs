@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundCtrl : MonoBehaviour
+public class SoundMng : Singleton<SoundMng>
 {
     AudioSource bm;
+    AudioSource GameOverSound;
+    AudioSource CountDownSound;
     float count;
     bool isPlay;
     Animator ani; //각 적의 애니를 담을 것임
-    AudioSource GameOverSound;
-    [SerializeField] private AudioSource CountDownSound;
-
+    
     public int gameMode = 1;
-
-    bool gameOver = false;
     void Start()
     {
         if (gameMode == 1) //각 모드에 맞는 브금 가져오기
@@ -32,31 +30,16 @@ public class SoundCtrl : MonoBehaviour
         bm.Stop();
         isPlay = false;
 
-        ani = GameObject.Find("Enemy").GetComponent<Animator>();
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
+        CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameStart()
     {
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite")) //게임오버에 사운드 내기
-        {
-            if (gameOver == false)
-            {
-                GameOverSound.Play();
-                gameOver = true;
-            }
-
-            StartCoroutine(FadeOut());
-        }
-
+        StartCoroutine(GameStart_C());
     }
-    IEnumerator FadeOut()
-    {
-        bm.volume -= 0.001f;
-        yield return 1;
-    }
-    IEnumerator GameStart()
+
+    IEnumerator GameStart_C()
     {
         CountDownSound.Play();
         yield return new WaitForSeconds(3);
