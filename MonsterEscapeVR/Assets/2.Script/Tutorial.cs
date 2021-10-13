@@ -35,7 +35,6 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(anim_boat.GetFloat("Position"));
 
         if (startRowing == true)
         {
@@ -69,7 +68,7 @@ public class Tutorial : MonoBehaviour
         text.text = "이제부터 간단한 준비운동을 시작하겠습니다";
         yield return new WaitForSeconds(2);
         text.text = "안전을 위해 로잉머신에 앉은채로 따라해주세요";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         WarnUp.SetActive(true);
         WarmUpVideo.Play();
         yield return new WaitForSeconds((float)(WarmUpVideo.length)); //동영상 길이만큼 기다린다.
