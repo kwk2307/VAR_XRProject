@@ -11,7 +11,11 @@ public class Tutorial : MonoBehaviour
     public GameObject WarnUp;//워밍업 영상
     public VideoPlayer WarmUpVideo;
     [SerializeField] private Animator anim_boat;
+    float waitTime;
 
+    bool startRowing = false;
+    bool cancelRowing = false;
+    GameObject sideCam;
 
 
 
@@ -20,14 +24,43 @@ public class Tutorial : MonoBehaviour
         text= GameObject.Find("Text").GetComponent<Text>();
         WarmUpVideo.Stop();
         StartCoroutine("Greet");
-       
+
+        sideCam = GameObject.Find("SideView");
+        sideCam.SetActive(false);
+        
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       //print(anim_boat.GetFloat("isRow"));
-        //print(WarmUpVideo.isPlaying);
+        print(anim_boat.GetFloat("Position"));
+
+        if (startRowing == true)
+        {
+            if (anim_boat.GetFloat("Position") >= 0.8f)
+            {
+                text.text = "잘 하셨습니다. 다시 앞으로 놓겠습니다";
+                cancelRowing = true;
+                startRowing = false;
+                
+            }
+            
+        }
+        if(cancelRowing == true)
+        {
+            //앞으로 놓으면
+            if (anim_boat.GetFloat("Position") <= 0.2f)
+            {
+                text.text = "잘 하셨습니다.";
+                cancelRowing = false;
+            }
+
+
+        }
+
+
     }
     IEnumerator Greet()
     {
@@ -39,13 +72,11 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(2);
         WarnUp.SetActive(true);
         WarmUpVideo.Play();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds((float)(WarmUpVideo.length)); //동영상 길이만큼 기다린다.
         
-        if(WarmUpVideo.isPlaying == true)
-        {
             WarnUp.SetActive(false);
             StartCoroutine(GuideRowing());
-        }
+        
 
     }
     IEnumerator GuideRowing()
@@ -56,27 +87,10 @@ public class Tutorial : MonoBehaviour
         //로잉머신 동영상 재생
 
         text.text = "이제 한 번 해보겠습니다";
+        sideCam.SetActive(true);
         yield return new WaitForSeconds(5);
         text.text = "당겨보세요";
-
-        //끝까지 당기면
-        if(anim_boat.GetFloat("isRow") >= 0.8f)
-        {
-            text.text = "잘 하셨습니다. 다시 앞으로 놓겠습니다";
-        }
-
-        //앞으로 놓으면
-        if (anim_boat.GetFloat("isRow") <= 0.2f)
-        {
-            text.text = "잘 하셨습니다.";
-        }
-        
-        yield return new WaitForSeconds(5);
-        text.text = "완전한 동작으로 해보겠습니다";
-
-        //다 하면
-        text.text = "잘 하셨습니다.";
-
+        startRowing = true;
 
     }
 }
