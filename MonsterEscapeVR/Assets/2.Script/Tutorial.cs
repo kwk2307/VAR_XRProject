@@ -67,11 +67,11 @@ public class Tutorial : MonoBehaviour
     IEnumerator Greet()
     {
         text.text = "Monster Eescape에 오신 것을 환영합니다";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         text.text = "이제부터 간단한 준비운동을 시작하겠습니다";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         text.text = "안전을 위해 로잉머신에 앉은채로 따라해주세요";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         WarnUp.SetActive(true);
         WarmUpVideo.Play();
         yield return new WaitForSeconds((float)(WarmUpVideo.length)); //동영상 길이만큼 기다린다.
@@ -85,12 +85,12 @@ public class Tutorial : MonoBehaviour
     {
 
         text.text = "본격적으로 로잉머신의 사용법을 배워보겠습니다";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         //로잉머신 동영상 재생
 
         text.text = "이제 한 번 해보겠습니다";
         sideCam.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         text.text = "당겨보세요";
         startRowing = true;
 
