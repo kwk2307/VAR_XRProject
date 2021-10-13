@@ -496,6 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4515410701734086}
   - component: {fileID: 205928377823788614}
+  - component: {fileID: -6087033060741389750}
   m_Layer: 0
   m_Name: Swamp_Fern
   m_TagString: Untagged
@@ -512,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 1981628798725646}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.034218, y: 0.034218, z: 0.034218}
   m_Children:
   - {fileID: 4141806603524308}
   - {fileID: 4934767309686452}
@@ -562,3 +563,16 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23019306963448230}
   m_Enabled: 1
+--- !u!65 &-6087033060741389750
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981628798725646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
