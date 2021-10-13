@@ -17,6 +17,7 @@ public class Tutorial : MonoBehaviour
     bool cancelRowing = false;
     GameObject sideCam;
 
+    AudioSource clear;
 
 
     void Start()
@@ -27,8 +28,8 @@ public class Tutorial : MonoBehaviour
 
         sideCam = GameObject.Find("SideView");
         sideCam.SetActive(false);
-        
 
+        clear = GameObject.Find("ClearSound").GetComponent<AudioSource>();
 
     }
 
@@ -40,6 +41,7 @@ public class Tutorial : MonoBehaviour
         {
             if (anim_boat.GetFloat("Position") >= 0.8f)
             {
+                clear.Play();
                 text.text = "잘 하셨습니다. 다시 앞으로 놓겠습니다";
                 cancelRowing = true;
                 startRowing = false;
@@ -52,6 +54,7 @@ public class Tutorial : MonoBehaviour
             //앞으로 놓으면
             if (anim_boat.GetFloat("Position") <= 0.2f)
             {
+                clear.Play();
                 text.text = "잘 하셨습니다.";
                 cancelRowing = false;
             }
