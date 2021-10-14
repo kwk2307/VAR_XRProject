@@ -24,7 +24,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] announce;
 
     public GameObject[] Enemy;
-
+    public GameObject[] angry;
 
 
 
@@ -134,17 +134,20 @@ public class Tutorial : MonoBehaviour
 
         Instantiate(Enemy[0]);
         Enemy[0].transform.position = new Vector3(-50, 0, 50);
+        angry[0] = GameObject.Find("Angry");
         GameObject.Find("Angry").SetActive(false);
 
 yield return new WaitForSeconds(1.1f);
 
         Instantiate(Enemy[1]);
         Enemy[1].transform.position = new Vector3(0, 0, 50);
+        angry[1] = GameObject.Find("Angry");
         GameObject.Find("Angry").SetActive(false);
 
         yield return new WaitForSeconds(1f);
 
         Instantiate(Enemy[2]).transform.position = new Vector3(50, 0, 50);
+        angry[2] = GameObject.Find("Angry");
         GameObject.Find("Angry").SetActive(false);
 
 
@@ -152,7 +155,21 @@ yield return new WaitForSeconds(1.1f);
         text.text = "당신은 이 괴물들에게서 노를 저어 도망쳐야 합니다.";
         announce[7].SetActive(true);
         yield return new WaitForSeconds(5);
+        StartCoroutine(GuideAngry());
 
+    }
 
+    IEnumerator GuideAngry()
+    {
+        text.text = "적은 랜덤하게 분노모드로 들어갑니다.";
+        yield return new WaitForSeconds(5);
+        text.text = "분노모드에 들어간 적은 속도가 빨라지니 조심하세요!";
+        yield return new WaitForSeconds(5);
+        text.text = "적 위에 생긴 빨간색 느낌표를 통해 적이 분노모드임을 알 수 있습니다.";
+        for (int i= 0; i< 3; i++)
+        {
+            angry[i].SetActive(true);
+        }
+        
     }
 }
