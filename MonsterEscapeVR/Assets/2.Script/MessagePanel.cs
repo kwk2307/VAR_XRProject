@@ -24,6 +24,10 @@ public class MessagePanel : MonoBehaviour
         {
             StartCoroutine("say3");
         }
+        else if (SceneManager.GetActiveScene().name == "Mode4")
+        {
+            StartCoroutine("say4");
+        }
     }
 
 
@@ -61,7 +65,7 @@ public class MessagePanel : MonoBehaviour
     {
         Messagetext.text = "전설의 바다괴물 크라켄이 등장했다!";
         yield return new WaitForSeconds(3);
-        Messagetext.text = "이미 주변의 함선들은 모두 침몰했고 가까스로 구명보트를 꺼내 탈출에 성공";
+        Messagetext.text = "이미 주변의 함선들은 모두 침몰했고 가까스로 구명보트를 꺼내 탈출에 성공했다!";
         yield return new WaitForSeconds(3);
         Messagetext.text = "전설의 바다괴물 크라켄으로 부터 도망쳐라!";
         yield return new WaitForSeconds(3);
@@ -72,5 +76,13 @@ public class MessagePanel : MonoBehaviour
         GameMng.Instance.playerState = state.playing;
         
     }
-
+    IEnumerator say4()
+    {
+        Messagetext.text = "이곳은 물의 도시입니다.";
+        yield return new WaitForSeconds(5);
+        Messagetext.text = "여유를 즐기시고 좋은 시간 보내세요!";
+        yield return new WaitForSeconds(5);
+        messagePanel.SetActive(false);
+        GameMng.Instance.playerState = state.playing;
+    }
 }
