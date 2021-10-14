@@ -124,22 +124,33 @@ public class Tutorial : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         text.text = "이제 적에 대해 알려드리겠습니다.";
+        announce[5].SetActive(true);
         yield return new WaitForSeconds(5);
+
         text.text = "적은 모드에 따라 악어, 상어, 크라켄이 있습니다.";
+        announce[6].SetActive(true);
+
+        yield return new WaitForSeconds(1.2f);
+
         Instantiate(Enemy[0]);
         Enemy[0].transform.position = new Vector3(-50, 0, 50);
-        Destroy(Enemy[0].GetComponent<EnemyMove>());
+        GameObject.Find("Angry").SetActive(false);
+
+yield return new WaitForSeconds(1.1f);
 
         Instantiate(Enemy[1]);
         Enemy[1].transform.position = new Vector3(0, 0, 50);
-        Destroy(Enemy[1].GetComponent<EnemyMove>());
+        GameObject.Find("Angry").SetActive(false);
 
-        Destroy(Enemy[2].GetComponent<EnemyMove>());
+        yield return new WaitForSeconds(1f);
+
         Instantiate(Enemy[2]).transform.position = new Vector3(50, 0, 50);
-        
+        GameObject.Find("Angry").SetActive(false);
+
 
         yield return new WaitForSeconds(5);
         text.text = "당신은 이 괴물들에게서 노를 저어 도망쳐야 합니다.";
+        announce[7].SetActive(true);
         yield return new WaitForSeconds(5);
 
 

@@ -732,11 +732,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cbd40d9d61c2b44b690f482f7e8593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMode: 1
-  speed: 5
+  GameMode: 0
   attackPower: 1
   delayCount: 0
   GameOverUI: {fileID: 0}
+  enumSpeed: 0
 --- !u!82 &229722000
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1753,6 +1753,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8590828032843523944}
     m_Modifications:
+    - target: {fileID: 5441782931721754958, guid: e1150b61f1d85a34db8f8abce263ce1c, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5441782933143222678, guid: e1150b61f1d85a34db8f8abce263ce1c, type: 3}
       propertyPath: m_Name
       value: Canvas
