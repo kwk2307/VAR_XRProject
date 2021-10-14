@@ -36,14 +36,13 @@ public class Tutorial : MonoBehaviour
         rowingPlayer.Stop();
        
 
-        //StartCoroutine("Greet");
+        StartCoroutine("Greet");
 
         sideCam = GameObject.Find("SideView");
         sideCam.SetActive(false);
 
         clear = GameObject.Find("ClearSound").GetComponent<AudioSource>();
-
-        StartCoroutine(EnemySay());
+        
 
     }
 
