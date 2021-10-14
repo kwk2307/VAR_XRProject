@@ -34,7 +34,7 @@ public class UIMng : Singleton<UIMng>
     }
     public void update_gameOverUI()
     {
-        gameWinUI.SetActive(true);
+        gameOverUI.SetActive(true);
         //gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:00}",
         //     GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
