@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -173,6 +174,25 @@ yield return new WaitForSeconds(1.1f);
         {
             angry[i].SetActive(true);
         }
-        
+        yield return new WaitForSeconds(7);
+        StartCoroutine(QuitTuto());
+
+    }
+
+    IEnumerator QuitTuto()
+    {
+        text.text = "괴물들에게서 쫓기는 긴박함이 싫으신 분들을 위한 관광모드도 있습니다.";
+        announce[11].SetActive(true);
+        yield return new WaitForSeconds(6);
+        text.text = "관광모드 또한 메인화면에서 선택하여 들어가실 수 있습니다";
+        announce[12].SetActive(true);
+        yield return new WaitForSeconds(5);
+        text.text = "이것으로 듀토리얼을 마치겠습니다.";
+        announce[13].SetActive(true);
+        yield return new WaitForSeconds(5);
+        text.text = "부디 생존하시길 빕니다.";
+        announce[14].SetActive(true);
+
+
     }
 }
