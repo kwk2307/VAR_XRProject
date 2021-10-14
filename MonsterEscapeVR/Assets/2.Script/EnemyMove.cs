@@ -127,8 +127,14 @@ public class EnemyMove : MonoBehaviour
        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
        if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
+        
             //print("분노모드 돌입");
-            StartCoroutine(AngryMode());
+            if(angEnter == false)
+            {
+                angDis -= 100;
+                StartCoroutine(AngryMode());
+            }
+            
             
             //if (angEnter == false)
             //{
@@ -211,16 +217,18 @@ public class EnemyMove : MonoBehaviour
         
         //ani.SetBool("Angry", true); //계속 포효한다
         
-        enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
+        enumSpeed = enumSpeed *1.2f; //적의 속도도 높인다.
         StartCoroutine(AngryAlpha());
 
         yield return new WaitForSeconds(angDuration);
-        angDis -= 50;
+        
 
         color.a = 0;
         angImage.GetComponent<Image>().color = color;
         //ani.SetBool("Angry", false); //포효 애니 중지
-        enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
+        enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
+
+        angEnter = true;
 
     }
 
