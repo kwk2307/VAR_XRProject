@@ -215,7 +215,7 @@ public class EnemyMove : MonoBehaviour
         StartCoroutine(AngryAlpha());
 
         yield return new WaitForSeconds(angDuration);
-        angDis -= 20;
+        angDis -= 50;
 
         color.a = 0;
         angImage.GetComponent<Image>().color = color;
