@@ -172,6 +172,7 @@ public class EnemyMove : MonoBehaviour
             SoundMng.Instance.GameOver_s();
             ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
             
+            
         }
     }
 
@@ -180,8 +181,7 @@ public class EnemyMove : MonoBehaviour
         delayTime += Time.deltaTime;
         if (delayTime >= 3) //3초 동안은 실패연출 봐라
         {
-            //GameOverUI_player.SetActive(true);
-            //유아이매니저를 통해 실행
+            UIMng.Instance.update_gameOverUI();
         }
 
         //조명도 어둡게 해봅시다
