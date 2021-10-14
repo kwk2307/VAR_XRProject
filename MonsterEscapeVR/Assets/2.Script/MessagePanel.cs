@@ -7,11 +7,11 @@ public class MessagePanel : MonoBehaviour
 {
     public Text Messagetext;
     public GameObject messagePanel;
-    void Start()
-    {
 
+    private void Start()
+    {
         messagePanel.SetActive(true);
-       
+
         if (SceneManager.GetActiveScene().name == "Mode1")
         {
             StartCoroutine("say1");
@@ -24,7 +24,6 @@ public class MessagePanel : MonoBehaviour
         {
             StartCoroutine("say3");
         }
-
     }
 
 
@@ -37,9 +36,11 @@ public class MessagePanel : MonoBehaviour
         Messagetext.text = "악어의 추격을 뿌리치고 아마존을 탈출하자!";
         yield return new WaitForSeconds(3);
         messagePanel.SetActive(false);
-        SoundMng.Instance.GameStart();
+        SoundMng.Instance.GameStartSound();
         UIMng.Instance.CountDown();
-
+        yield return new WaitForSeconds(3);
+        GameMng.Instance.playerState = state.playing;
+        
     }
     IEnumerator say2()
     {
@@ -50,6 +51,10 @@ public class MessagePanel : MonoBehaviour
         Messagetext.text = "분노한 상어의 추격을 뿌리치고 육지로 도망쳐라!";
         yield return new WaitForSeconds(3);
         messagePanel.SetActive(false);
+        SoundMng.Instance.GameStartSound();
+        UIMng.Instance.CountDown();
+        yield return new WaitForSeconds(3);
+        GameMng.Instance.playerState = state.playing;
 
     }
     IEnumerator say3()
@@ -61,8 +66,11 @@ public class MessagePanel : MonoBehaviour
         Messagetext.text = "전설의 바다괴물 크라켄으로 부터 도망쳐라!";
         yield return new WaitForSeconds(3);
         messagePanel.SetActive(false);
-
-
+        SoundMng.Instance.GameStartSound();
+        UIMng.Instance.CountDown();
+        yield return new WaitForSeconds(3);
+        GameMng.Instance.playerState = state.playing;
+        
     }
 
 }

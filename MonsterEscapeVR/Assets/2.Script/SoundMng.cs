@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class SoundMng : Singleton<SoundMng>
 {
-    AudioSource bm;
-    AudioSource GameOverSound;
-    AudioSource CountDownSound;
-    float count;
-    bool isPlay;
-    Animator ani; //각 적의 애니를 담을 것임
+    private AudioSource bm;
+    private AudioSource GameOverSound;
+    private AudioSource CountDownSound;
+    private AudioSource EnemySound;
     
     public int gameMode = 1;
     void Start()
@@ -28,15 +26,24 @@ public class SoundMng : Singleton<SoundMng>
         }
 
         bm.Stop();
-        isPlay = false;
-
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
+        EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>(); 
     }
 
-    public void GameStart()
+    public void GameStartSound()
     {
+        
         StartCoroutine(GameStart_C());
+    }
+    public void GameOver_s()
+    {
+        bm.Stop();
+        GameOverSound.Play();
+    }
+    public void Enemy_s()
+    {
+        EnemySound.Play();
     }
 
     IEnumerator GameStart_C()
@@ -45,6 +52,8 @@ public class SoundMng : Singleton<SoundMng>
         yield return new WaitForSeconds(3);
         bm.Play();
     }
+
+
 
 
 }

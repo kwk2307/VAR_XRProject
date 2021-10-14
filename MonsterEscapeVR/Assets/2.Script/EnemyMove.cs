@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum e_state
+{
+    playing,
+    waiting,
+}
+
 public class EnemyMove : MonoBehaviour
 {
     public int GameMode; //1번 - 악어, 2번 - 상어, 3번 - 크라켄
@@ -12,24 +18,25 @@ public class EnemyMove : MonoBehaviour
     public float delayCount;
 
     private GameObject player; //플레이어를 담을 변수
-    public GameObject GameOverUI; // 게임오버(실패)UI
-    GameObject GameOverUI_player; // 플레이어 캔버스에 있는 게임오버 UI
+
     Animator ani; //적의 애니 컨트롤러
-    AudioSource sound; //포효 소리
-
+    
     Light lit;
-
-    bool start = false;
-    float delayTime;
+    
+    private float delayTime;
     public static float enumSpeed; //적의 속도
 
-    GameObject angImage;
+    private GameObject angImage;
+    private Color color;
+
     float angDis; //분노모드에 들어갈 수치
-    Color color;
+    float angDuration; //분노 지속시간
+    
     bool angEnter=false;
     bool angry = false;
-    float angDuration; //분노 지속시간
-    float time;
+    //float time;
+
+    private e_state enemyState = e_state.waiting;
 
     void Start()
     {
@@ -38,11 +45,11 @@ public class EnemyMove : MonoBehaviour
 
         Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
 
-        GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
+        //GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
         ani = GetComponent<Animator>(); //애니매이터 담기
 
         //크아아앙 소리 할당
-        sound = GetComponent<AudioSource>();
+        //sound = GetComponent<AudioSource>();
 
         lit = GameObject.Find("Directional Light").GetComponent<Light>(); //빛을 찾아 담는다
 
@@ -73,147 +80,106 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delayCount += Time.deltaTime;
-        if(delayCount >= 3)
+       
+        if(GameMng.Instance.playerState == state.playing)
         {
-            if (GameMode == 1 && delayCount >= 5.5) //악어 
-            {
-                if ( start == false)
-                {
-                    //포효 소리 재생
-                    sound.Play();
-
-                    //다시 이 곳에 안들어오도록 막는다
-                    start = true;
-                }
-                if(delayCount >= 6 && GameMng.Instance.isPlaying == true)
-                {
-                    //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
-
-                }
-                
-                
-
-            }
-            if (GameMode == 2) //상어 
-            {
-                if (delayCount >= 3 && start == false)
-                {
-                    //크아아앙
-                    ani.SetBool("Angry", true);
-
-                    //포효 소리 재생
-                    sound.Play();
-
-                    //다시 이 곳에 안들어오도록 막는다
-                    start = true;
-
-
-                }
-                if (delayCount >= 6)
-                {
-                    //크아앙은 멈추고
-                    ani.SetBool("Angry", false);
-
-                    //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
-
-                }
-
-            }
-            if (GameMode == 3) //크라켄
-            {
-                //크라켄의 포효
-                if(delayCount >= 3.5 && start ==false)
-                {
-                    sound.Play();
-                    start = true;
-                }
-                if (delayCount >= 6)
-                {
-                    //플레이어를 쫓아간다.
-                    transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
-
-                    
-
-                }
-                    
-
-            }
-
             
+            if(enemyState == e_state.waiting)
+            {
+                enemyState = e_state.playing;
+                //포효 소리 넣기 
+                SoundMng.Instance.Enemy_s();
+            }
 
+            if(enemyState == e_state.playing)
+            {
+                if (GameMode == 1) //악어 
+                {
+                    if (GameMng.Instance.time >= 3)
+                    {
+                        //플레이어를 쫓아간다.
+                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
+                    }
+
+                }
+                else if (GameMode == 2) //상어 
+                {
+
+                    if (GameMng.Instance.time >= 3)
+                    {
+                        //플레이어를 쫓아간다.
+                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                    }
+
+                }
+                if (GameMode == 3) //크라켄
+                {
+                    if (GameMng.Instance.time >= 3)
+                    {
+                        //플레이어를 쫓아간다.
+                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+
+                    }
+                }
+            }
         }
 
-        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
-       if(angDis >= GameMng.Instance.currentdistance && angry==false) //분노모드에 들어가기 위한 조건
+       //print("플레이어의 거리" + GameMng.Instance.currentdistance);
+       if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
-            print("분노모드 돌입");
-            time += Time.deltaTime;
-            angry = true;
+            //print("분노모드 돌입");
+            StartCoroutine(AngryMode());
             
-            if (angEnter == false)
-            {
-                color.a = 1;
-                angImage.GetComponent<Image>().color = color;
+            //if (angEnter == false)
+            //{
+            //    color.a = 1;
+            //    angImage.GetComponent<Image>().color = color;
+            //    //sound.Play(); //포효소리 재생
+            //    //ani.SetBool("Angry", true); //계속 포효한다
+            //    //angEnter = true;
+            //    enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
+            //}
 
-                sound.Play(); //포효소리 재생
-                ani.SetBool("Angry", true); //계속 포효한다
-                angEnter = true;
-                enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
+            //StartCoroutine(AngryAlpha());
 
-            }
-           
-
-            StartCoroutine(AngryAlpha());
-
-            if(angDuration >= time) //분노모드는 angDuration 동안 유지
-            {//분노종료
-                angDis -= 20;
-                color.a = 0;
-                angImage.GetComponent<Image>().color = color;
-                ani.SetBool("Angry", false); //포효 애니 중지
-                enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
-
-            }
+            //if(angDuration >= time) //분노모드는 angDuration 동안 유지
+            //{//분노종료
+            //    angDis -= 20;
+            //    color.a = 0;
+            //    angImage.GetComponent<Image>().color = color;
+            //    ani.SetBool("Angry", false); //포효 애니 중지
+            //    enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
+            //}
 
         }
        
-
 
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Player"))
         {
-            GameMng.Instance.isPlaying = false;
-
-            //적의 이동 멈춤
-            ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
+            GameMng.Instance.playerState = state.die;
+            enemyState = e_state.waiting;
+            //gameoversound 재생
+            SoundMng.Instance.GameOver_s();
+            //ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         delayTime += Time.deltaTime;
         if (delayTime >= 3) //3초 동안은 실패연출 봐라
         {
-            GameOverUI_player.SetActive(true);
+            //GameOverUI_player.SetActive(true);
+            //유아이매니저를 통해 실행
         }
 
         //조명도 어둡게 해봅시다
         StartCoroutine(FadeOut());
     }
-    // 충돌했을경우
-    private void OnCollisionEnter(Collision collision)
-    {
     
-    }
-    private void OnCollisionStay(Collision collision)//플레이어 캔버스에 있는 게임오버 UI도 활성화
-    {
-        //바로 게임오버 UI가 뜨면 어색하자너
-
-    }
 
     IEnumerator FadeOut()
     {
@@ -232,6 +198,29 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         angry = false;
+
+    }
+
+    IEnumerator AngryMode()
+    {
+        color.a = 1;
+        angImage.GetComponent<Image>().color = color;
+        
+        //sound.Play(); //포효소리 재생
+        SoundMng.Instance.Enemy_s();
+        
+        //ani.SetBool("Angry", true); //계속 포효한다
+        
+        enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
+        StartCoroutine(AngryAlpha());
+
+        yield return new WaitForSeconds(angDuration);
+        angDis -= 20;
+
+        color.a = 0;
+        angImage.GetComponent<Image>().color = color;
+        //ani.SetBool("Angry", false); //포효 애니 중지
+        enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
 
     }
 

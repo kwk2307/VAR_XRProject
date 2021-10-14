@@ -16,7 +16,7 @@ public class EndPointTrig : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Player"))
         {
-            GameMng.Instance.isPlaying = false;
+            GameMng.Instance.playerState = state.clear;
             UIMng.Instance.update_gameWinUI();
         }
     }
