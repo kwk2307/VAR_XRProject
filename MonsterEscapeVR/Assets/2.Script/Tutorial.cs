@@ -192,7 +192,8 @@ yield return new WaitForSeconds(1.1f);
         yield return new WaitForSeconds(5);
         text.text = "부디 생존하시길 빕니다.";
         announce[14].SetActive(true);
-
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MainMenu");
 
     }
 }
