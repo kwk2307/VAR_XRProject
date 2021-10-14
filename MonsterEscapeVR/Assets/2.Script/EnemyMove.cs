@@ -89,6 +89,7 @@ public class EnemyMove : MonoBehaviour
                 enemyState = e_state.playing;
                 //포효 소리 넣기 
                 SoundMng.Instance.Enemy_s();
+
             }
 
             if(enemyState == e_state.playing)
@@ -169,7 +170,8 @@ public class EnemyMove : MonoBehaviour
             enemyState = e_state.waiting;
             //gameoversound 재생
             SoundMng.Instance.GameOver_s();
-            //ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
+            ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
+            
         }
     }
 
@@ -215,7 +217,7 @@ public class EnemyMove : MonoBehaviour
         //sound.Play(); //포효소리 재생
         SoundMng.Instance.Enemy_s();
         
-        //ani.SetBool("Angry", true); //계속 포효한다
+        ani.SetBool("Angry", true); //계속 포효한다
         
         enumSpeed = enumSpeed *1.2f; //적의 속도도 높인다.
         StartCoroutine(AngryAlpha());
@@ -225,7 +227,7 @@ public class EnemyMove : MonoBehaviour
 
         color.a = 0;
         angImage.GetComponent<Image>().color = color;
-        //ani.SetBool("Angry", false); //포효 애니 중지
+        ani.SetBool("Angry", false); //포효 애니 중지
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
 
         angEnter = true;
