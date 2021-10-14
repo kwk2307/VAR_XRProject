@@ -55,17 +55,16 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameMng.Instance.isPlaying == true)
+        if (transform.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            if (transform.GetComponent<Rigidbody>().velocity.z < 0)
-            {
-                transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        if (GameMng.Instance.playerState == state.playing)
+        {
             //로잉기를 당기는지 확인
 
             if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)

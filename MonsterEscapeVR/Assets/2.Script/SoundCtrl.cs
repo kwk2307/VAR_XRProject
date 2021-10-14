@@ -9,6 +9,7 @@ public class SoundCtrl : MonoBehaviour
     bool isPlay;
     Animator ani; //각 적의 애니를 담을 것임
     AudioSource GameOverSound;
+    [SerializeField] private AudioSource CountDownSound;
 
     public int gameMode = 1;
 
@@ -33,38 +34,33 @@ public class SoundCtrl : MonoBehaviour
 
         ani = GameObject.Find("Enemy").GetComponent<Animator>();
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        count += Time.deltaTime;
-        if(count >= 3 && isPlay == false )
-        {
-            bm.Play();
-            isPlay = true;
-        }
-
-
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("Bite")) //게임오버에 사운드 내기
         {
-            if(gameOver == false)
+            if (gameOver == false)
             {
                 GameOverSound.Play();
                 gameOver = true;
-
             }
-            
+
             StartCoroutine(FadeOut());
-
         }
 
-        IEnumerator FadeOut()
-        {
-            bm.volume -= 0.001f;
-            yield return 1;
-        }
-        
     }
+    IEnumerator FadeOut()
+    {
+        bm.volume -= 0.001f;
+        yield return 1;
+    }
+    IEnumerator GameStart()
+    {
+        CountDownSound.Play();
+        yield return new WaitForSeconds(3);
+        bm.Play();
+    }
+
 }

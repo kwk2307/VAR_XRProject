@@ -2,19 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum state
+{
+    playing,
+    waiting,
+    clear,
+    die
+}
+
 public class GameMng : Singleton<GameMng>
 {
     //현재 거리
     public float currentdistance;
     public float goaldistance;
     public float currentspeed;
-    //플레이어의 현재 플레
-    public bool isPlaying = false;
-
+    //플레이어의 현재 플레이상태
+    public state playerState = state.waiting;
+    
     [SerializeField] private float currenttime;
     public int minutes;
     public int seconds;
     public int fraction;
+
 
     public float time
     {
@@ -30,5 +40,5 @@ public class GameMng : Singleton<GameMng>
             fraction = (int)(currenttime * 100) % 100;
         }
     }
-    
+
 }

@@ -38,6 +38,10 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("Mode1"));
     }
+    public void GotoTutorial()
+    {
+        StartCoroutine(LoadScene("Tutorial"));
+    }
 
     IEnumerator LoadScene(string sceneName)
     {
