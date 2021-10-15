@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneMng : MonoBehaviour
 {
-    
+    Image fadeImage;
+    float fadeCount =0;
+
+    private void Start()
+    {
+        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
+        GoToMain();
+    }
+
     public void GotoModeSelect()
     {
         StartCoroutine(LoadScene("ModeSelect"));
@@ -46,14 +55,23 @@ public class SceneMng : MonoBehaviour
     IEnumerator LoadScene(string sceneName)
     {
         yield return null;
-      
-        AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncOper.isDone)
+
+        fadeCount += 0.01f;
+        fadeImage.color = new Color(0, 0, 0, fadeCount);
+        yield return new WaitForSeconds(0.01f);
+
+      if(fadeCount == 1)
         {
-            yield return null;
-            Debug.Log(asyncOper.progress);
-            //프로그레스 바 구현 할 수 있음
+            AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
+            while (!asyncOper.isDone)
+            {
+                yield return null;
+                Debug.Log(asyncOper.progress);
+                //프로그레스 바 구현 할 수 있음
+            }
+
         }
+        
     }
 
 }
