@@ -22,9 +22,8 @@ public class EnemyMove : MonoBehaviour
     Animator ani; //적의 애니 컨트롤러
     
     Light lit;
-    
-    private float delayTime;
-    public static float enumSpeed; //적의 속도
+   
+    private float enumSpeed; //적의 속도
 
     private GameObject angImage;
     private Color color;
@@ -61,7 +60,7 @@ public class EnemyMove : MonoBehaviour
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 15f; //상어의 스피드
+            enumSpeed = 5; //상어의 스피드
             angDis = -30;
             angDuration = 10;
         }
@@ -168,35 +167,19 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Player"))
+        if (other.tag=="Player")
         {
-            GameMng.Instance.playerState = state.die;
-            enemyState = e_state.waiting;
-            //gameoversound 재생
-            SoundMng.Instance.GameOver_s();
-            ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
-            
+            StartCoroutine(GameOver());
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    IEnumerator Fadeout()
     {
-        delayTime += Time.deltaTime;
-        if (delayTime >= 3) //3초 동안은 실패연출 봐라
+        while (lit.intensity > 0)
         {
-            //GameOverUI_player.SetActive(true);
-            //유아이매니저를 통해 실행
+            lit.intensity -= Time.deltaTime;
+            yield return null;
         }
-
-        //조명도 어둡게 해봅시다
-        StartCoroutine(FadeOut());
-    }
-    
-
-    IEnumerator FadeOut()
-    {
-        lit.intensity -= Time.deltaTime;
-        yield return 1;
     }
 
     IEnumerator AngryAlpha() //분노모드 이미지 알파값 왔다갔다
@@ -235,7 +218,22 @@ public class EnemyMove : MonoBehaviour
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
 
         angEnter = true;
-
     }
 
+    IEnumerator GameOver()
+    {
+        GameMng.Instance.playerState = state.die;
+        enemyState = e_state.waiting;
+        //gameoversound 재생
+        SoundMng.Instance.GameOver_s();
+        ani.SetBool("Byte", true); //게임이 끝나면 적이 입을 앙앙거린다.
+        StartCoroutine(Fadeout());
+
+        yield return new WaitForSeconds(3);
+
+        UIMng.Instance.update_gameOverUI();
+        
+    }
+
+    
 }

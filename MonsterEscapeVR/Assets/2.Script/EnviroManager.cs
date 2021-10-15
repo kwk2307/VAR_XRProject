@@ -7,8 +7,15 @@ public class EnviroManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("¿ÀºêÁ§Æ®°¡ ºÎµúÈû");
-        other.transform.position -= Vector3.forward * 110;
+        if(other.tag != "Enemy")
+        {
+            print("¿ÀºêÁ§Æ®°¡ ºÎµúÈû");
+            other.transform.position -= Vector3.forward * 110;
+        }
+        else
+        {
+            print("hit");
+        }
     }
 
 }
