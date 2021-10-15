@@ -90,6 +90,10 @@ public class EnemyMove : MonoBehaviour
                 //포효 소리 넣기 
                 SoundMng.Instance.Enemy_s();
 
+                //분노 애니 
+                ani.SetBool("Angry", true);
+                print("angry");
+
             }
 
             if(enemyState == e_state.playing)
