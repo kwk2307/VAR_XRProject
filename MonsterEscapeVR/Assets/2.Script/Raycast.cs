@@ -31,7 +31,7 @@ public class Raycast : MonoBehaviour
         {
 
             timeElapsed += Time.deltaTime;//시간 증가
-            Gazepointer.fillAmount = timeElapsed / 3;//이미지 fill 채워줌
+            Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
             if (timeElapsed >= 2)//2초가 되면
             {
@@ -40,6 +40,7 @@ public class Raycast : MonoBehaviour
                 
                 //버튼 onClick 이벤트 발생
                 hit.transform.GetComponent<Button>().onClick.Invoke();
+                print("클릭이벤트발생");
 
                 DontDestroyOnLoad(Toggle); //씬 전환해도 소리가 계속 나도록.
                 timeElapsed = 0;

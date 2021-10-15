@@ -8,12 +8,14 @@ public class SceneMng : MonoBehaviour
 {
     Image fadeImage;
     float fadeCount =0;
+    bool startFade = false;
 
     private void Start()
     {
         fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
         GoToMain();
     }
+    
 
     public void GotoModeSelect()
     {
@@ -44,7 +46,7 @@ public class SceneMng : MonoBehaviour
         StartCoroutine(LoadScene("MainMenu"));
     }
     public void ReGame()
-    {
+    { 
         StartCoroutine(LoadScene("Mode1"));
     }
     public void GotoTutorial()
@@ -56,12 +58,9 @@ public class SceneMng : MonoBehaviour
     {
         yield return null;
 
-        fadeCount += 0.01f;
-        fadeImage.color = new Color(0, 0, 0, fadeCount);
-        yield return new WaitForSeconds(0.01f);
+        //yield return new WaitForSeconds(5f);
 
-      if(fadeCount == 1)
-        {
+      
             AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOper.isDone)
             {
@@ -70,7 +69,7 @@ public class SceneMng : MonoBehaviour
                 //프로그레스 바 구현 할 수 있음
             }
 
-        }
+        
         
     }
 
