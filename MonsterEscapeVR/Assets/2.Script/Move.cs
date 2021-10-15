@@ -14,7 +14,7 @@ public class Move : MonoBehaviour
     int a = 1;
     void Update()
     {
-        if (transform.position.x < -39.0f)
+        if (transform.position.x < -38.0f)
         {
             a = -1;
         }
@@ -22,6 +22,6 @@ public class Move : MonoBehaviour
         {
             a = 1;
         }
-        transform.Translate(Vector3.left * 1.0f * Time.deltaTime * a);
+        transform.Translate(Vector3.left * 0.5f * Time.deltaTime * a);
     }
 }
