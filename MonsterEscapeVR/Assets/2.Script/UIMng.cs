@@ -10,7 +10,7 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private GameObject gameWinUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject countdown;
-
+    public GameObject VictoryEffectBox;
     public void update_distance()
     {
         ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
@@ -29,6 +29,7 @@ public class UIMng : Singleton<UIMng>
     public void update_gameWinUI()
     {
         gameWinUI.SetActive(true);
+        VictoryEffectBox.SetActive(true);
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("{0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
