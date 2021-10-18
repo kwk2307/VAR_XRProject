@@ -10,11 +10,6 @@ public class SceneMng : MonoBehaviour
     float fadeCount =0;
     bool startFade = false;
 
-    private void Start()
-    {
-        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
-        GoToMain();
-    }
     
 
     public void GotoModeSelect()
