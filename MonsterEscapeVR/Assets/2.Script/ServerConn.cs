@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class ServerConn : MonoBehaviour
+public class ServerConn : Singleton<ServerConn>
 {
 
     [SerializeField] private string userCode;
@@ -16,17 +16,8 @@ public class ServerConn : MonoBehaviour
     [SerializeField] private string goalWeight;
     [SerializeField] private string term;
 
-    private void Start()
-    {
-        StartCoroutine(SendLogin());
-    }
-    private void OnGUI()
-    {
-        if (GUI.Button( new Rect(10, 10, 100, 130), "아이디검색"))
-        {
-            StartCoroutine(SendSearchUser());
-        }
-    }
+    public string[] str; 
+    
     IEnumerator SendLogin()
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -42,8 +33,9 @@ public class ServerConn : MonoBehaviour
        
     }
 
-    IEnumerator SendSearchUser()
+    public IEnumerator SendSearchUser()
     {
+
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
 
@@ -56,12 +48,13 @@ public class ServerConn : MonoBehaviour
         }
         else
         {
-            print(www.downloadHandler.text);
-        }
+            //print(www.downloadHandler.text);
+            str = www.downloadHandler.text.Split(',');
+        }  
     }
-
-    IEnumerator SendSearchTodayDo()
+    public IEnumerator SendSearchtodayDo()
     {
+
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
 
@@ -74,11 +67,11 @@ public class ServerConn : MonoBehaviour
         }
         else
         {
-            print(www.downloadHandler.text);
+            str = www.downloadHandler.text.Split(',');
         }
     }
 
-    IEnumerator SendSearchAllDo()
+    public IEnumerator SendSearchallDo()
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
@@ -92,52 +85,11 @@ public class ServerConn : MonoBehaviour
         }
         else
         {
-            print(www.downloadHandler.text);
+            str = www.downloadHandler.text.Split(',');
         }
     }
 
-    IEnumerator SendUpdateallDo()
-    {
-        Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("userCode", userCode);
-        dic.Add("useTime", useTime);
-        dic.Add("useCal", useCal);
-        dic.Add("useDis", useDis);
-
-        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_allDo.php", dic);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError)
-        {
-            print(www.error);
-        }
-        else
-        {
-            print(www.downloadHandler.text);
-        }
-    }
-
-    IEnumerator SendUpdatetodayDo()
-    {
-        Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("userCode", userCode);
-        dic.Add("useTime", useTime);
-        dic.Add("useCal", useCal);
-        dic.Add("useDis", useDis);
-
-        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_todayDo.php", dic);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError)
-        {
-            print(www.error);
-        }
-        else
-        {
-            print(www.downloadHandler.text);
-        }
-    }
-    IEnumerator SendUpdateuser()
+    public IEnumerator SendUpdateuser()
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
@@ -152,11 +104,43 @@ public class ServerConn : MonoBehaviour
         {
             print(www.error);
         }
-        else
-        {
-            print(www.downloadHandler.text);
-        }
+
     }
 
+    public IEnumerator SendUpdatetodayDo()
+    {
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("userCode", userCode);
+        dic.Add("useTime", useTime);
+        dic.Add("useCal", useCal);
+        dic.Add("useDis", useDis);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_todayDo.php", dic);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError)
+        {
+            print(www.error);
+        }
+
+    }
+
+    public IEnumerator SendUpdateallDo()
+    {
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("userCode", userCode);
+        dic.Add("useTime", useTime);
+        dic.Add("useCal", useCal);
+        dic.Add("useDis", useDis);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_allDo.php", dic);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError)
+        {
+            print(www.error);
+        }
+
+    }
 }
 

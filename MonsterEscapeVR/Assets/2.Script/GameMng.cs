@@ -26,6 +26,7 @@ public class GameMng : Singleton<GameMng>
     public int fraction;
 
 
+
     public float time
     {
         get
