@@ -58,7 +58,7 @@ public class SceneMng : MonoBehaviour
     {
         yield return null;
 
-        //yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f); //화면 페이드 아웃될 여유시간
 
       
             AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
