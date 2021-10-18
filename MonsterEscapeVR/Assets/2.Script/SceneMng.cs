@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneMng : MonoBehaviour
 {
+    Image fadeImage;
+    float fadeCount =0;
+    bool startFade = false;
+
+    private void Start()
+    {
+        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
+        GoToMain();
+    }
     
+
     public void GotoModeSelect()
     {
         StartCoroutine(LoadScene("ModeSelect"));
@@ -35,7 +46,7 @@ public class SceneMng : MonoBehaviour
         StartCoroutine(LoadScene("MainMenu"));
     }
     public void ReGame()
-    {
+    { 
         StartCoroutine(LoadScene("Mode1"));
     }
     public void GotoTutorial()
@@ -46,14 +57,20 @@ public class SceneMng : MonoBehaviour
     IEnumerator LoadScene(string sceneName)
     {
         yield return null;
+
+        yield return new WaitForSeconds(2f); //화면 페이드 아웃될 여유시간
+
       
-        AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncOper.isDone)
-        {
-            yield return null;
-            Debug.Log(asyncOper.progress);
-            //프로그레스 바 구현 할 수 있음
-        }
+            AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
+            while (!asyncOper.isDone)
+            {
+                yield return null;
+                Debug.Log(asyncOper.progress);
+                //프로그레스 바 구현 할 수 있음
+            }
+
+        
+        
     }
 
 }
