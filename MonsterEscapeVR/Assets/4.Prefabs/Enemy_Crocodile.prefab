@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 579709213}
   - component: {fileID: 229722000}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_Crocodile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,10 +733,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameMode: 0
+  speed: 5
   attackPower: 1
   delayCount: 0
-  GameOverUI: {fileID: 0}
-  enumSpeed: 0
 --- !u!82 &229722000
 AudioSource:
   m_ObjectHideFlags: 0
