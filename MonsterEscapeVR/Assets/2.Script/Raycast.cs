@@ -53,7 +53,7 @@ public class Raycast : MonoBehaviour
             timeElapsed += Time.deltaTime;//시간 증가
             Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
-            if (timeElapsed >= 2 == getEvent == false)//2초가 되면
+            if (timeElapsed >= 2 && getEvent == false)//2초가 되면
             {
                 //버튼 효과음 재생
                 ToggleSound.Play();
