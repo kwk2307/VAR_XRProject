@@ -33,6 +33,7 @@ public class EnemyMove : MonoBehaviour
     
     bool angEnter=false;
     bool angry = false;
+    float angryinterval;
     //float time;
 
     private e_state enemyState = e_state.waiting;
@@ -47,8 +48,6 @@ public class EnemyMove : MonoBehaviour
         //GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
         ani = GetComponent<Animator>(); //애니매이터 담기
 
-        //크아아앙 소리 할당
-        //sound = GetComponent<AudioSource>();
 
         lit = GameObject.Find("Directional Light").GetComponent<Light>(); //빛을 찾아 담는다
 
@@ -57,18 +56,21 @@ public class EnemyMove : MonoBehaviour
             enumSpeed = 3; //악어의 스피트
             angDis = -40; //angDis만큼 가면 분노모드!
             angDuration = 5; //얼마동안 분노할 것인가?
+            angryinterval = 100; //얼마뒤에 다시 분노할 것인가?
         }
         else if(GameMode == 2)
         {
             enumSpeed = 5; //상어의 스피드
             angDis = -30;
             angDuration = 10;
+            angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
         {
             enumSpeed = 7; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
+            angryinterval = 60; //얼마뒤에 다시 분노할 것인가?
         }
         angImage = GameObject.Find("Angry");
         color = angImage.GetComponent<Image>().color;
@@ -141,7 +143,7 @@ public class EnemyMove : MonoBehaviour
             //print("분노모드 돌입");
             if(angEnter == false)
             {
-                angDis -= 100;
+                angDis -= angryinterval;  //다음 분노모드에서 다시 분노
                 StartCoroutine(AngryMode());
             }
             
