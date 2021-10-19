@@ -49,26 +49,30 @@ public class Raycast : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit))
         {
-
-            timeElapsed += Time.deltaTime;//시간 증가
-            Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
-
-            if (timeElapsed >= 2 && getEvent == false)//2초가 되면
+            if(hit.transform.tag == "UI") //부딪힌 대상이 UI라면
             {
-                //버튼 효과음 재생
-                ToggleSound.Play();
+                timeElapsed += Time.deltaTime;//시간 증가
+                Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
-                enterFade = true; //페이드 아웃 효과 발생
-                
-                //버튼 onClick 이벤트 발생
-                hit.transform.GetComponent<Button>().onClick.Invoke();
+                if (timeElapsed >= 2 && getEvent == false)//2초가 되면
+                {
+                    //버튼 효과음 재생
+                    ToggleSound.Play();
 
-                
-                DontDestroyOnLoad(Toggle); //씬 전환해도 소리가 계속 나도록.
-                //timeElapsed = 0;
-                getEvent = true; //중복실행 방지
+                    enterFade = true; //페이드 아웃 효과 발생
 
+                    //버튼 onClick 이벤트 발생
+                    hit.transform.GetComponent<Button>().onClick.Invoke();
+
+
+                    DontDestroyOnLoad(Toggle); //씬 전환해도 소리가 계속 나도록.
+                                               //timeElapsed = 0;
+                    getEvent = true; //중복실행 방지
+
+                }
             }
+
+            
         }
         else
         {
