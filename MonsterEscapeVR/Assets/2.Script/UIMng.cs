@@ -11,6 +11,7 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
+    [SerializeField] private GameObject gazePointer;
     public void update_distance()
     {
         ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
@@ -67,5 +68,9 @@ public class UIMng : Singleton<UIMng>
         countdown.SetActive(false);
     }
 
+    public void update_gazePointer()
+    {
+        gazePointer.SetActive(true);
+    }
 }
 

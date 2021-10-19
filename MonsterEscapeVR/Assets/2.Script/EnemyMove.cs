@@ -240,6 +240,8 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         UIMng.Instance.update_gameOverUI();
+        // 게이즈 포인터 활성화 
+        UIMng.Instance.update_gazePointer();
 
       
     }
