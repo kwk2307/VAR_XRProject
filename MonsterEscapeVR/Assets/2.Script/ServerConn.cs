@@ -8,9 +8,10 @@ public class ServerConn : Singleton<ServerConn>
 {
 
     [SerializeField] private string userCode;
-    [SerializeField] private string useTime;
-    [SerializeField] private string useCal;
-    [SerializeField] private string useDis;
+    public string curWeight;
+    public string goalWeight;
+    public string term;
+
 
     public string[] str; 
     
@@ -103,7 +104,8 @@ public class ServerConn : Singleton<ServerConn>
 
     }
 
-    public IEnumerator SendUpdatetodayDo()
+
+    public IEnumerator SendUpdatetodayDo(string useTime, string useCal, string useDis)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
@@ -121,7 +123,7 @@ public class ServerConn : Singleton<ServerConn>
 
     }
 
-    public IEnumerator SendUpdateallDo()
+    public IEnumerator SendUpdateallDo(string useTime, string useCal, string useDis)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
