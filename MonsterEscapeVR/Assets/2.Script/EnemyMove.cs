@@ -238,7 +238,11 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         UIMng.Instance.update_gameOverUI();
-        
+
+        int kcal = (int)(7 * GameMng.Instance.time / 60 * int.Parse(ServerConn.Instance.curWeight) * 5);
+
+        StartCoroutine(ServerConn.Instance.SendUpdatetodayDo(((int)GameMng.Instance.time).ToString(),kcal.ToString(),((int)GameMng.Instance.currentdistance).ToString()));
+        StartCoroutine(ServerConn.Instance.SendUpdateallDo(((int)GameMng.Instance.time).ToString(), kcal.ToString(), ((int)GameMng.Instance.currentdistance).ToString()));
     }
 
     
