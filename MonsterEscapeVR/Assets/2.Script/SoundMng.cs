@@ -8,7 +8,8 @@ public class SoundMng : Singleton<SoundMng>
     private AudioSource GameOverSound;
     private AudioSource CountDownSound;
     private AudioSource EnemySound;
-    
+    public AudioSource toggleSound;
+
     public int gameMode = 1;
     void Start()
     {
@@ -28,7 +29,8 @@ public class SoundMng : Singleton<SoundMng>
         bm.Stop();
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
-        EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>(); 
+        EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>();
+
     }
 
     public void GameStartSound()

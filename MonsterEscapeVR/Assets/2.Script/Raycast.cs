@@ -40,7 +40,7 @@ public class Raycast : MonoBehaviour
             }
 
         }
-        
+
 
         RaycastHit hit;//오브젝트 정보
 
@@ -64,8 +64,6 @@ public class Raycast : MonoBehaviour
                 hit.transform.GetComponent<Button>().onClick.Invoke();
 
                 
-                
-
                 DontDestroyOnLoad(Toggle); //씬 전환해도 소리가 계속 나도록.
                 //timeElapsed = 0;
                 getEvent = true; //중복실행 방지
@@ -85,7 +83,6 @@ public class Raycast : MonoBehaviour
     {
         fadeBool = true;
         alpha += 1.6f*Time.deltaTime;
-        print(alpha);
         fadeImg.color = new Color(0, 0, 0, alpha);
         yield return new WaitForSeconds(0.008f);
         fadeBool = false;
