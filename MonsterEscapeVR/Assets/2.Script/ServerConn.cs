@@ -12,10 +12,6 @@ public class ServerConn : Singleton<ServerConn>
     [SerializeField] private string useCal;
     [SerializeField] private string useDis;
 
-    [SerializeField] private string curWeight;
-    [SerializeField] private string goalWeight;
-    [SerializeField] private string term;
-
     public string[] str; 
     
     IEnumerator SendLogin()
@@ -89,7 +85,7 @@ public class ServerConn : Singleton<ServerConn>
         }
     }
 
-    public IEnumerator SendUpdateuser()
+    public IEnumerator SendUpdateuser(string curWeight, string goalWeight, string term)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("userCode", userCode);
