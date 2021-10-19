@@ -66,7 +66,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            enumSpeed = 17; // 크라켄의 스피드
+            enumSpeed = 7; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
         }

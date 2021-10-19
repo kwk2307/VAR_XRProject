@@ -53,6 +53,18 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("Tutorial"));
     }
+    public void GotoSouthPole()
+    {
+        StartCoroutine(LoadScene("SouthPole"));
+    }
+    public void GotoLake()
+    {
+        StartCoroutine(LoadScene("Lake"));
+    }
+    public void GotoVenice()
+    {
+        StartCoroutine(LoadScene("Venice"));
+    }
 
     IEnumerator LoadScene(string sceneName)
     {
