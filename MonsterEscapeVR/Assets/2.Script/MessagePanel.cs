@@ -7,7 +7,7 @@ public class MessagePanel : MonoBehaviour
 {
     public Text Messagetext;
     public GameObject messagePanel;
-
+    public GameObject Exitpanel;
     private void Start()
     {
         messagePanel.SetActive(true);
@@ -78,11 +78,13 @@ public class MessagePanel : MonoBehaviour
     }
     IEnumerator say4()
     {
-        Messagetext.text = "이곳은 물의 도시입니다.";
+        Exitpanel.SetActive(false);
+        Messagetext.text = "이곳은 베네치아 입니다.";
         yield return new WaitForSeconds(5);
         Messagetext.text = "여유를 즐기시고 좋은 시간 보내세요!";
         yield return new WaitForSeconds(5);
         messagePanel.SetActive(false);
+        Exitpanel.SetActive(true);
         GameMng.Instance.playerState = state.playing;
     }
 }
