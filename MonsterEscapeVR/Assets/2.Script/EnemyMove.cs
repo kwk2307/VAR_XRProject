@@ -201,7 +201,7 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         angry = false;
-
+        print("분노모드 끝");
     }
 
     IEnumerator AngryMode()
