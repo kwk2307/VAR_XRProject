@@ -24,7 +24,7 @@ public class MessagePanel : MonoBehaviour
         {
             StartCoroutine("say3");
         }
-        else if (SceneManager.GetActiveScene().name == "Mode4")
+        else if (SceneManager.GetActiveScene().name == "Venice")
         {
             StartCoroutine("say4");
         }
