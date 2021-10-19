@@ -13,10 +13,6 @@ public class SceneMng : MonoBehaviour
     }
     
 
-    public void GotoModeSelect()
-    {
-        StartCoroutine(LoadScene("ModeSelect"));
-    }
     public void GotoRanking()
     {
         StartCoroutine(LoadScene("Ranking"));
@@ -35,16 +31,13 @@ public class SceneMng : MonoBehaviour
     }
     public void Gamerule()
     {
-        StartCoroutine(LoadScene("Mode1"));
+        //StartCoroutine(LoadScene("Mode1"));
     }
     public void GoToMain()
     {
         StartCoroutine(LoadScene("MainMenu"));
     }
-    public void ReGame()
-    { 
-        StartCoroutine(LoadScene("Mode1"));
-    }
+  
     public void GotoTutorial()
     {
         StartCoroutine(LoadScene("Tutorial"));

@@ -143,7 +143,6 @@ GameObject:
   - component: {fileID: 794623208373185448}
   - component: {fileID: 3570026169626497393}
   - component: {fileID: 6671270149517559530}
-  - component: {fileID: 5246308289995062431}
   m_Layer: 5
   m_Name: 'GameOverUI_Fail '
   m_TagString: Untagged
@@ -211,18 +210,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5246308289995062431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987871887789698565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb4198ecc383a34d8e9cf3aa710c1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4485991386344278648
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +297,7 @@ GameObject:
   - component: {fileID: 8859102550571384586}
   - component: {fileID: 8129861218193927002}
   - component: {fileID: 5457794361051570045}
+  - component: {fileID: 2062413008238316601}
   m_Layer: 5
   m_Name: GoToMain
   m_TagString: Untagged
@@ -418,3 +406,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &2062413008238316601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6644192263312340710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
