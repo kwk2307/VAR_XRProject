@@ -6,14 +6,10 @@ using UnityEngine.UI;
 
 public class SceneMng : MonoBehaviour
 {
-    Image fadeImage;
-    float fadeCount =0;
-    bool startFade = false;
 
     private void Start()
     {
-        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
-        GoToMain();
+        //GoToMain();
     }
     
 
