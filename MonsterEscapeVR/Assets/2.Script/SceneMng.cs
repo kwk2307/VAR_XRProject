@@ -10,6 +10,11 @@ public class SceneMng : MonoBehaviour
     float fadeCount =0;
     bool startFade = false;
 
+    private void Start()
+    {
+        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
+        GoToMain();
+    }
     
 
     public void GotoModeSelect()
@@ -48,17 +53,17 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("Tutorial"));
     }
-    public void GoToVenice()
+    public void GotoSouthPole()
     {
-        StartCoroutine(LoadScene("Venice"));
+        StartCoroutine(LoadScene("SouthPole"));
     }
-     public void GoToSouthPole()
-    {
-        StartCoroutine(LoadScene("SouthPole")); 
-    }
-    public void GoToLake()
+    public void GotoLake()
     {
         StartCoroutine(LoadScene("Lake"));
+    }
+    public void GotoVenice()
+    {
+        StartCoroutine(LoadScene("Venice"));
     }
 
     IEnumerator LoadScene(string sceneName)

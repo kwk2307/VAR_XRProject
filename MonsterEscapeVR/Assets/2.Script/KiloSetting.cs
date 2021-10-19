@@ -31,14 +31,11 @@ public class KiloSetting : MonoBehaviour
         goalTermUp.onClick.AddListener(GoalTermUp);
         goalTermDown.onClick.AddListener(GoalTermDown);
 
-
+        Exit.onClick.AddListener(Exitscreen);
+        Apply.onClick.AddListener(UpdateUser);
     }
 
     
-    void Update()
-    {
-        
-    }
     public void CurweightUp()
     {
         curweight += 5;
@@ -69,4 +66,15 @@ public class KiloSetting : MonoBehaviour
         goalTerm -= 7;
         goalTermNumText.text = goalTerm + "kg";
     }
+    public void Exitscreen()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public void UpdateUser()
+    {
+        StartCoroutine(ServerConn.Instance.SendUpdateuser(curweightText.text, goalWeightText.text, goalTermNumText.text));
+    }
+
+
 }

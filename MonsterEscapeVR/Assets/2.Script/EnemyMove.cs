@@ -66,7 +66,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            enumSpeed = 17; // 크라켄의 스피드
+            enumSpeed = 7; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
         }
@@ -91,7 +91,6 @@ public class EnemyMove : MonoBehaviour
 
                 //분노 애니 
                 ani.SetBool("Angry", true);
-                print("angry");
 
             }
 
@@ -99,29 +98,36 @@ public class EnemyMove : MonoBehaviour
             {
                 if (GameMode == 1) //악어 
                 {
-                    if (GameMng.Instance.time >= 3)
+                    if (GameMng.Instance.time >= 6)
                     {
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
+
+                        //분노 애니 끄기
+                        ani.SetBool("Angry", false);
                     }
 
                 }
                 else if (GameMode == 2) //상어 
                 {
 
-                    if (GameMng.Instance.time >= 3)
+                    if (GameMng.Instance.time >= 6)
                     {
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                        //분노 애니 끄기
+                        ani.SetBool("Angry", false);
                     }
 
                 }
                 if (GameMode == 3) //크라켄
                 {
-                    if (GameMng.Instance.time >= 3)
+                    if (GameMng.Instance.time >= 6)
                     {
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
+                        //분노 애니 끄기
+                        ani.SetBool("Angry", false);
 
                     }
                 }
@@ -232,7 +238,11 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         UIMng.Instance.update_gameOverUI();
-        
+
+        int kcal = (int)(7 * GameMng.Instance.time / 60 * int.Parse(ServerConn.Instance.curWeight) * 5);
+
+        StartCoroutine(ServerConn.Instance.SendUpdatetodayDo(((int)GameMng.Instance.time).ToString(),kcal.ToString(),((int)GameMng.Instance.currentdistance).ToString()));
+        StartCoroutine(ServerConn.Instance.SendUpdateallDo(((int)GameMng.Instance.time).ToString(), kcal.ToString(), ((int)GameMng.Instance.currentdistance).ToString()));
     }
 
     
