@@ -8,8 +8,7 @@ public class SoundMng : Singleton<SoundMng>
     private AudioSource GameOverSound;
     private AudioSource CountDownSound;
     private AudioSource EnemySound;
-    public AudioSource toggleSound;
-
+ 
     public int gameMode = 1;
     void Start()
     {
