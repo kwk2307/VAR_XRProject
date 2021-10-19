@@ -12,8 +12,8 @@ public class SceneMng : MonoBehaviour
 
     private void Start()
     {
-        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
-        GoToMain();
+        //fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
+        //GoToMain();
     }
     
 
@@ -43,6 +43,11 @@ public class SceneMng : MonoBehaviour
     }
     public void GoToMain()
     {
+        int kcal = (int)(7 * GameMng.Instance.time / 60 * int.Parse(ServerConn.Instance.curWeight) * 5);
+
+        StartCoroutine(ServerConn.Instance.SendUpdatetodayDo(((int)GameMng.Instance.time).ToString(), kcal.ToString(), ((int)GameMng.Instance.currentdistance).ToString()));
+        StartCoroutine(ServerConn.Instance.SendUpdateallDo(((int)GameMng.Instance.time).ToString(), kcal.ToString(), ((int)GameMng.Instance.currentdistance).ToString()));
+
         StartCoroutine(LoadScene("MainMenu"));
     }
     public void ReGame()
