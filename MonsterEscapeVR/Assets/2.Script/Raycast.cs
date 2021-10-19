@@ -47,10 +47,8 @@ public class Raycast : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward * 1000);//방향
         Debug.DrawRay(transform.position, forward, Color.green);
 
-        if (Physics.Raycast(this.transform.position, forward, out hit))
+        if (Physics.Raycast(this.transform.position, forward, out hit) && hit.transform.tag == "UI")//부딪힌 대상이 UI라면
         {
-            if(hit.transform.tag == "UI") //부딪힌 대상이 UI라면
-            {
                 timeElapsed += Time.deltaTime;//시간 증가
                 Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
@@ -70,12 +68,13 @@ public class Raycast : MonoBehaviour
                     getEvent = true; //중복실행 방지
 
                 }
-            }
+            
 
             
         }
         else
         {
+            print("아무것도 보고있지 않음");
             timeElapsed -= Time.deltaTime;
             Gazepointer.fillAmount = timeElapsed / 2;
 
