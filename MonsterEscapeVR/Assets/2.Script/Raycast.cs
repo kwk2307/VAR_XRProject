@@ -44,18 +44,20 @@ public class Raycast : MonoBehaviour
 
         RaycastHit hit;//오브젝트 정보
 
-        Vector3 forward = transform.TransformDirection(Vector3.forward * 1000);//방향
+        Vector3 forward = transform.TransformDirection(Vector3.forward)*1000;//방향
+
         Debug.DrawRay(transform.position, forward, Color.green);
 
         if (Physics.Raycast(this.transform.position, forward, out hit))
         {
-            if(hit.transform.tag == "UI") //부딪힌 대상이 UI라면
+            if (hit.transform.tag == "UI") //부딪힌 대상이 UI라면
             {
                 timeElapsed += Time.deltaTime;//시간 증가
                 Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
                 if (timeElapsed >= 2 && getEvent == false)//2초가 되면
                 {
+                    print("click");
                     //버튼 효과음 재생
                     ToggleSound.Play();
 
