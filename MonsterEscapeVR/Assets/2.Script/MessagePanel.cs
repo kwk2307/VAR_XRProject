@@ -82,7 +82,7 @@ public class MessagePanel : MonoBehaviour
     }
     IEnumerator say4()
     {
-        Messagetext.text = "이곳은 베니치아 입니다.";
+        Messagetext.text = "이곳은 베네치아 입니다.";
         yield return new WaitForSeconds(5);
         Messagetext.text = "여유를 즐기시고 좋은 시간 보내세요!";
         yield return new WaitForSeconds(5);
