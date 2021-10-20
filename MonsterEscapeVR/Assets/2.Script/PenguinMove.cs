@@ -10,7 +10,6 @@ public class PenguinMove : MonoBehaviour
     void Start()
     {
         random = UnityEngine.Random.Range(0f, 10f);
-        print(random);
     }
 
     // Update is called once per frame
@@ -56,7 +55,6 @@ public class PenguinMove : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ani.SetBool("Grooming", false);
         random = UnityEngine.Random.Range(0f, 10f);
-        print(random);
         enter = false;
     }
     IEnumerator Flap()
@@ -65,7 +63,6 @@ public class PenguinMove : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ani.SetBool("Flap", false);
         random = UnityEngine.Random.Range(0f, 10f);
-        print(random);
 
         enter = false;
     }
@@ -75,7 +72,6 @@ public class PenguinMove : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ani.SetBool("Walk", false);
         random = UnityEngine.Random.Range(0f, 10f);
-        print(random);
 
         enter = false;
     }
@@ -85,7 +81,6 @@ public class PenguinMove : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ani.SetBool("TurnR", false);
         random = UnityEngine.Random.Range(0f, 10f);
-        print(random);
 
         enter = false;
     }
