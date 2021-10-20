@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundMng : Singleton<SoundMng>
+public class SoundMng : MonoBehaviour
 {
     private AudioSource bm;
     private AudioSource GameOverSound;
@@ -10,6 +10,16 @@ public class SoundMng : Singleton<SoundMng>
     private AudioSource EnemySound;
  
     public int gameMode = 1;
+
+    public static SoundMng Instance = null;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         if (gameMode == 1) //각 모드에 맞는 브금 가져오기

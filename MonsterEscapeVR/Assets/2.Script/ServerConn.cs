@@ -7,21 +7,14 @@ using UnityEngine.Networking;
 public class ServerConn : Singleton<ServerConn>
 {
 
-    [SerializeField] private string userCode;
+    private string userCode = "test";
+
     public string curWeight;
     public string goalWeight;
     public string term;
 
     public string[] str;
 
-    private void Awake()
-    {
-        if (ServerConn.Instance != null)
-        {
-            Destroy(this);
-        }
-        DontDestroyOnLoad(this);
-    }
 
     IEnumerator SendLogin()
     {

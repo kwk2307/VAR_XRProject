@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIMng : Singleton<UIMng>
+public class UIMng : MonoBehaviour
 {
     [SerializeField] private Text ui_distance;
     [SerializeField] private Text ui_time;
@@ -12,6 +12,16 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
     [SerializeField] private GameObject gazePointer;
+
+    public static UIMng Instance = null;
+
+    private void Awake()
+    {
+         if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {

@@ -11,7 +11,7 @@ public enum state
     die
 }
 
-public class GameMng : Singleton<GameMng>
+public class GameMng : MonoBehaviour
 {
     //현재 거리
     public float currentdistance;
@@ -25,7 +25,15 @@ public class GameMng : Singleton<GameMng>
     public int seconds;
     public int fraction;
 
+    public static GameMng Instance = null;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     public float time
     {
