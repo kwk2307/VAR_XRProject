@@ -12,12 +12,12 @@ public class GameOverUI : MonoBehaviour
         if(this.gameObject.name == "GameOverUI_Win")
         {
             Button btn = transform.GetComponent<Button>();
-            //btn.onClick.AddListener(SceneMng.Instance.GoToMain);
+            btn.onClick.AddListener(SceneMng.Instance.GoToMain);
         }
         if (this.gameObject.name == "GameOverUI_Fail ")
         {
             Button btn = transform.GetComponent<Button>();
-            //btn.onClick.AddListener(SceneMng.Instance.GoToMain);
+            btn.onClick.AddListener(SceneMng.Instance.GoToMain);
         }
     }
 

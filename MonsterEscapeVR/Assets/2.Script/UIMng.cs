@@ -4,52 +4,55 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIMng : Singleton<UIMng>
 {
-    [SerializeField] private Text ui_distance;
-    [SerializeField] private Text ui_time;
-    [SerializeField] private Slider progress;
-    [SerializeField] private GameObject gameWinUI;
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject countdown;
-    public GameObject VictoryEffectBox;
-    [SerializeField] private GameObject gazePointer;
+
+    private GameObject VictoryEffectBox;
+    
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+        VictoryEffectBox = transform.Find("Victory Particle").gameObject;
+    }
+
     public void update_distance()
     {
+
+        Text ui_distance = GameObject.Find("Distance").GetComponent<Text>();
         ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
-        if(progress != null)
-        {
-            progress.value = (50 - GameMng.Instance.currentdistance) / 50;
-        }
+       
     }
 
     public void update_time()
     {
+        Text ui_time = GameObject.Find("Current").GetComponent<Text>();
         ui_time.text = string.Format("{0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
 
     public void update_gameWinUI()
     {
-        gameWinUI.SetActive(true);
+        Transform gameWinUI = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Win");
+        gameWinUI.gameObject.SetActive(true);
         VictoryEffectBox.SetActive(true);
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("{0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
     public void update_gameOverUI()
     {
-        gameOverUI.SetActive(true);
+        Transform gameOverUI = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail");
+        gameOverUI.gameObject.SetActive(true);
         //gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:00}",
         //     GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
 
     public void CountDown()
     {
-
         StartCoroutine(Count());
     }
 
     IEnumerator Count()
     {
-        countdown.SetActive(true);
+        Transform countdown = GameObject.Find("PlayerCanvas").transform.Find("CountDown");
+        countdown.gameObject.SetActive(true);
         print("countdown setActive true");
         Text countdownText = countdown.GetComponent<Text>();
 
@@ -65,12 +68,7 @@ public class UIMng : Singleton<UIMng>
         countdownText.text = "Ω√¿€!";
         yield return new WaitForSeconds(1f);
 
-        countdown.SetActive(false);
-    }
-
-    public void update_gazePointer()
-    {
-        gazePointer.SetActive(true);
+        countdown.gameObject.SetActive(false);
     }
 }
 

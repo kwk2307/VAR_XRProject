@@ -17,9 +17,12 @@ public class SettingBar : MonoBehaviour
     IEnumerator searchtodayDo()
     {
         yield return StartCoroutine(ServerConn.Instance.SendSearchtodayDo());
-        useTime.text += "   " + ServerConn.Instance.str[0];
-        useCal.text += "   " + ServerConn.Instance.str[1];
+
+        if(ServerConn.Instance.str.Length != 0)
+        {
+            useTime.text += "   " + ServerConn.Instance.str[0];
+            useCal.text += "   " + ServerConn.Instance.str[1];
+        }
     }
-
-
+    
 }

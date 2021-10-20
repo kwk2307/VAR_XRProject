@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundMng : Singleton<SoundMng>
 {
@@ -8,34 +9,31 @@ public class SoundMng : Singleton<SoundMng>
     private AudioSource GameOverSound;
     private AudioSource CountDownSound;
     private AudioSource EnemySound;
- 
-    public int gameMode = 1;
-    void Start()
+    private AudioSource ToggleSound;
+    
+    private void Start()
     {
-        if (gameMode == 1) //각 모드에 맞는 브금 가져오기
-        {
-            bm = GameObject.Find("BGM_1").GetComponent<AudioSource>();
-        }
-        if (gameMode == 2)
-        {
-            bm = GameObject.Find("BGM_2").GetComponent<AudioSource>();
-        }
-        if (gameMode == 3)
-        {
-            bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
-        }
+        bm = GameObject.Find("BGM").GetComponent<AudioSource>();
 
-        bm.Stop();
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
         EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>();
+        ToggleSound = GameObject.Find("ToggleSound").GetComponent<AudioSource>();
+    }
 
+    public void MainMenuSoundPlay()
+    {
+        bm = GameObject.Find("BGM").GetComponent<AudioSource>();
+        bm.Play();
+    }
+    public void ToggleSoundPlay()
+    {
+        ToggleSound.Play();
     }
 
     public void GameStartSound()
     {
-        
-        StartCoroutine(GameStart_C());
+        StartCoroutine(GameStart_c());
     }
     public void GameOver_s()
     {
@@ -47,14 +45,26 @@ public class SoundMng : Singleton<SoundMng>
         EnemySound.Play();
     }
 
-    IEnumerator GameStart_C()
+    IEnumerator GameStart_c()
     {
+
+        bm.Stop();
         CountDownSound.Play();
         yield return new WaitForSeconds(3);
+
+        if (SceneManager.GetActiveScene().name == "Mode1") //각 모드에 맞는 브금 가져오기
+        {
+            bm = GameObject.Find("BGM_1").GetComponent<AudioSource>();
+        }
+        else if (SceneManager.GetActiveScene().name == "Mode2")
+        {
+            bm = GameObject.Find("BGM_2").GetComponent<AudioSource>();
+        }
+        else if (SceneManager.GetActiveScene().name == "Mode3")
+        {
+            bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
+        }
         bm.Play();
     }
-
-
-
 
 }
