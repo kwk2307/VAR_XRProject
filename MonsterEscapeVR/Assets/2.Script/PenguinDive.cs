@@ -5,19 +5,32 @@ using UnityEngine;
 public class PenguinDive : MonoBehaviour
 {
     float time;
+    bool start = false;
+    public Animator ani;
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if(time > 2.5f)
+        if(start == true)
         {
-            this.transform.Translate(0,-0.05f, 0.01f);
+            time += Time.deltaTime;
+            if (time > 2.5f)
+            {
+                this.transform.Translate(0, -0.05f, 0.01f);
+            }
+
         }
         
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Æë±Ï ´ÙÀÌºù ¹ßµ¿!");
+        start = true;
+        ani.SetBool("DiveStart", true);
     }
 }
