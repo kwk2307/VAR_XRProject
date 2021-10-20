@@ -48,7 +48,7 @@ public class Raycast : MonoBehaviour
                 print("click");
                 //버튼 효과음 재생
 
-                enterFade = true; //페이드 아웃 효과 발생
+                //enterFade = true; //페이드 아웃 효과 발생
 
                 //버튼 onClick 이벤트 발생
                 hit.transform.GetComponent<Button>().onClick.Invoke();

@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Valve.VR;
 public class SceneMng : MonoBehaviour
 {
 
     private void Start()
     {
+        
         //GoToMain();
     }
 
@@ -16,11 +18,14 @@ public class SceneMng : MonoBehaviour
     public void GotoRanking()
     {
         StartCoroutine(LoadScene("Ranking"));
+        
     }
     public void GotoMode1()
     {
-        StartCoroutine(LoadScene("Mode1"));
+        //StartCoroutine(LoadScene("Mode1"));
+        SteamVR_LoadLevel.Begin("Mode1");
     }
+
     public void GotoMode2()
     {
         StartCoroutine(LoadScene("Mode2"));

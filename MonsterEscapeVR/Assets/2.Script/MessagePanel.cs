@@ -32,6 +32,10 @@ public class MessagePanel : MonoBehaviour
         {
             StartCoroutine("say5");
         }
+        else if (SceneManager.GetActiveScene().name == "SouthPole")
+        {
+            StartCoroutine("say6");
+        }
     }
 
 
@@ -98,4 +102,18 @@ public class MessagePanel : MonoBehaviour
         messagePanel.SetActive(false);
         GameMng.Instance.playerState = state.playing;
     }
+    IEnumerator say6()
+    {
+        Messagetext.text = "이곳은 펭귄의 고향 남극입니다.";
+        yield return new WaitForSeconds(5);
+        Messagetext.text = "펭귄들과 함께 좋은 시간 보내세요!";
+        yield return new WaitForSeconds(5);
+        messagePanel.SetActive(false);
+        GameMng.Instance.playerState = state.playing;
+    }
+
+
+
+
+
 }
