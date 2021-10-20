@@ -7,6 +7,7 @@ public class PenguinDive : MonoBehaviour
     float time;
     bool start = false;
     public Animator ani;
+    public AudioSource aud;
     void Start()
     {
     }
@@ -32,5 +33,6 @@ public class PenguinDive : MonoBehaviour
         print("Æë±Ï ´ÙÀÌºù ¹ßµ¿!");
         start = true;
         ani.SetBool("DiveStart", true);
+        aud.Play();
     }
 }
