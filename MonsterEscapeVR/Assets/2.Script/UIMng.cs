@@ -12,6 +12,15 @@ public class UIMng : Singleton<UIMng>
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
     [SerializeField] private GameObject gazePointer;
+
+    private void Start()
+    {
+        gazePointer.SetActive(false);
+        gameWinUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        countdown.SetActive(false);
+    }
+
     public void update_distance()
     {
         ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
@@ -30,6 +39,7 @@ public class UIMng : Singleton<UIMng>
     public void update_gameWinUI()
     {
         gameWinUI.SetActive(true);
+        gazePointer.SetActive(true);
         VictoryEffectBox.SetActive(true);
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("{0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
@@ -37,13 +47,13 @@ public class UIMng : Singleton<UIMng>
     public void update_gameOverUI()
     {
         gameOverUI.SetActive(true);
+        gazePointer.SetActive(true);
         //gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:00}",
         //     GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
 
     public void CountDown()
     {
-
         StartCoroutine(Count());
     }
 

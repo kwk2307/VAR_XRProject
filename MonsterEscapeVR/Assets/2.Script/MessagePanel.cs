@@ -28,6 +28,10 @@ public class MessagePanel : MonoBehaviour
         {
             StartCoroutine("say4");
         }
+        else if (SceneManager.GetActiveScene().name == "Lake")
+        {
+            StartCoroutine("say5");
+        }
     }
 
 
@@ -78,7 +82,16 @@ public class MessagePanel : MonoBehaviour
     }
     IEnumerator say4()
     {
-        Messagetext.text = "이곳은 물의 도시입니다.";
+        Messagetext.text = "이곳은 베네치아 입니다.";
+        yield return new WaitForSeconds(5);
+        Messagetext.text = "여유를 즐기시고 좋은 시간 보내세요!";
+        yield return new WaitForSeconds(5);
+        messagePanel.SetActive(false);
+        GameMng.Instance.playerState = state.playing;
+    }
+    IEnumerator say5()
+    {
+        Messagetext.text = "이곳은 단풍으로 아름다운 호수입니다.";
         yield return new WaitForSeconds(5);
         Messagetext.text = "여유를 즐기시고 좋은 시간 보내세요!";
         yield return new WaitForSeconds(5);
