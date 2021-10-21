@@ -25,9 +25,14 @@ public class KiloSetting : MonoBehaviour
     {
 
         StartCoroutine(ServerConn.Instance.SendSearchUser());
+
         curweightText.text = ServerConn.Instance.str[0];
         goalWeightText.text = ServerConn.Instance.str[1];
         goalTermNumText.text = ServerConn.Instance.str[2];
+
+        curweight = int.Parse(curweightText.text);
+        goalweight = int.Parse(goalWeightText.text);
+        goalTerm = int.Parse(goalTermNumText.text);
 
         curUp.onClick.AddListener(CurweightUp);
         curDown.onClick.AddListener(CurweightDown);
@@ -45,33 +50,34 @@ public class KiloSetting : MonoBehaviour
     
     public void CurweightUp()
     {
+
         curweight += 5;
-        curweightText.text = curweight + "kg";
+        curweightText.text = curweight.ToString();
     }
     public void CurweightDown()
     {
-        curweight -= 5;
-        curweightText.text = curweight + "kg";
+        if(curweight>0) curweight -= 5;
+        curweightText.text = curweight.ToString();
     }
     public void GoalweightUp()
     {
         goalweight += 5;
-        goalWeightText.text = goalweight + "kg";
+        goalWeightText.text = goalweight.ToString();
     }
     public void GoalweightDown()
     {
-        goalweight -= 5;
-        goalWeightText.text = goalweight + "kg";
+        if(goalweight>0) goalweight -= 5;
+        goalWeightText.text = goalweight.ToString();
     }
     public void GoalTermUp()
     {
-        goalTerm += 7;
-       goalTermNumText.text = goalTerm + "kg";
+       goalTerm += 7;
+       goalTermNumText.text = goalTerm.ToString();
     }
     public void GoalTermDown()
     {
-        goalTerm -= 7;
-        goalTermNumText.text = goalTerm + "kg";
+        if(goalTerm>0) goalTerm -= 7;
+        goalTermNumText.text = goalTerm.ToString();
     }
     public void Exitscreen()
     {
