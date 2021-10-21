@@ -70,7 +70,6 @@ public class UIMng : MonoBehaviour
     IEnumerator Count()
     {
         countdown.SetActive(true);
-        print("countdown setActive true");
         Text countdownText = countdown.GetComponent<Text>();
 
         countdownText.text = "3";
