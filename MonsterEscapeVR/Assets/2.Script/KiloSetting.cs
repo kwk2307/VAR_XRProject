@@ -20,8 +20,15 @@ public class KiloSetting : MonoBehaviour
     int curweight;
     int goalweight;
     int goalTerm;
+
     void Start()
     {
+
+        StartCoroutine(ServerConn.Instance.SendSearchUser());
+        curweightText.text = ServerConn.Instance.str[0];
+        goalWeightText.text = ServerConn.Instance.str[1];
+        goalTermNumText.text = ServerConn.Instance.str[2];
+
         curUp.onClick.AddListener(CurweightUp);
         curDown.onClick.AddListener(CurweightDown);
 
@@ -74,6 +81,7 @@ public class KiloSetting : MonoBehaviour
     public void UpdateUser()
     {
         StartCoroutine(ServerConn.Instance.SendUpdateuser(curweightText.text, goalWeightText.text, goalTermNumText.text));
+        this.gameObject.SetActive(false);
     }
 
 

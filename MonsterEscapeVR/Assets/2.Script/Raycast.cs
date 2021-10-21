@@ -14,8 +14,6 @@ public class Raycast : MonoBehaviour
 
     private bool enterFade = false;
 
-    bool getEvent = false; //화면 로드가 여러번 되는 것을 막기위해
-
     void Update()
     {
        
@@ -31,7 +29,7 @@ public class Raycast : MonoBehaviour
             timeElapsed += Time.deltaTime;//시간 증가
             Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 
-            if (timeElapsed >= 2 && getEvent == false)//2초가 되면
+            if (timeElapsed >= 2)//2초가 되면
             {
                 print("click");
                 //버튼 효과음 재생
@@ -40,8 +38,8 @@ public class Raycast : MonoBehaviour
                 //버튼 onClick 이벤트 발생
                 hit.transform.GetComponent<Button>().onClick.Invoke();
 
-                getEvent = true; //중복실행 방지
-
+                
+                timeElapsed = 0;
             }
 
         }
@@ -49,9 +47,7 @@ public class Raycast : MonoBehaviour
         {
             timeElapsed -= Time.deltaTime;
             Gazepointer.fillAmount = timeElapsed / 2;
-
-            getEvent = false; //중복실행 방지
-
+            
             if (timeElapsed <= 0) timeElapsed = 0;
         }
     }
