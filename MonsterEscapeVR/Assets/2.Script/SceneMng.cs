@@ -11,7 +11,7 @@ public class SceneMng : MonoBehaviour
     {
         //GoToMain();
     }
-    
+
 
     public void GotoRanking()
     {
@@ -41,7 +41,7 @@ public class SceneMng : MonoBehaviour
     {
         StartCoroutine(LoadScene("MainMenu"));
     }
-  
+
     public void GotoTutorial()
     {
         StartCoroutine(LoadScene("Tutorial"));
@@ -65,17 +65,14 @@ public class SceneMng : MonoBehaviour
 
         yield return new WaitForSeconds(2f); //화면 페이드 아웃될 여유시간
 
-      
-            AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
-            while (!asyncOper.isDone)
-            {
-                yield return null;
-                Debug.Log(asyncOper.progress);
-                //프로그레스 바 구현 할 수 있음
-            }
+        AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncOper.isDone)
+        {
+            yield return null;
+            Debug.Log(asyncOper.progress);
+            //프로그레스 바 구현 할 수 있음
+        }
 
-        
-        
     }
 
 }

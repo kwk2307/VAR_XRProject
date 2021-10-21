@@ -12,9 +12,17 @@ public class ServerConn : Singleton<ServerConn>
     public string goalWeight;
     public string term;
 
+    public string[] str;
 
-    public string[] str; 
-    
+    private void Awake()
+    {
+        if (ServerConn.Instance != null)
+        {
+            Destroy(this);
+        }
+        DontDestroyOnLoad(this);
+    }
+
     IEnumerator SendLogin()
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
