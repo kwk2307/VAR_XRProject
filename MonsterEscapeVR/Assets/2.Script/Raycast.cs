@@ -11,26 +11,14 @@ public class Raycast : MonoBehaviour
     private float timeElapsed = 0;
 
     //페이드인을 위한 변수들
-    private float fadeTime = 2f;
-    public Image fadeImg;
-    private float alpha=0;
-    private bool fadeBool = false;
+
     private bool enterFade = false;
 
     bool getEvent = false; //화면 로드가 여러번 되는 것을 막기위해
 
     void Update()
     {
-        if(enterFade == true)
-        {
-            if (fadeBool == false)
-            {
-                StartCoroutine(StartFade());
-            }
-
-        }
-
-
+       
         RaycastHit hit;//오브젝트 정보
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);//방향
@@ -47,8 +35,7 @@ public class Raycast : MonoBehaviour
             {
                 print("click");
                 //버튼 효과음 재생
-
-                enterFade = true; //페이드 아웃 효과 발생
+                SoundMng.Instance.ToggleSoundStart();
 
                 //버튼 onClick 이벤트 발생
                 hit.transform.GetComponent<Button>().onClick.Invoke();
@@ -63,16 +50,10 @@ public class Raycast : MonoBehaviour
             timeElapsed -= Time.deltaTime;
             Gazepointer.fillAmount = timeElapsed / 2;
 
+            getEvent = false; //중복실행 방지
+
             if (timeElapsed <= 0) timeElapsed = 0;
         }
     }
     
-    IEnumerator StartFade()
-    {
-        fadeBool = true;
-        alpha += 1.6f*Time.deltaTime;
-        fadeImg.color = new Color(0, 0, 0, alpha);
-        yield return new WaitForSeconds(0.008f);
-        fadeBool = false;
-    }
 }

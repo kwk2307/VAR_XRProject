@@ -2,16 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundMng : Singleton<SoundMng>
+public class SoundMng : MonoBehaviour
 {
     private AudioSource bm;
     private AudioSource GameOverSound;
     private AudioSource CountDownSound;
     private AudioSource EnemySound;
- 
-    public int gameMode = 1;
+    private AudioSource ToggleSound;
+
+    public int gameMode;
+
+    public static SoundMng Instance = null;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
+        if(gameMode == 0)
+        {
+            bm = GameObject.Find("BGM").GetComponent<AudioSource>();
+            bm.Play();
+        }
         if (gameMode == 1) //각 모드에 맞는 브금 가져오기
         {
             bm = GameObject.Find("BGM_1").GetComponent<AudioSource>();
@@ -24,17 +40,15 @@ public class SoundMng : Singleton<SoundMng>
         {
             bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
         }
-
-        bm.Stop();
+        
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
         EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>();
-
+        ToggleSound = GameObject.Find("ToggleSound").GetComponent<AudioSource>();
     }
 
     public void GameStartSound()
     {
-        
         StartCoroutine(GameStart_C());
     }
     public void GameOver_s()
@@ -54,7 +68,9 @@ public class SoundMng : Singleton<SoundMng>
         bm.Play();
     }
 
-
-
-
+    public void ToggleSoundStart()
+    {
+        ToggleSound.Play();
+    }
+    
 }
