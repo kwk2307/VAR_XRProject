@@ -8,9 +8,7 @@ public class WhaleAni : MonoBehaviour
     public AudioSource sound; //고래 소리
      public float speed;
     bool go = false;
-    void Start()
-    {
-    }
+    float destroyTime;
 
     // Update is called once per frame
     void Update()
@@ -18,6 +16,11 @@ public class WhaleAni : MonoBehaviour
         if(go == true)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            destroyTime += Time.deltaTime;
+            if (destroyTime >= 10f)
+            {
+                //Destroy(this.transform);
+            }
         }
         
     }
