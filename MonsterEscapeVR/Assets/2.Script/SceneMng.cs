@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 using Valve.VR;
 public class SceneMng : MonoBehaviour
 {
@@ -13,13 +13,7 @@ public class SceneMng : MonoBehaviour
         
         //GoToMain();
     }
-
-
-    public void GotoRanking()
-    {
-        StartCoroutine(LoadScene("Ranking"));
-        
-    }
+    
     public void GotoMode1()
     {
         //StartCoroutine(LoadScene("Mode1"));
@@ -28,11 +22,13 @@ public class SceneMng : MonoBehaviour
 
     public void GotoMode2()
     {
-        StartCoroutine(LoadScene("Mode2"));
+        //StartCoroutine(LoadScene("Mode2"));
+        SteamVR_LoadLevel.Begin("Mode2");
     }
     public void GotoMode3()
     {
-        StartCoroutine(LoadScene("Mode3"));
+        //StartCoroutine(LoadScene("Mode3"));
+        SteamVR_LoadLevel.Begin("Mode3");
     }
     public void Gamerule()
     {
@@ -40,24 +36,29 @@ public class SceneMng : MonoBehaviour
     }
     public void GoToMain()
     {
-        StartCoroutine(LoadScene("MainMenu"));
+        //StartCoroutine(LoadScene("MainMenu"));
+        SteamVR_LoadLevel.Begin("MainMenu");
     }
 
     public void GotoTutorial()
     {
-        StartCoroutine(LoadScene("Tutorial"));
+        //StartCoroutine(LoadScene("Tutorial"));
+        SteamVR_LoadLevel.Begin("Tutorial");
     }
     public void GotoSouthPole()
     {
-        StartCoroutine(LoadScene("SouthPole"));
+        //StartCoroutine(LoadScene("SouthPole"));
+        SteamVR_LoadLevel.Begin("SouthPole");
     }
     public void GotoLake()
     {
-        StartCoroutine(LoadScene("Lake"));
+        //StartCoroutine(LoadScene("Lake"));
+        SteamVR_LoadLevel.Begin("Lake");
     }
     public void GotoVenice()
     {
-        StartCoroutine(LoadScene("Venice"));
+        //StartCoroutine(LoadScene("Venice"));
+        SteamVR_LoadLevel.Begin("Venice");
     }
 
     IEnumerator LoadScene(string sceneName)
