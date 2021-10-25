@@ -10,9 +10,7 @@ public class EnviroManager : MonoBehaviour
         if(other.tag != "Enemy")
         {
             print(other.transform.name + " ¸¦ µÚ·Îº¸³¿");
-            other.gameObject.SetActive(false);
             other.transform.position -= Vector3.forward * distance;
-            other.gameObject.SetActive(true);
         }
         else
         {
