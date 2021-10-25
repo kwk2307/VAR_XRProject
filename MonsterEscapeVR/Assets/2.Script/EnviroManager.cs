@@ -11,7 +11,7 @@ public class EnviroManager : MonoBehaviour
         if(other.tag != "Enemy")
         {
             print(other.transform.name + " ¸¦ µÚ·Îº¸³¿");
-            other.transform.position -= new Vector3()
+            other.transform.position -= Vector3.forward * distance;
         }
         else
         {
