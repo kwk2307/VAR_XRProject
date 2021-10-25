@@ -95,7 +95,7 @@ public class ServerConn : Singleton<ServerConn>
         dic.Add("goalWeight", goalWeight);
         dic.Add("term", term);
 
-        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_todayDo.php", dic);
+        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/update_ME_user.php", dic);
         yield return www.SendWebRequest();
 
         if (www.isNetworkError)

@@ -82,8 +82,8 @@ public class Rowing : MonoBehaviour
 
         
     }
-   
-    
+
+
     //private void OnGUI()
     //{
     //    if (GUI.Button(new Rect(0, 0, 300, 150), "¹öÆ°"))
@@ -100,6 +100,14 @@ public class Rowing : MonoBehaviour
     //    }
     //}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        print(other.transform.name);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision.transform.name);
+    }
 
-    
+
 }
