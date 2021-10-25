@@ -25,7 +25,8 @@ public class Raycast : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit, Mathf.Infinity, layerMask)) 
         {
-            
+            print(hit.collider.name);
+
             timeElapsed += Time.deltaTime;//시간 증가
             Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
 

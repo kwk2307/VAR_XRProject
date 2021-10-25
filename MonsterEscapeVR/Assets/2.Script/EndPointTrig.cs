@@ -12,8 +12,11 @@ public class EndPointTrig : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Player"))
         {
+            GameMng.Instance.CalcKcal();
             GameMng.Instance.playerState = state.clear;
+
             UIMng.Instance.update_gameWinUI();
+            UIMng.Instance.update_gazePointer();
         }
     }
 }

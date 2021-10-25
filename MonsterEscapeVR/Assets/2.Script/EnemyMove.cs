@@ -175,7 +175,8 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Player")
+        print(other.name);
+        if (other.tag == "Player")
         {
             StartCoroutine(GameOver());
         }
@@ -230,6 +231,8 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator GameOver()
     {
+
+        GameMng.Instance.CalcKcal();
         GameMng.Instance.playerState = state.die;
         enemyState = e_state.waiting;
         //gameoversound Àç»ý
