@@ -9,9 +9,9 @@ public class ServerConn : Singleton<ServerConn>
 
     private string userCode = "test";
 
-    public string curWeight;
-    public string goalWeight;
-    public string term;
+    public string curWeight = "1";
+    public string goalWeight = "1";
+    public string term = "1";
 
     public string[] str;
 

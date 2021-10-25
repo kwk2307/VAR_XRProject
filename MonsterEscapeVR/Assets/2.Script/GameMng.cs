@@ -24,6 +24,7 @@ public class GameMng : MonoBehaviour
     public int minutes;
     public int seconds;
     public int fraction;
+    public float Kcal;
 
     public static GameMng Instance = null;
 
@@ -48,6 +49,10 @@ public class GameMng : MonoBehaviour
             seconds = (int)currenttime % 60;//Use the euclidean division for the seconds.
             fraction = (int)(currenttime * 100) % 100;
         }
+    }
+    public void CalcKcal()
+    {
+        Kcal = 5 * 7 * 3.5f * int.Parse(ServerConn.Instance.curWeight) * minutes;
     }
 
 }

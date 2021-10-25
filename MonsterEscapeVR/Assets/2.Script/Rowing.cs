@@ -100,14 +100,4 @@ public class Rowing : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        print(other.transform.name);
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.transform.name);
-    }
-
-
 }

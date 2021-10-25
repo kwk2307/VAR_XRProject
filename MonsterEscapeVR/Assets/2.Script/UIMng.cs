@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIMng : MonoBehaviour
 {
+    
     [SerializeField] private Text ui_distance;
     [SerializeField] private Text ui_time;
     [SerializeField] private Slider progress;
     [SerializeField] private GameObject gameWinUI;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameEndUI;
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
     [SerializeField] private GameObject gazePointer;
@@ -17,7 +19,7 @@ public class UIMng : MonoBehaviour
 
     private void Awake()
     {
-         if(Instance == null)
+        if(Instance == null)
         {
             Instance = this;
         }
@@ -46,20 +48,60 @@ public class UIMng : MonoBehaviour
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
     }
 
+    public void UpdatetodayDo()
+    {
+        StartCoroutine(ServerConn.Instance.SendUpdatetodayDo(GameMng.Instance.time.ToString(),GameMng.Instance.Kcal.ToString()," "));
+    }
+
     public void update_gameWinUI()
     {
+        Button btn = gameWinUI.transform.Find("MainMenu").GetComponent<Button>();
+        btn.onClick.AddListener(UpdatetodayDo);
+
+        SceneMng sm = new SceneMng();
+        btn.onClick.AddListener(sm.GoToMain);
+
+       
         gameWinUI.SetActive(true);
-        gazePointer.SetActive(true);
+        
         VictoryEffectBox.SetActive(true);
-        gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("{0:00} : {1:00} : {2:00}",
+
+        gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
+
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
     }
     public void update_gameOverUI()
     {
+
+        Button btn = gameOverUI.transform.Find("MainMenu").GetComponent<Button>();
+        btn.onClick.AddListener(UpdatetodayDo);
+
+        SceneMng sm = new SceneMng();
+        btn.onClick.AddListener(sm.GoToMain);
+
         gameOverUI.SetActive(true);
-        gazePointer.SetActive(true);
-        //gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:00}",
-        //     GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
+
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
+
+    }
+    public void update_gameEnd()
+    {
+
+        Button btn = gameEndUI.transform.Find("MainMenu").GetComponent<Button>();
+        btn.onClick.AddListener(UpdatetodayDo);
+
+        SceneMng sm = new SceneMng();
+        btn.onClick.AddListener(sm.GoToMain);
+
+
+        gameEndUI.SetActive(true);
+
+        gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
+             GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
+
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
+
     }
 
     public void CountDown()
