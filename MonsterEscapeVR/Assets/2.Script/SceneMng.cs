@@ -30,6 +30,10 @@ public class SceneMng : MonoBehaviour
         //StartCoroutine(LoadScene("Mode3"));
         SteamVR_LoadLevel.Begin("Mode3");
     }
+    public void GotoMode4()
+    {
+        StartCoroutine(LoadScene("Mode4"));
+    }
     public void Gamerule()
     {
         //StartCoroutine(LoadScene("Mode1"));
