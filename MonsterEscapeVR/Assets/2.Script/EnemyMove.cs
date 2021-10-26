@@ -12,9 +12,7 @@ public enum e_state
 public class EnemyMove : MonoBehaviour
 {
     public int GameMode; //1번 - 악어, 2번 - 상어, 3번 - 크라켄
-
-    public float speed = 5f;
-    public float attackPower = 1f;
+    
     public float delayCount;
 
     private GameObject player; //플레이어를 담을 변수
@@ -30,8 +28,8 @@ public class EnemyMove : MonoBehaviour
 
     float angDis; //분노모드에 들어갈 수치
     float angDuration; //분노 지속시간
-    
-    bool angEnter=false;
+
+    bool angEnter = false;
     bool angry = false;
     float angryinterval;
     //float time;
@@ -43,11 +41,8 @@ public class EnemyMove : MonoBehaviour
         //플레이어를 찾아서 담는다
         player = GameObject.Find("Player");
 
-        Destroy(GameObject.Find("BGM")); //브금을 지운다. 모드에 맞는 브금이랑 겹치면 안되니깐
-
         //GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
         ani = GetComponent<Animator>(); //애니매이터 담기
-
 
         lit = GameObject.Find("Directional Light").GetComponent<Light>(); //빛을 찾아 담는다
 
@@ -139,7 +134,6 @@ public class EnemyMove : MonoBehaviour
        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
        if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
-        
             //print("분노모드 돌입");
             if(angEnter == false)
             {
@@ -147,31 +141,7 @@ public class EnemyMove : MonoBehaviour
                 StartCoroutine(AngryMode());
             }
             
-            
-            //if (angEnter == false)
-            //{
-            //    color.a = 1;
-            //    angImage.GetComponent<Image>().color = color;
-            //    //sound.Play(); //포효소리 재생
-            //    //ani.SetBool("Angry", true); //계속 포효한다
-            //    //angEnter = true;
-            //    enumSpeed = enumSpeed + 5f; //적의 속도도 높인다.
-            //}
-
-            //StartCoroutine(AngryAlpha());
-
-            //if(angDuration >= time) //분노모드는 angDuration 동안 유지
-            //{//분노종료
-            //    angDis -= 20;
-            //    color.a = 0;
-            //    angImage.GetComponent<Image>().color = color;
-            //    ani.SetBool("Angry", false); //포효 애니 중지
-            //    enumSpeed = enumSpeed - 5f; //적의 속도 다시 원상복구
-            //}
-
         }
-       
-
     }
     private void OnTriggerEnter(Collider other)
     {

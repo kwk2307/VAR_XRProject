@@ -44,7 +44,6 @@ public class Rowing : MonoBehaviour
         {
             //Rowrate를 조절해준다.-> 애니메이션을 위함
             rowRate -= (isRowing - isRowingPre);
-            
         }
 
         anim_boat.SetFloat("isRow", rowRate);
@@ -78,26 +77,6 @@ public class Rowing : MonoBehaviour
         else
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-
-        
+        }        
     }
-
-
-    //private void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
-    //    {
-    //        water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 300);
-    //    }
-    //    if (GUI.Button(new Rect(300, 0, 300, 150), "다시하기"))
-    //    {
-    //        // 다시하기(실험용)
-    //        GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
-
-
-    //        gm.SceneChange();
-    //    }
-    //}
-
 }
