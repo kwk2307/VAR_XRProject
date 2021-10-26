@@ -7,7 +7,7 @@ public class UIMng : MonoBehaviour
     
     [SerializeField] private Text ui_distance;
     [SerializeField] private Text ui_time;
-    [SerializeField] private Slider progress;
+
     [SerializeField] private GameObject gameWinUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject gameEndUI;
@@ -36,10 +36,7 @@ public class UIMng : MonoBehaviour
     public void update_distance()
     {
         ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
-        if(progress != null)
-        {
-            progress.value = (50 - GameMng.Instance.currentdistance) / 50;
-        }
+        
     }
 
     public void update_time()
