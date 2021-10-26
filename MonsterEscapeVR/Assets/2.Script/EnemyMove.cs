@@ -55,14 +55,14 @@ public class EnemyMove : MonoBehaviour
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 4.5f; //상어의 스피드
+            enumSpeed = 3.5f; //상어의 스피드
             angDis = -30;
             angDuration = 10;
             angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
         {
-            enumSpeed = 5.5f; // 크라켄의 스피드
+            enumSpeed = 4.5f; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
             angryinterval = 60; //얼마뒤에 다시 분노할 것인가?
@@ -134,12 +134,13 @@ public class EnemyMove : MonoBehaviour
        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
        if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
-            //print("분노모드 돌입");
-            if(angEnter == false)
-            {
-                angDis -= angryinterval;  //다음 분노모드에서 다시 분노
+            angDis -= angryinterval;  //다음 분노모드에서 다시 분노
+            print("분노모드 돌입");
+            
+                
                 StartCoroutine(AngryMode());
-            }
+                print("분노 코루틴 활성화");
+            
             
         }
     }
@@ -194,7 +195,7 @@ public class EnemyMove : MonoBehaviour
         ani.SetBool("Angry", false); //포효 애니 중지
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
 
-        angEnter = true;
+        
     }
 
     IEnumerator GameOver()
