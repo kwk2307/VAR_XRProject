@@ -55,14 +55,14 @@ public class EnemyMove : MonoBehaviour
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 5; //상어의 스피드
+            enumSpeed = 4.5f; //상어의 스피드
             angDis = -30;
             angDuration = 10;
             angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
         {
-            enumSpeed = 7; // 크라켄의 스피드
+            enumSpeed = 5.5f; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
             angryinterval = 60; //얼마뒤에 다시 분노할 것인가?
@@ -86,22 +86,24 @@ public class EnemyMove : MonoBehaviour
                 //포효 소리 넣기 
                 SoundMng.Instance.Enemy_s();
 
-                //분노 애니 
-                ani.SetBool("Angry", true);
+                
 
             }
 
             if(enemyState == e_state.playing)
             {
+                //분노 애니 
+                ani.SetBool("Start", true);
+
                 if (GameMode == 1) //악어 
                 {
                     if (GameMng.Instance.time >= 6)
                     {
+                        
+
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
-
-                        //분노 애니 끄기
-                        ani.SetBool("Angry", false);
+                        
                     }
 
                 }
@@ -112,8 +114,7 @@ public class EnemyMove : MonoBehaviour
                     {
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
-                        //분노 애니 끄기
-                        ani.SetBool("Angry", false);
+                        
                     }
 
                 }
@@ -123,8 +124,7 @@ public class EnemyMove : MonoBehaviour
                     {
                         //플레이어를 쫓아간다.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //플레이어의 속도에 따라 앞,뒤로 이동한다.
-                        //분노 애니 끄기
-                        ani.SetBool("Angry", false);
+                        
 
                     }
                 }
@@ -163,7 +163,6 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator AngryAlpha() //분노모드 이미지 알파값 왔다갔다
     {
-        print("분노모드 코루틴 진입");
         color.a = Mathf.Lerp(1, 0.7f, 2);
         angImage.GetComponent<Image>().color = color;
         yield return new WaitForSeconds(2f);
@@ -172,7 +171,6 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         angry = false;
-        print("분노모드 끝");
     }
 
     IEnumerator AngryMode()
