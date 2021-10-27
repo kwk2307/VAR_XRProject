@@ -25,7 +25,6 @@ public class Raycast : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit, Mathf.Infinity, layerMask)) 
         {
-            print(hit.collider.name);
 
             timeElapsed += Time.deltaTime;//시간 증가
             Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
@@ -36,9 +35,14 @@ public class Raycast : MonoBehaviour
                 //버튼 효과음 재생
                 SoundMng.Instance.ToggleSoundStart();
 
-                //버튼 onClick 이벤트 발생
-                hit.transform.GetComponent<Button>().onClick.Invoke();
-
+                if(hit.transform.GetComponent<Button>() != null)
+                {
+                    //버튼 onClick 이벤트 발생
+                    hit.transform.GetComponent<Button>().onClick.Invoke();
+                }else if(hit.transform.GetComponent<Toggle>() != null)
+                {
+                    hit.transform.GetComponent<Toggle>().isOn = true;
+                }
                 
                 timeElapsed = 0;
             }

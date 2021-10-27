@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class NumInput : MonoBehaviour
+public class NumClear : MonoBehaviour
 {
     [SerializeField] GameObject curWeighit;
     [SerializeField] GameObject goalWeight;
@@ -13,22 +13,22 @@ public class NumInput : MonoBehaviour
 
     public void Click()
     {
-        if(curWeighit.GetComponent<Toggle>().isOn == true)
+        if (curWeighit.GetComponent<Toggle>().isOn == true)
         {
-            curWeighit.transform.Find("num").GetComponent<Text>().text += this.transform.Find("Text").GetComponent<Text>().text;
+            curWeighit.transform.Find("num").GetComponent<Text>().text = null;
         }
         else if (goalWeight.GetComponent<Toggle>().isOn == true)
         {
-            goalWeight.transform.Find("num").GetComponent<Text>().text += this.transform.Find("Text").GetComponent<Text>().text;
+            goalWeight.transform.Find("num").GetComponent<Text>().text = null;
         }
         else if (goalTerm.GetComponent<Toggle>().isOn == true)
         {
-            goalTerm.transform.Find("num").GetComponent<Text>().text += this.transform.Find("Text").GetComponent<Text>().text;
+            goalTerm.transform.Find("num").GetComponent<Text>().text = null;
         }
         else
         {
 
         }
     }
-    
+
 }
