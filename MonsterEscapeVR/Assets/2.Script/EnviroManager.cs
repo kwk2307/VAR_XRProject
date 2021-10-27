@@ -18,7 +18,8 @@ public class EnviroManager : MonoBehaviour
         if(other.tag != "Enemy")
         {
             other.transform.position -= Vector3.forward * distance;
-            
+            Instantiate(other);
+            Destroy(other.gameObject);
         }
         else
         {
