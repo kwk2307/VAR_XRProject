@@ -10,6 +10,7 @@ public class EnviroManager : MonoBehaviour
     {
         if(other.tag != "Enemy")
         {
+            print("¿Ãµø");
             other.transform.position -= Vector3.forward * distance;
         }
         else
