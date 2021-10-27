@@ -27,7 +27,6 @@ public class UIMng : MonoBehaviour
 
     private void Start()
     {
-        gazePointer.SetActive(false);
         gameWinUI.SetActive(false);
         gameOverUI.SetActive(false);
         countdown.SetActive(false);
@@ -129,6 +128,10 @@ public class UIMng : MonoBehaviour
     public void update_gazePointer()
     {
         gazePointer.SetActive(true);
+    }
+    public void off_gazePointer()
+    {
+        gazePointer.SetActive(false);
     }
 }
 

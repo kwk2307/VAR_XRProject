@@ -32,7 +32,8 @@ public class SceneMng : MonoBehaviour
     }
     public void GotoMode4()
     {
-        StartCoroutine(LoadScene("Mode4"));
+        SteamVR_LoadLevel.Begin("Mode4");
+
     }
     public void Gamerule()
     {
@@ -48,37 +49,27 @@ public class SceneMng : MonoBehaviour
     {
         //StartCoroutine(LoadScene("Tutorial"));
         SteamVR_LoadLevel.Begin("Tutorial");
+
     }
     public void GotoSouthPole()
     {
         //StartCoroutine(LoadScene("SouthPole"));
         SteamVR_LoadLevel.Begin("SouthPole");
+
     }
     public void GotoLake()
     {
         //StartCoroutine(LoadScene("Lake"));
         SteamVR_LoadLevel.Begin("Lake");
+
     }
     public void GotoVenice()
     {
         //StartCoroutine(LoadScene("Venice"));
         SteamVR_LoadLevel.Begin("Venice");
-    }
-
-    IEnumerator LoadScene(string sceneName)
-    {
-        yield return null;
-
-        yield return new WaitForSeconds(2f); //화면 페이드 아웃될 여유시간
-
-        AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncOper.isDone)
-        {
-            yield return null;
-            Debug.Log(asyncOper.progress);
-            //프로그레스 바 구현 할 수 있음
-        }
 
     }
+
+
 
 }
