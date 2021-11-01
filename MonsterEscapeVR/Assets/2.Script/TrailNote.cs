@@ -6,12 +6,10 @@ public class TrailNote : MonoBehaviour
 {
     private TrailRenderer tr;
     private ParticleSystem ps;
-    private AudioSource pourSound;
     private void Start()
     {
         tr = this.GetComponentInChildren<TrailRenderer>();
         ps = this.GetComponentInChildren<ParticleSystem>();
-        pourSound = this.GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -20,7 +18,6 @@ public class TrailNote : MonoBehaviour
         {
             tr.emitting = true;
             ps.Play();
-            pourSound.Play();
         }
         else
         {

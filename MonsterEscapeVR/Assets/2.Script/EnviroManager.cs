@@ -17,14 +17,12 @@ public class EnviroManager : MonoBehaviour
     {
         if(other.tag != "Enemy")
         {
-            print("¿Ãµø");
             other.transform.position -= Vector3.forward * distance;
             //Instantiate(other);
             //Destroy(other.gameObject);
         }
         else
         {
-            print("hit") ;
         }
     }
 
