@@ -214,9 +214,7 @@ public class EnemyMove : MonoBehaviour
         UIMng.Instance.update_gameOverUI();
         // 게이즈 포인터 활성화 
         UIMng.Instance.update_gazePointer();
-
-      
+        
     }
-
     
 }

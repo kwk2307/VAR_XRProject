@@ -9,6 +9,7 @@ public class UserCodeApply : MonoBehaviour
     [SerializeField] private GameObject settingBar;
     [SerializeField] private Text userCode;
 
+    
     public void Click()
     {
         StartCoroutine(Login());
@@ -20,7 +21,13 @@ public class UserCodeApply : MonoBehaviour
         yield return StartCoroutine(ServerConn.Instance.SendSearchUser());
         
         ServerConn.Instance.isLogin = true;
+        //여기에 함수를 넣어줘야지 제대로 실행
+        settingBar.GetComponent<SettingBar>().Update_SettingBar();    
+
         this.transform.parent.gameObject.SetActive(false);
+         
     }
+
+
     
 }

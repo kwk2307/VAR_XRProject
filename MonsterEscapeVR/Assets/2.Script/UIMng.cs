@@ -65,7 +65,7 @@ public class UIMng : MonoBehaviour
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
-        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
     }
     public void update_gameOverUI()
     {
@@ -78,7 +78,7 @@ public class UIMng : MonoBehaviour
 
         gameOverUI.SetActive(true);
 
-        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
 
     }
     public void update_gameEnd()
@@ -96,7 +96,7 @@ public class UIMng : MonoBehaviour
         gameWinUI.transform.Find("Time").GetComponent<Text>().text = string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
-        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", GameMng.Instance.Kcal);
+        gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
 
     }
 
