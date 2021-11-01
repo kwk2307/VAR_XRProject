@@ -142,7 +142,6 @@ public class UIMng : MonoBehaviour
     
     private void LateUpdate()
     {
-        print(GameMng.Instance.goaldistance);
         if (GameMng.Instance.goaldistance <= 200f && fiveM == false) //200미터 남았을 때
         {
             disSound[0].SetActive(true);
