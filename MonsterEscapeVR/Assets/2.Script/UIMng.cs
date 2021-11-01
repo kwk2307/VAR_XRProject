@@ -15,6 +15,14 @@ public class UIMng : MonoBehaviour
     public GameObject VictoryEffectBox;
     [SerializeField] private GameObject gazePointer;
 
+    //미터 알림기
+    public GameObject[] disSound;
+    bool fiveM = false;
+    bool fourM = false;
+    bool treeM = false;
+    bool twoM = false;
+    bool firstM = false;
+
     public static UIMng Instance = null;
 
     private void Awake()
@@ -132,6 +140,31 @@ public class UIMng : MonoBehaviour
     public void off_gazePointer()
     {
         gazePointer.SetActive(false);
+    }
+    
+    private void LateUpdate()
+    {
+        print(GameMng.Instance.goaldistance);
+        if (GameMng.Instance.goaldistance <= 200f && fiveM == false) //200미터 남았을 때
+        {
+            disSound[0].SetActive(true);
+            fiveM = true;
+        }
+        if (GameMng.Instance.goaldistance <= 150f && fourM == false)
+        {
+            disSound[1].SetActive(true);
+            fourM = true;
+        }
+        if (GameMng.Instance.goaldistance <= 100f && treeM == false)
+        {
+            disSound[2].SetActive(true);
+            treeM = true;
+        }
+        if (GameMng.Instance.goaldistance <= 50f && twoM == false)
+        {
+            disSound[3].SetActive(true);
+            twoM = true;
+        }
     }
 }
 
