@@ -6,20 +6,20 @@ using UnityEngine.Networking;
 
 public class ServerConn : Singleton<ServerConn>
 {
-
     private string userCode = "test";
 
-    public string curWeight = "1";
-    public string goalWeight = "1";
-    public string term = "1";
+    public bool isLogin = false;
+    public string curWeight = "0";
+    public string goalWeight = "0";
+    public string term = "0";
 
     public string[] str;
 
 
-    IEnumerator SendLogin()
+    public IEnumerator SendLogin(string uC)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("userCode", userCode);
+        dic.Add("userCode", uC);
 
         UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.40/login_ME.php", dic);
         yield return www.SendWebRequest();
@@ -27,6 +27,10 @@ public class ServerConn : Singleton<ServerConn>
         if (www.isNetworkError)
         {
             print(www.error);
+        }
+        else
+        {
+            userCode = uC;
         }
        
     }
@@ -46,8 +50,10 @@ public class ServerConn : Singleton<ServerConn>
         }
         else
         {
-            //print(www.downloadHandler.text);
             str = www.downloadHandler.text.Split(',');
+            curWeight = str[0];
+            goalWeight = str[1];
+            term = str[2];
         }  
     }
     public IEnumerator SendSearchtodayDo()

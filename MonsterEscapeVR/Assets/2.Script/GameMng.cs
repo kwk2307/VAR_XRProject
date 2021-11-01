@@ -52,7 +52,7 @@ public class GameMng : MonoBehaviour
     }
     public void CalcKcal()
     {
-        Kcal = 5 * 7 * 3.5f * int.Parse(ServerConn.Instance.curWeight) * minutes;
+        Kcal = 5 * 7 * 3.5f * int.Parse(ServerConn.Instance.curWeight) * currenttime / 60000;
     }
-
+    
 }

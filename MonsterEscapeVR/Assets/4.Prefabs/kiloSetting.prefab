@@ -99,19 +99,7 @@ MonoBehaviour:
   m_Group: {fileID: 665660597042417395}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 776880937048696494}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!65 &5498784615942517083
 BoxCollider:
@@ -7260,7 +7248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2118073625859948348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8451,6 +8439,7 @@ GameObject:
   - component: {fileID: 2118073626745316634}
   - component: {fileID: 2118073626745316613}
   - component: {fileID: 7260215852256843015}
+  - component: {fileID: 7178589962492434106}
   m_Layer: 5
   m_Name: Button Red
   m_TagString: Untagged
@@ -8585,6 +8574,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 100, y: 100, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7178589962492434106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118073626745316609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc13a78caf57fa146a07f8c9a5f178c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curWeighit: {fileID: 0}
+  goalWeight: {fileID: 0}
+  goalTerm: {fileID: 0}
 --- !u!1 &2118073626810426037
 GameObject:
   m_ObjectHideFlags: 0
@@ -10102,19 +10106,7 @@ MonoBehaviour:
   m_Group: {fileID: 665660597042417395}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 776880937941136223}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!65 &7863912091767026121
 BoxCollider:
@@ -10791,19 +10783,7 @@ MonoBehaviour:
   m_Group: {fileID: 665660597042417395}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 776880937425329442}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!65 &3124813501849864775
 BoxCollider:

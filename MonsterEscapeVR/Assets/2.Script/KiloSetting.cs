@@ -23,8 +23,10 @@ public class KiloSetting : MonoBehaviour
 
     void Start()
     {
+        curweightText.text = ServerConn.Instance.curWeight;
+        goalWeightText.text = ServerConn.Instance.goalWeight;
+        goalTermNumText.text = ServerConn.Instance.term;
 
-        
         curweight = int.Parse(curweightText.text);
         goalweight = int.Parse(goalWeightText.text);
         goalTerm = int.Parse(goalTermNumText.text);
@@ -46,32 +48,32 @@ public class KiloSetting : MonoBehaviour
     public void CurweightUp()
     {
 
-        curweight += 5;
+        curweight += 1;
         curweightText.text = curweight.ToString();
     }
     public void CurweightDown()
     {
-        if(curweight>0) curweight -= 5;
+        if(curweight>0) curweight -= 1;
         curweightText.text = curweight.ToString();
     }
     public void GoalweightUp()
     {
-        goalweight += 5;
+        goalweight += 1;
         goalWeightText.text = goalweight.ToString();
     }
     public void GoalweightDown()
     {
-        if(goalweight>0) goalweight -= 5;
+        if(goalweight>0) goalweight -= 1;
         goalWeightText.text = goalweight.ToString();
     }
     public void GoalTermUp()
     {
-       goalTerm += 7;
+       goalTerm += 1;
        goalTermNumText.text = goalTerm.ToString();
     }
     public void GoalTermDown()
     {
-        if(goalTerm>0) goalTerm -= 7;
+        if(goalTerm>0) goalTerm -= 1;
         goalTermNumText.text = goalTerm.ToString();
     }
     public void Exitscreen()
