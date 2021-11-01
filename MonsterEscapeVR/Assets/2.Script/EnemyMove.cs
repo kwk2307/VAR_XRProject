@@ -135,11 +135,9 @@ public class EnemyMove : MonoBehaviour
        if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
         {
             angDis -= angryinterval-Random.Range(1,20);  //다음 분노모드에서 다시 분노
-            print("분노모드 돌입");
             
                 
                 StartCoroutine(AngryMode());
-                print("분노 코루틴 활성화");
             
             
         }

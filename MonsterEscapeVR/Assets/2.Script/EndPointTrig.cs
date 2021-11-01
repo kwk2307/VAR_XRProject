@@ -19,4 +19,10 @@ public class EndPointTrig : MonoBehaviour
             UIMng.Instance.update_gazePointer();
         }
     }
+
+    IEnumerator ObjectCulling(GameObject go)
+    {
+        
+        yield return null;
+    }
 }
