@@ -6,13 +6,20 @@ public class SettingBar : MonoBehaviour
 {
     [SerializeField] private Text useTime;
     [SerializeField] private Text useCal;
+    [SerializeField] private GameObject loginAfter;
+    [SerializeField] private GameObject loginBefroe;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Text useTime = transform.Find("useTime").GetComponent<Text>();
-        //Text useCal = transform.Find("useCal").GetComponent<Text>();
-        StartCoroutine(searchtodayDo());
+
+        if (ServerConn.Instance.isLogin == true)
+        {
+            loginBefroe.SetActive(false);
+            loginAfter.SetActive(true);
+            StartCoroutine(searchtodayDo());
+        }
+        
     }
     IEnumerator searchtodayDo()
     {
@@ -21,5 +28,11 @@ public class SettingBar : MonoBehaviour
         useCal.text += "   " + ServerConn.Instance.str[1];
     }
 
+    public void Update_SettingBar()
+    {
+        loginBefroe.SetActive(false);
+        loginAfter.SetActive(true);
+        StartCoroutine(searchtodayDo());
+    }
 
 }
