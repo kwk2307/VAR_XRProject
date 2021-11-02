@@ -31,7 +31,7 @@ public class KiloSetting : MonoBehaviour
         curDown.onClick.AddListener(CurweightDown);
 
         goalUp.onClick.AddListener(GoalweightUp);
-        goalUp.onClick.AddListener(GoalweightDown);
+        goalDown.onClick.AddListener(GoalweightDown);
 
         goalTermUp.onClick.AddListener(GoalTermUp);
         goalTermDown.onClick.AddListener(GoalTermDown);
