@@ -921,7 +921,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1117225063
+--- !u!43 &1129204304
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1184,41 +1184,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1424202012407984456, guid: ec95063713d793842917663742081ae8, type: 3}
   m_PrefabInstance: {fileID: 3055162175274313983}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1562614970
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1652326805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1366,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3588e5e1f74cd5c41b1c34be562786a2, type: 3}
+--- !u!21 &2044983209
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!21 &2089455556
 Material:
   serializedVersion: 6
@@ -1788,11 +1788,11 @@ PrefabInstance:
     - target: {fileID: 1959146108412459089, guid: ec95063713d793842917663742081ae8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1562614970}
+      objectReference: {fileID: 2044983209}
     - target: {fileID: 1959146108413491669, guid: ec95063713d793842917663742081ae8, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1117225063}
+      objectReference: {fileID: 1129204304}
     - target: {fileID: 1959146108414771983, guid: ec95063713d793842917663742081ae8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2380,6 +2380,14 @@ PrefabInstance:
     - target: {fileID: 4090642111390057986, guid: c5491545f4f0a8142a8b96d0d1c32876, type: 3}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912551452771947731, guid: c5491545f4f0a8142a8b96d0d1c32876, type: 3}
+      propertyPath: m_Size.y
+      value: 2.606159
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912551452771947731, guid: c5491545f4f0a8142a8b96d0d1c32876, type: 3}
+      propertyPath: m_Center.y
+      value: -0.25049722
       objectReference: {fileID: 0}
     - target: {fileID: 5345779472936385368, guid: c5491545f4f0a8142a8b96d0d1c32876, type: 3}
       propertyPath: m_RootOrder

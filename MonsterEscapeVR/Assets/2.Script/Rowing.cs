@@ -74,7 +74,12 @@ public class Rowing : MonoBehaviour
                 // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
                 transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
                 // 당기고 있을 때 pouringSound도 재생
-                pour.Play();
+                if(0.2f< isRowing && isRowing < 0.3f)
+                {
+                    pour.Play();
+                    print("pouringSoundPlay");
+                }
+                
 
             }
             isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
