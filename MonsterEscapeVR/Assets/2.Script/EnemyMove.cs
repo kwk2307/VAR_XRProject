@@ -144,7 +144,6 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if (other.tag == "Player")
         {
             StartCoroutine(GameOver());

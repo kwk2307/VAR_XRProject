@@ -31,7 +31,7 @@ public class Raycast : MonoBehaviour
 
             if (timeElapsed >= 2)//2초가 되면
             {
-                print("click");
+                
                 //버튼 효과음 재생
                 SoundMng.Instance.ToggleSoundStart();
 

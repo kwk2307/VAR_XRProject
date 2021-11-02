@@ -77,7 +77,7 @@ public class Rowing : MonoBehaviour
                 if(0.2f< isRowing && isRowing < 0.3f)
                 {
                     pour.Play();
-                    print("pouringSoundPlay");
+                    
                 }
                 
 
