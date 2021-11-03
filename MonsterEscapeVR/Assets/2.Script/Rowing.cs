@@ -65,6 +65,7 @@ public class Rowing : MonoBehaviour
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+
         if (GameMng.Instance.playerState == state.playing)
         {
             //로잉기를 당기는지 확인
@@ -87,6 +88,7 @@ public class Rowing : MonoBehaviour
         else
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }        
+        }
+        
     }
 }

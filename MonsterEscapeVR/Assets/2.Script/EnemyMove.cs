@@ -55,14 +55,14 @@ public class EnemyMove : MonoBehaviour
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 3; //상어의 스피트
+            enumSpeed = 3.4f; //상어의 스피트
             angDis = -40; //angDis만큼 가면 분노모드!
             angDuration = 10; //얼마동안 분노할 것인가?
             angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
         {
-            enumSpeed = 3.2f; // 크라켄의 스피드
+            enumSpeed = 3.8f; // 크라켄의 스피드
             angDis = -20;
             angDuration = 15;
             angryinterval = 60; //얼마뒤에 다시 분노할 것인가?

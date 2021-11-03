@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundMng : MonoBehaviour
 {
@@ -28,17 +29,32 @@ public class SoundMng : MonoBehaviour
             bm = GameObject.Find("BGM").GetComponent<AudioSource>();
             bm.Play();
         }
-        if (gameMode == 1) //각 모드에 맞는 브금 가져오기
+        else if (gameMode == 1) //각 모드에 맞는 브금 가져오기
         {
             bm = GameObject.Find("BGM_1").GetComponent<AudioSource>();
         }
-        if (gameMode == 2)
+        else if (gameMode == 2)
         {
             bm = GameObject.Find("BGM_2").GetComponent<AudioSource>();
         }
-        if (gameMode == 3)
+        else if (gameMode == 3)
         {
             bm = GameObject.Find("BGM_3").GetComponent<AudioSource>();
+        }
+        else if(gameMode == 4)
+        {
+            bm = GameObject.Find("BGM_4").GetComponent<AudioSource>();
+            bm.Play();
+        }
+        else if (gameMode == 5)
+        {
+            bm = GameObject.Find("BGM_5").GetComponent<AudioSource>();
+            bm.Play();
+        }
+        else if (gameMode == 6)
+        {
+            bm = GameObject.Find("BGM_6").GetComponent<AudioSource>();
+            bm.Play();
         }
         
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();

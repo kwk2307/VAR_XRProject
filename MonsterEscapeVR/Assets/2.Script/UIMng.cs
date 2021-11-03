@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIMng : MonoBehaviour
 {
     [SerializeField] private Text ui_distance;
@@ -60,10 +61,6 @@ public class UIMng : MonoBehaviour
     {
         Button btn = gameWinUI.transform.Find("MainMenu").GetComponent<Button>();
         btn.onClick.AddListener(UpdatetodayDo);
-
-        SceneMng sm = new SceneMng();
-        btn.onClick.AddListener(sm.GoToMain);
-
        
         gameWinUI.SetActive(true);
         
@@ -80,9 +77,6 @@ public class UIMng : MonoBehaviour
         Button btn = gameOverUI.transform.Find("MainMenu").GetComponent<Button>();
         btn.onClick.AddListener(UpdatetodayDo);
 
-        SceneMng sm = new SceneMng();
-        btn.onClick.AddListener(sm.GoToMain);
-
         gameOverUI.SetActive(true);
 
         gameOverUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
@@ -90,13 +84,11 @@ public class UIMng : MonoBehaviour
     }
     public void update_gameEnd()
     {
-
+        
         Button btn = gameEndUI.transform.Find("MainMenu").GetComponent<Button>();
+
         btn.onClick.AddListener(UpdatetodayDo);
 
-        SceneMng sm = new SceneMng();
-        btn.onClick.AddListener(sm.GoToMain);
-        
         gameEndUI.SetActive(true);
 
         gameEndUI.transform.Find("Time").GetComponent<Text>().text = string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
@@ -142,6 +134,11 @@ public class UIMng : MonoBehaviour
     
     private void LateUpdate()
     {
+        if (SceneManager.GetActiveScene().name != "Mode1" &&
+            SceneManager.GetActiveScene().name != "Mode2" &&
+            SceneManager.GetActiveScene().name != "Mode3")
+            return;
+       
         if (GameMng.Instance.goaldistance <= 200f && fiveM == false) //200미터 남았을 때
         {
             disSound[0].SetActive(true);
