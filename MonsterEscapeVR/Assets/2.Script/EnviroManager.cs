@@ -17,14 +17,22 @@ public class EnviroManager : MonoBehaviour
     {
         if(other.tag != "Enemy")
         {
-            
-            other.transform.position -= Vector3.forward * distance;
+            //애니메이터가 있다면
+            /*if (other.gameObject.GetComponent<Animator>() != null)
+            {
+                //애니메이터 재생을 멈추고
+                other.gameObject.GetComponent<Animator>().Rebind();
+                other.gameObject.GetComponent<Animator>().Update(0f);
+                print("애니메이터 재생 멈춤");
+            }*/
+
+            //other.transform.position -= Vector3.forward * distance;
             //Instantiate(other);
             //Destroy(other.gameObject);
-        }
-        else
-        {
 
+            Vector3 dir = other.transform.position;
+            dir.z -= 110;
+            Instantiate(other, new Vector3(dir.x, dir.y, dir.z), Quaternion.identity);
         }
     }
 
