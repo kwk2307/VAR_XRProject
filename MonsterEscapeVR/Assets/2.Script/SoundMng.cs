@@ -45,6 +45,10 @@ public class SoundMng : MonoBehaviour
         {
             bm = GameObject.Find("BGM_SouthPole").GetComponent<AudioSource>();
         }
+        if (gameMode == 6)
+        {
+            bm = GameObject.Find("BGM_Lake").GetComponent<AudioSource>();
+        }
 
         GameOverSound = GameObject.Find("GameOverSound").GetComponent<AudioSource>();
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
