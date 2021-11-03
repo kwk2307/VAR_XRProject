@@ -27,8 +27,8 @@ public class EnviroManager : MonoBehaviour
             }*/
 
             other.transform.position -= Vector3.forward * distance;
-            Instantiate(other);
-            Destroy(other.gameObject);
+            //Instantiate(other);
+            //Destroy(other.gameObject);
 
         }
     }
