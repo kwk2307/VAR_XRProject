@@ -9,7 +9,7 @@ public class PouringSound : MonoBehaviour
 
     void PouringSoundPlay()
     {
-        pourSound.Play();
-        print("pouringSound play");
+        //pourSound.Play();
+        //print("pouringSound play");
     }
 }
