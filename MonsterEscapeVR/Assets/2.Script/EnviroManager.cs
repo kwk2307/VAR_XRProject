@@ -26,13 +26,10 @@ public class EnviroManager : MonoBehaviour
                 print("æ÷¥œ∏ﬁ¿Ã≈Õ ¿Áª˝ ∏ÿ√„");
             }*/
 
-            //other.transform.position -= Vector3.forward * distance;
-            //Instantiate(other);
-            //Destroy(other.gameObject);
+            other.transform.position -= Vector3.forward * distance;
+            Instantiate(other);
+            Destroy(other.gameObject);
 
-            Vector3 dir = other.transform.position;
-            dir.z -= 110;
-            Instantiate(other, new Vector3(dir.x, dir.y, dir.z), Quaternion.identity);
         }
     }
 
