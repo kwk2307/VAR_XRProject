@@ -6,22 +6,41 @@ using Photon.Pun;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class Login : MonoBehaviourPunCallbacks
+public class NetworkMng : MonoBehaviourPunCallbacks
 {
+    [Header("Login")]
+    [SerializeField] public GameObject LoginPanel;
+    [SerializeField] public InputField PlayerName;
 
-    [SerializeField] public InputField PlayerNameInput;
+    [Header("Login_Before")]
+    [SerializeField] public GameObject QuickStart;
+    [SerializeField] public GameObject RoomCreate;
+    [SerializeField] public GameObject RoomList;
+
+    [Header("Login_After")]
+    [SerializeField] public GameObject Login;
+
+    [Header("Room_Create")]
+    [SerializeField] public GameObject RoomCreatePanel;
+    [SerializeField] public InputField RoomName;
+    [SerializeField] public InputField RoomNum;
+
+    [Header("Room_List")]
+    [SerializeField] public GameObject RoomListPanel;
+
+
     #region UNITY
     public void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        PlayerNameInput.text = "Player" + Random.Range(1000, 10000);
+        PlayerName.text = "Player" + Random.Range(1000, 10000);
     }
     #endregion
 
-    #region UI
-    public void OnLoginButtonClicked()
+    #region 서버연결
+    public void Connect()
     {
-        string playerName = PlayerNameInput.text;
+        string playerName = PlayerName.text;
 
         if (!playerName.Equals(""))
         {
@@ -32,6 +51,11 @@ public class Login : MonoBehaviourPunCallbacks
         {
             Debug.LogError("Player Name is invalid.");
         }
+    }
+
+    public void MakeRoom()
+    {
+
     }
     #endregion
 
@@ -46,19 +70,18 @@ public class Login : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         print("OnConnectedToMaster");
+        PhotonNetwork.JoinLobby();
+    }
 
-        GameObject.Find("MainMenu").transform.Find("Login_After").gameObject.SetActive(true);
-        GameObject.Find("MainMenu").transform.Find("Login_Before").gameObject.SetActive(false);
-        this.gameObject.SetActive(false);
-        
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         print("OnDisconnected");
-
-        GameObject.Find("MainMenu").transform.Find("Login_After").gameObject.SetActive(false);
-        GameObject.Find("MainMenu").transform.Find("Login_Before").gameObject.SetActive(true);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
