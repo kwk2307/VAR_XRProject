@@ -151,9 +151,11 @@ yield return new WaitForSeconds(1.1f);
 
         yield return new WaitForSeconds(1f);
 
-        Instantiate(Enemy[2]).transform.position = new Vector3(20, -3f, 30);
+        Instantiate(Enemy[2]);
+        Enemy[2].transform.position = new Vector3(10, -3f, 30);
         angry[2] = GameObject.Find("Angry");
         GameObject.Find("Angry").SetActive(false);
+        print("크라켄 생성 " + Enemy[2].transform.position);
 
 
         yield return new WaitForSeconds(5);
@@ -191,7 +193,7 @@ yield return new WaitForSeconds(1.1f);
         text.text = "관광모드 또한 메인화면에서 선택하여 들어가실 수 있습니다";
         announce[12].SetActive(true);
         yield return new WaitForSeconds(5);
-        text.text = "이것으로 듀토리얼을 마치겠습니다.";
+        text.text = "이것으로 튜토리얼을 마치겠습니다.";
         announce[13].SetActive(true);
         yield return new WaitForSeconds(5);
         text.text = "부디 생존하시길 빕니다.";
