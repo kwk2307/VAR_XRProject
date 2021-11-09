@@ -29,6 +29,7 @@ public class NetworkMng : MonoBehaviourPunCallbacks
 
     [Header("Room_List")]
     [SerializeField] public GameObject RoomListPanel;
+    [SerializeField] public GameObject RoomInst;
 
 
     #region UNITY
@@ -60,7 +61,7 @@ public class NetworkMng : MonoBehaviourPunCallbacks
     {
         if (!RoomName.Equals(""))
         {
-            if (RoomNum.Equals(""))
+            if (!RoomNum.Equals(""))
             {
                 PhotonNetwork.CreateRoom(RoomName.text, new RoomOptions { MaxPlayers = byte.Parse(RoomNum.text)});
             }
@@ -74,6 +75,10 @@ public class NetworkMng : MonoBehaviourPunCallbacks
             Debug.LogError("Room Name is invalid.");
         }
      
+    }
+    public void UpdateRoomList()
+    {
+
     }
 
     #endregion
@@ -125,5 +130,16 @@ public class NetworkMng : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message) 
     {
         Debug.LogError(message);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        print("OnJoinedRoom");
+    }
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        foreach (RoomInfo info in roomList)
+        {
+        }
     }
 }
