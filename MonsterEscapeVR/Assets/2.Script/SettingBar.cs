@@ -24,8 +24,10 @@ public class SettingBar : MonoBehaviour
     IEnumerator searchtodayDo()
     {
         yield return StartCoroutine(ServerConn.Instance.SendSearchtodayDo());
-        useTime.text += string.Format("{0:00} ", ServerConn.Instance.str[0]);
-        useCal.text += "   " + ServerConn.Instance.str[1];
+        int time = int.Parse(ServerConn.Instance.str[0]);
+
+        useTime.text += string.Format("   {0:00} : {1:00} : {2:00}", (int)Mathf.Floor(time / 60), (int)time % 60, (int)(time * 100) % 100);
+        useCal.text += "   " + ServerConn.Instance.str[1] +"  kcal";
     }
 
     public void Update_SettingBar()
