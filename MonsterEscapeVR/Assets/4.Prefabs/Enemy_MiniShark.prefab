@@ -3203,8 +3203,8 @@ GameObject:
   - component: {fileID: 2379548069813905845}
   - component: {fileID: 8639582525066621903}
   - component: {fileID: 8140374763700164126}
-  - component: {fileID: 8140374763700164123}
   - component: {fileID: 804993638}
+  - component: {fileID: 1750145075}
   m_Layer: 0
   m_Name: Enemy_MiniShark
   m_TagString: Enemy
@@ -3260,20 +3260,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.001302, y: 5.006358, z: 14.782575}
   m_Center: {x: 0.20480525, y: 2.003179, z: 2.2173762}
---- !u!114 &8140374763700164123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3048386024381690639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cbd40d9d61c2b44b690f482f7e8593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameMode: 2
-  delayCount: 0
 --- !u!82 &804993638
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3285,7 +3271,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b916e47cafcf584992341b7822808d3, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
@@ -3370,6 +3356,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1750145075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3048386024381690639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648f6ed5a482c9f478f9d3e11e866257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3096681807500156951
 GameObject:
   m_ObjectHideFlags: 0
