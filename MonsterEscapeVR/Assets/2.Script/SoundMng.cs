@@ -10,7 +10,7 @@ public class SoundMng : MonoBehaviour
     private AudioSource CountDownSound;
     private AudioSource EnemySound;
     private AudioSource ToggleSound;
-
+    private AudioSource GameWinSound;
     public int gameMode;
 
     public static SoundMng Instance = null;
@@ -61,6 +61,7 @@ public class SoundMng : MonoBehaviour
         CountDownSound = GameObject.Find("CountDownSound").GetComponent<AudioSource>();
         EnemySound = GameObject.Find("EnemySound").GetComponent<AudioSource>();
         ToggleSound = GameObject.Find("ToggleSound").GetComponent<AudioSource>();
+        GameWinSound = GameObject.Find("GameWinSound").GetComponent<AudioSource>();
     }
 
     public void GameStartSound()
@@ -71,6 +72,11 @@ public class SoundMng : MonoBehaviour
     {
         bm.Stop();
         GameOverSound.Play();
+    }
+    public void GameWin_s()
+    {
+        bm.Stop();
+        GameWinSound.Play();
     }
     public void Enemy_s()
     {

@@ -68,14 +68,15 @@ public class UIMng : MonoBehaviour
         gameWinUI.SetActive(true);
         
         VictoryEffectBox.SetActive(true);
-        for(int i = 0; i < 6; i++)
-        {
-            winExplosion[i].SetActive(true);
-        }
+        
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("운동 시간 : {0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
         gameWinUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
+        for (int i = 0; i < 6; i++)
+        {
+            winExplosion[i].SetActive(true);
+        }
     }
     public void update_gameOverUI()
     {
