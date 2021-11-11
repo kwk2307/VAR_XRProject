@@ -28,6 +28,8 @@ public class Rowing : MonoBehaviour
     private void FixedUpdate()
     {
         
+
+
         distance = Vector3.Distance(tracker01.transform.position, tracker02.transform.position);  //현 프레임의 트래거간의 위치
 
         if (distance <= 1)
