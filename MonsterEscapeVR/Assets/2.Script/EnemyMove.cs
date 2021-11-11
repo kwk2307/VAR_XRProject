@@ -61,7 +61,7 @@ public class EnemyMove : MonoBehaviour
         {
             enumSpeed = 3.4f; //상어의 스피트
             angDis = -40; //angDis만큼 가면 분노모드!
-            angDuration = 10; //얼마동안 분노할 것인가?
+            angDuration = 20; //얼마동안 분노할 것인가?
             angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
@@ -214,6 +214,8 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(false);
         minionFactory[1].SetActive(false);
         minionFactory[2].SetActive(false);
+
+        yield return new WaitForSeconds(5f);
         //게이즈 포이터도 비활성화
         gazePointer.SetActive(false);
 
