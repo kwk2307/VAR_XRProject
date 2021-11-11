@@ -16,9 +16,9 @@ public class MinionMove : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        if (time < 1.7f)
+        if (time < 0.5f)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime*20);
+            transform.Translate(Vector3.forward * Time.deltaTime * 20);
         }
         else //1.5초 이후 타겟으로 간다
         {

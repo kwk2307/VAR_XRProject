@@ -9,10 +9,13 @@ public class Raycast : MonoBehaviour
     public Image Gazepointer;
 
     private float timeElapsed = 0;
+    public AudioSource shotSound;
 
     //페이드인을 위한 변수들
 
     private bool enterFade = false;
+
+    
 
     void Update()
     {
@@ -58,6 +61,7 @@ public class Raycast : MonoBehaviour
                 if (timeElapsed >= 2)//2초가 되면
                 {
                     Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
+                    shotSound.Play(); //총소리도 실행
                 }
             }
 

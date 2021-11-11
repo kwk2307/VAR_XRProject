@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &606561486
 Transform:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606561485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 10.87, z: -0.35}
+  m_LocalPosition: {x: 0.11, y: 7.49, z: 4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5005141991077081533}
@@ -43,7 +43,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minion: {fileID: 5157990451176188414, guid: 0272a77aa5df7ed49a7c3b50880a263b, type: 3}
+  minion: {fileID: 4517544527707719938, guid: d9afc524613fe57448184a58c474b97f, type: 3}
+--- !u!1 &182147157351574759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2349968932338618496}
+  - component: {fileID: 3453379230437339539}
+  m_Layer: 0
+  m_Name: MinionFactory (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2349968932338618496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182147157351574759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.32, y: 7.49, z: 4.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5005141991077081533}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3453379230437339539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182147157351574759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion: {fileID: 4517544527707719938, guid: d9afc524613fe57448184a58c474b97f, type: 3}
+--- !u!1 &4123355870389856094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3001405678227142631}
+  - component: {fileID: 2056970298475210318}
+  m_Layer: 0
+  m_Name: MinionFactory (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3001405678227142631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123355870389856094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.37, y: 7.49, z: 4.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5005141991077081533}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056970298475210318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123355870389856094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion: {fileID: 4517544527707719938, guid: d9afc524613fe57448184a58c474b97f, type: 3}
 --- !u!1 &5005141991077306945
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +601,8 @@ Transform:
   - {fileID: 5005141991077082691}
   - {fileID: 5441782932550035827}
   - {fileID: 606561486}
+  - {fileID: 3001405678227142631}
+  - {fileID: 2349968932338618496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -658,7 +748,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameMode: 3
   delayCount: 0
-  minionFactory: []
+  minionFactory:
+  - {fileID: 606561485}
+  - {fileID: 4123355870389856094}
+  - {fileID: 182147157351574759}
   gazePointer: {fileID: 0}
 --- !u!1 &5005141991077306975
 GameObject:

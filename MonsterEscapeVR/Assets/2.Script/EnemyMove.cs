@@ -38,6 +38,7 @@ public class EnemyMove : MonoBehaviour
 
     public GameObject[] minionFactory;
     public GameObject gazePointer;
+    public AudioSource gunCocking;
 
     void Start()
     {
@@ -187,6 +188,8 @@ public class EnemyMove : MonoBehaviour
         minionFactory[2].SetActive(true);
         //게이즈 포이터도 활성화
         gazePointer.SetActive(true);
+        //처커덕 소리 재생
+        gunCocking.Play();
 
         color.a = 1;
         angImage.GetComponent<Image>().color = color;

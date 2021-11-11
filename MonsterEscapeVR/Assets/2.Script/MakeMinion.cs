@@ -13,8 +13,8 @@ public class MakeMinion : MonoBehaviour
         time += Time.deltaTime;
         if (time > Random.Range(5.0f, 10.0f))
         {
-            Instantiate(minion,this.transform.position,Quaternion.identity);
-            //minion.transform.position = this.transform.position;
+            Instantiate(minion);
+            minion.transform.position = this.transform.position;
             time = 0;
         }
     }
