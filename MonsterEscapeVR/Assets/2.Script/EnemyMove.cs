@@ -36,7 +36,7 @@ public class EnemyMove : MonoBehaviour
 
     private e_state enemyState = e_state.waiting;
 
-    public GameObject minionFactory;
+    public GameObject[] minionFactory;
 
     void Start()
     {
@@ -180,6 +180,11 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator AngryMode()
     {
+        //미니언 팩토리 활성화
+        minionFactory[0].SetActive(true);
+        minionFactory[1].SetActive(true);
+        minionFactory[2].SetActive(true);
+
         color.a = 1;
         angImage.GetComponent<Image>().color = color;
         
@@ -199,7 +204,12 @@ public class EnemyMove : MonoBehaviour
         ani.SetBool("Angry", false); //포효 애니 중지
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
 
-        
+        //미니언 팩토리 비활성화
+        minionFactory[0].SetActive(false);
+        minionFactory[1].SetActive(false);
+        minionFactory[2].SetActive(false);
+
+
     }
 
     IEnumerator GameOver()
