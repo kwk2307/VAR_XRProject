@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 8590828032861008772}
   - component: {fileID: 937376041967062291}
   - component: {fileID: 229722000}
-  - component: {fileID: 6677801725470254075}
+  - component: {fileID: -6060825978093706508}
   m_Layer: 0
   m_Name: Enemy_MiniCrocodile
   m_TagString: Untagged
@@ -650,7 +650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8590828032843627336}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -10, y: -0.8, z: 23}
+  m_LocalPosition: {x: 5.596442, y: -1, z: -114.697174}
   m_LocalScale: {x: 0.79651445, y: 0.79651445, z: 0.79651445}
   m_Children:
   - {fileID: 8590828032843523950}
@@ -815,7 +815,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6677801725470254075
+--- !u!114 &-6060825978093706508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -824,9 +824,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8590828032843627336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648f6ed5a482c9f478f9d3e11e866257, type: 3}
+  m_Script: {fileID: 11500000, guid: fa83c8fc173083b4b95ba4f2b7fe45af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  firingAngle: 45
+  gravity: 9.8
+  Projectile: {fileID: 0}
 --- !u!1 &8590828032843627338
 GameObject:
   m_ObjectHideFlags: 0

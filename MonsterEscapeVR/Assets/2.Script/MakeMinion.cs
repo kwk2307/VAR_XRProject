@@ -18,7 +18,7 @@ public class MakeMinion : MonoBehaviour
         if (time > Random.Range(5.0f, 10.0f))
         {
             Instantiate(minion);
-            minion.transform.position = transform.position;
+            minion.transform.position = this.transform.position;
             time = 0;
         }
     }
