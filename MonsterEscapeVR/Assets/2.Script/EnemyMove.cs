@@ -37,6 +37,7 @@ public class EnemyMove : MonoBehaviour
     private e_state enemyState = e_state.waiting;
 
     public GameObject[] minionFactory;
+    public GameObject gazePointer;
 
     void Start()
     {
@@ -184,6 +185,8 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(true);
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
+        //게이즈 포이터도 활성화
+        gazePointer.SetActive(true);
 
         color.a = 1;
         angImage.GetComponent<Image>().color = color;
@@ -208,6 +211,8 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(false);
         minionFactory[1].SetActive(false);
         minionFactory[2].SetActive(false);
+        //게이즈 포이터도 비활성화
+        gazePointer.SetActive(false);
 
 
     }
