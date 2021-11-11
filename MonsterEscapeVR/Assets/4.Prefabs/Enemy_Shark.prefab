@@ -252,13 +252,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858507130182997685}
+  - component: {fileID: 1589632628}
   m_Layer: 0
   m_Name: MinionFactory (2)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1858507130182997685
 Transform:
   m_ObjectHideFlags: 0
@@ -267,12 +268,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303535181399563697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.07, y: 0, z: 5.88}
+  m_LocalPosition: {x: -8.07, y: 4.67, z: 5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2379548069813905845}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589632628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303535181399563697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion: {fileID: 3048386024381690639, guid: 2c75a943fa4fc1448b0d5f24b744d620, type: 3}
 --- !u!1 &306402319305172118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,13 +1906,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9009885073376568666}
+  - component: {fileID: 926183898}
   m_Layer: 0
   m_Name: MinionFactory (1)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9009885073376568666
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,12 +1922,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760820653508147067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.67, y: 0, z: 5.88}
+  m_LocalPosition: {x: 7.67, y: 4.67, z: 5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2379548069813905845}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926183898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760820653508147067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion: {fileID: 3048386024381690639, guid: 2c75a943fa4fc1448b0d5f24b744d620, type: 3}
 --- !u!1 &1773119434006819224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,7 +3366,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameMode: 2
   delayCount: 0
-  minionFactory: {fileID: 0}
+  minionFactory:
+  - {fileID: 5453867644776407313}
+  - {fileID: 1760820653508147067}
+  - {fileID: 303535181399563697}
 --- !u!82 &804993638
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6396,13 +6427,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8602686342715531542}
+  - component: {fileID: 671711137}
   m_Layer: 0
   m_Name: MinionFactory
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8602686342715531542
 Transform:
   m_ObjectHideFlags: 0
@@ -6411,12 +6443,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5453867644776407313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.88}
+  m_LocalPosition: {x: 0, y: 4.67, z: 5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2379548069813905845}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671711137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453867644776407313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a11c6b5b0a1b9641a0ccdeeac3bc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion: {fileID: 3048386024381690639, guid: 2c75a943fa4fc1448b0d5f24b744d620, type: 3}
 --- !u!1 &5601073612075773260
 GameObject:
   m_ObjectHideFlags: 0
