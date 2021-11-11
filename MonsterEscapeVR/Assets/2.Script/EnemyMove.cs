@@ -36,6 +36,8 @@ public class EnemyMove : MonoBehaviour
 
     private e_state enemyState = e_state.waiting;
 
+    public GameObject minionFactory;
+
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -141,7 +143,12 @@ public class EnemyMove : MonoBehaviour
             
             
         }
+
+        
+
+
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
