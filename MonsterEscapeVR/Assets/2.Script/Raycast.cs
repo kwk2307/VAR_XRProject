@@ -53,11 +53,13 @@ public class Raycast : MonoBehaviour
             }
             else if(hit.transform.tag == "MiniEnemy") //게이즈 포인터로 미니 적을 봤다면
             {
+                print("적을 보고있음");
                 timeElapsed += Time.deltaTime;//시간 증가
-                Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
-                if (timeElapsed >= 2)//2초가 되면
+                //Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
+                if (timeElapsed >= 0.5)//2초가 되면
                 {
                     Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
+                    timeElapsed = 0; //초기화
                 }
             }
 
