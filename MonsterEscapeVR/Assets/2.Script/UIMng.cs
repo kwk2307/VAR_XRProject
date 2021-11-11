@@ -13,6 +13,7 @@ public class UIMng : MonoBehaviour
     [SerializeField] private GameObject gameEndUI;
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
+    
     [SerializeField] private GameObject gazePointer;
 
     //미터 알림기
@@ -23,6 +24,8 @@ public class UIMng : MonoBehaviour
     bool twoM = false;
     bool firstM = false;
 
+    // gamewin 상황 폭발효과
+    public GameObject[] explosionBox;
     public static UIMng Instance = null;
 
     private void Awake()
@@ -70,6 +73,9 @@ public class UIMng : MonoBehaviour
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
         gameWinUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("소요 칼로리 : {0} kcal", (int)GameMng.Instance.Kcal);
+        for (int i = 0; i < 4; i++) {
+            explosionBox[i].SetActive(true);
+        }
     }
     public void update_gameOverUI()
     {
