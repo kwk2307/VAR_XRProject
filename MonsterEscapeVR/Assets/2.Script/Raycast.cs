@@ -25,27 +25,40 @@ public class Raycast : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit, Mathf.Infinity, layerMask)) 
         {
-
-            timeElapsed += Time.deltaTime;//시간 증가
-            Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
-
-            if (timeElapsed >= 2)//2초가 되면
+            if(hit.transform.tag != "MiniEnemy")
             {
-                
-                //버튼 효과음 재생
-                SoundMng.Instance.ToggleSoundStart();
-                print(hit.transform.name);
-                if (hit.transform.GetComponent<Button>() != null)
+                timeElapsed += Time.deltaTime;//시간 증가
+                Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
+
+                if (timeElapsed >= 2)//2초가 되면
                 {
-                    //버튼 onClick 이벤트 발생
-                    hit.transform.GetComponent<Button>().onClick.Invoke();
-                    
-                }else if(hit.transform.GetComponent<Toggle>() != null)
-                {
-                    hit.transform.GetComponent<Toggle>().isOn = true;
+
+                    //버튼 효과음 재생
+                    SoundMng.Instance.ToggleSoundStart();
+                    print(hit.transform.name);
+                    if (hit.transform.GetComponent<Button>() != null)
+                    {
+                        //버튼 onClick 이벤트 발생
+                        hit.transform.GetComponent<Button>().onClick.Invoke();
+
+                    }
+                    else if (hit.transform.GetComponent<Toggle>() != null)
+                    {
+                        hit.transform.GetComponent<Toggle>().isOn = true;
+                    }
+
+                    timeElapsed = 0;
                 }
-                
-                timeElapsed = 0;
+            
+            }
+            else if(hit.transform.tag == "MiniEnemy") //게이즈 포인터로 미니 적을 봤다면
+            {
+                timeElapsed += Time.deltaTime;//시간 증가
+                Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
+                if (timeElapsed >= 2)//2초가 되면
+                {
+                    Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
+                }
             }
 
         }

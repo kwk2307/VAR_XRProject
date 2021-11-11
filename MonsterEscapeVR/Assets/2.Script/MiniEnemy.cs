@@ -19,4 +19,18 @@ public class MiniEnemy : MonoBehaviour
         // 진행방향과 앞 벡터가 일치하도록
         transform.LookAt(player.transform.position);
     }
+
+    private void OnTriggerEnter(Collider other) //플레이어와 충돌할 경우
+    {
+        if(other.tag == "Player")
+        {
+            //스피드를 깍는다
+            other.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5000) * Time.deltaTime);
+            //자기는 없어진다
+            
+        }
+
+
+        Destroy(this.gameObject);
+    }
 }
