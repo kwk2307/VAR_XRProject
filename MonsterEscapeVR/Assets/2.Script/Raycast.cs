@@ -9,11 +9,7 @@ public class Raycast : MonoBehaviour
     public Image Gazepointer;
 
     private float timeElapsed = 0;
-
-    //페이드인을 위한 변수들
-
-    private bool enterFade = false;
-
+    
     void Update()
     {
        

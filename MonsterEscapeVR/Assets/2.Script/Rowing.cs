@@ -13,6 +13,8 @@ public class Rowing : MonoBehaviour
     private float distance; //트래커들 사이의 거리를 담을 변수
     [SerializeField] private float speed = 1;
 
+
+
     private float isRowing;
     //현재 거리값
     private float isRowingPre;
