@@ -14,7 +14,7 @@ public class Raycast : MonoBehaviour
     //페이드인을 위한 변수들
 
     private bool enterFade = false;
-
+    public GameObject shotEf;
     
 
     void Update()
@@ -60,8 +60,11 @@ public class Raycast : MonoBehaviour
                 Gazepointer.fillAmount = timeElapsed / 2;//이미지 fill 채워줌
                 if (timeElapsed >= 2)//2초가 되면
                 {
+                    Instantiate(shotEf);
+                    shotEf.transform.position = hit.transform.position; //그 자리에 이펙트 생성
                     Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
                     shotSound.Play(); //총소리도 실행
+                    
                 }
             }
 
