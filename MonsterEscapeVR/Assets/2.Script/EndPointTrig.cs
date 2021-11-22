@@ -17,6 +17,8 @@ public class EndPointTrig : MonoBehaviour
 
             UIMng.Instance.update_gameWinUI();
             UIMng.Instance.update_gazePointer();
+
+            SoundMng.Instance.GameWin_s();
         }
     }
 

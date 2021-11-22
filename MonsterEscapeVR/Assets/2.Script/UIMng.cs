@@ -23,6 +23,9 @@ public class UIMng : MonoBehaviour
     bool twoM = false;
     bool firstM = false;
 
+    // ½Â¸® ½Ã Æø¹ß ÀÌÆÑÆ®
+    public GameObject[] winExplosion;
+
     public static UIMng Instance = null;
 
     private void Awake()
@@ -65,11 +68,15 @@ public class UIMng : MonoBehaviour
         gameWinUI.SetActive(true);
         
         VictoryEffectBox.SetActive(true);
-
+        
         gameWinUI.transform.Find("Time").GetComponent<Text>().text= string.Format("¿îµ¿ ½Ã°£ : {0:00} : {1:00} : {2:00}",
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
         gameWinUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("¼Ò¿ä Ä®·Î¸® : {0} kcal", (int)GameMng.Instance.Kcal);
+        for (int i = 0; i < 6; i++)
+        {
+            winExplosion[i].SetActive(true);
+        }
     }
     public void update_gameOverUI()
     {
