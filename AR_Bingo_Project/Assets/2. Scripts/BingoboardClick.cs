@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BingoboardClick : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Image TestImage;
+    public Sprite TestSprite;
+
+    private void Start()
     {
-        
+        Button btn = this.GetComponent<Button>();
+        btn.onClick.AddListener(ChangeImage);
+        btn.onClick.AddListener(updateGameMng);
     }
 
-      
-    // Update is called once per frame
-    void Update()
+    public void ChangeImage()
     {
-        
+        TestImage.sprite = TestSprite;
     }
+
+    public void updateGameMng() {
+        GameMng.instance.Add_bingo(this.transform.Find("Text").GetComponent<Text>().text);
+    }
+    
 }
