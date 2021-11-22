@@ -73,6 +73,7 @@ public class UIMng : MonoBehaviour
              GameMng.Instance.minutes, GameMng.Instance.seconds, GameMng.Instance.fraction);
 
         gameWinUI.transform.Find("Kcal").GetComponent<Text>().text = string.Format("¼Ò¿ä Ä®·Î¸® : {0} kcal", (int)GameMng.Instance.Kcal);
+        
         for (int i = 0; i < 6; i++)
         {
             winExplosion[i].SetActive(true);
