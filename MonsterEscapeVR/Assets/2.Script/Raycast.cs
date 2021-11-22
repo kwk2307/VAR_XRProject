@@ -60,8 +60,8 @@ public class Raycast : MonoBehaviour
                 timeElapsed += Time.deltaTime;//시간 증가
                 if (timeElapsed >= 0.5f)//0.5초가 되면
                 {
-                    Instantiate(shotEf);
-                    shotEf.transform.position = hit.transform.position; //그 자리에 이펙트 생성
+                    Instantiate(shotEf, hit.transform.position,Quaternion.identity);
+                    //shotEf.transform.position = hit.transform.position; //그 자리에 이펙트 생성
                     Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
                     shotSound.Play(); //총소리도 실행
                     timeElapsed = 0f;

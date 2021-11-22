@@ -15,6 +15,7 @@ public class MinionMove : MonoBehaviour
 
     private void Update()
     {
+        print(transform.position);
         time += Time.deltaTime;
         if (time < 0.5f)
         {
@@ -22,7 +23,7 @@ public class MinionMove : MonoBehaviour
         }
         else //1.5초 이후 타겟으로 간다
         {
-            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime);
+            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime*.8f);
 
             
         }

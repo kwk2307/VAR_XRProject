@@ -25,8 +25,9 @@ public class EnemyMove : MonoBehaviour
 
     private GameObject angImage;
     private Color color;
-
-    float angDis; //분노모드에 들어갈 수치
+    
+    float angTime; //분노모드에 진입하는 시간 기준
+    float ttime;
     float angDuration; //분노 지속시간
 
     bool angEnter = false;
@@ -53,28 +54,29 @@ public class EnemyMove : MonoBehaviour
         if (GameMode == 1)
         {
             enumSpeed = 2.8f; //악어의 스피트
-            angDis = -40; //angDis만큼 가면 분노모드!
+            angTime = 30; //angTime만큼 시간이 흐르면 분노함
             angDuration = 5; //얼마동안 분노할 것인가?
-            angryinterval = 100; //얼마뒤에 다시 분노할 것인가?
+            angryinterval = 110; //얼마뒤에 다시 분노할 것인가?
         }
         else if(GameMode == 2)
         {
             enumSpeed = 3.4f; //상어의 스피트
-            angDis = -40; //angDis만큼 가면 분노모드!
+            angTime = 25; 
             angDuration = 20; //얼마동안 분노할 것인가?
-            angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
+            angryinterval = 80; //얼마뒤에 다시 분노할 것인가?
         }
         else
         {
             enumSpeed = 3.8f; // 크라켄의 스피드
-            angDis = -20;
+            angTime = 20;
             angDuration = 15;
-            angryinterval = 60; //얼마뒤에 다시 분노할 것인가?
+            angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         angImage = GameObject.Find("Angry");
         color = angImage.GetComponent<Image>().color;
         color.a = 0f;
         angImage.GetComponent<Image>().color = color;
+        angImage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -83,7 +85,7 @@ public class EnemyMove : MonoBehaviour
        
         if(GameMng.Instance.playerState == state.playing)
         {
-            
+            ttime += Time.deltaTime;
             if(enemyState == e_state.waiting)
             {
                 enemyState = e_state.playing;
@@ -136,14 +138,10 @@ public class EnemyMove : MonoBehaviour
         }
 
        //print("플레이어의 거리" + GameMng.Instance.currentdistance);
-       if(angDis >= GameMng.Instance.currentdistance) //분노모드에 들어가기 위한 조건
-        {
-            angDis -= angryinterval-Random.Range(1,20);  //다음 분노모드에서 다시 분노
-            
-                
-                StartCoroutine(AngryMode());
-            
-            
+       if(angTime <= ttime) //분노모드에 들어가기 위한 조건
+        {  StartCoroutine(AngryMode());
+            angTime += angTime;
+            print("분노코루틴 활성화");
         }
 
         
@@ -215,9 +213,9 @@ public class EnemyMove : MonoBehaviour
         minionFactory[1].SetActive(false);
         minionFactory[2].SetActive(false);
 
-        yield return new WaitForSeconds(5f);
+        //yield return new WaitForSeconds(5f);
         //게이즈 포이터도 비활성화
-        gazePointer.SetActive(false);
+        //gazePointer.SetActive(false);
 
 
     }

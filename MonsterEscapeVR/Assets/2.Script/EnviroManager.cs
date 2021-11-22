@@ -15,7 +15,7 @@ public class EnviroManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Enemy")
+        if(other.tag != "Enemy" && other.tag != "MiniEnemy")
         {
             //애니메이터가 있다면
             /*if (other.gameObject.GetComponent<Animator>() != null)
