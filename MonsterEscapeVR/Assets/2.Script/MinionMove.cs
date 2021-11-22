@@ -33,15 +33,15 @@ public class MinionMove : MonoBehaviour
 
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player") //플레이어와 충돌할 경우
+        if (collision.transform.tag == "Player") //플레이어와 충돌할 경우
         {
             //스피드를 깍는다
-            other.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5000) * Time.deltaTime);
+            collision.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5000) * Time.deltaTime);
 
             Destroy(this.gameObject);
         }
     }
+    
 }
