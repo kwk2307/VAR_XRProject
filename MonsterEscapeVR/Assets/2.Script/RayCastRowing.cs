@@ -12,18 +12,11 @@ public class RayCastRowing : MonoBehaviour
     private float trackerDistance;
     private float pretrackerDistance;
 
-    private float gaze;
-    private Vector3 forward;
-    private LayerMask layerMask;
-    private RaycastHit hit;//오브젝트 정보
-    
+    private float gaze;  
 
     private void Start()
     {
         pretrackerDistance = 1;
-        forward = transform.TransformDirection(Vector3.forward);//방향
-        //UI레이어만 걸림
-        layerMask = 1 << LayerMask.NameToLayer("UI");
     }
 
     // Update is called once per frame
@@ -40,12 +33,17 @@ public class RayCastRowing : MonoBehaviour
             gaze -= Time.deltaTime;
         }
 
+        //print(gaze);
         Gazepointer.fillAmount = gaze;
+        RaycastHit hit;//오브젝트 정보
+
+        Vector3 forward = transform.TransformDirection(Vector3.forward);//방향
+        //UI레이어만 걸림
+        LayerMask layerMask = 1 << LayerMask.NameToLayer("UI");
 
         if (Physics.Raycast(this.transform.position, forward, out hit, Mathf.Infinity, layerMask))
         {
-           
-
+            print(hit.transform.name);
             if (gaze > 1)
             {
                 if (hit.transform.GetComponent<Button>() != null)
@@ -61,8 +59,6 @@ public class RayCastRowing : MonoBehaviour
             }
         }
        
-           
-
         pretrackerDistance = trackerDistance;
         
     }
