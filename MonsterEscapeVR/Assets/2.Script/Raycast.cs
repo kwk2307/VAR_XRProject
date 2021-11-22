@@ -56,6 +56,7 @@ public class Raycast : MonoBehaviour
             }
             else if(hit.transform.tag == "MiniEnemy") //게이즈 포인터로 미니 적을 봤다면
             {
+                Gazepointer.fillAmount = 0; //게이지 차는 경우 있어서
                 timeElapsed += Time.deltaTime;//시간 증가
                 if (timeElapsed >= 0.5f)//0.5초가 되면
                 {
