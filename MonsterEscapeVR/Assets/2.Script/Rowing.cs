@@ -13,6 +13,8 @@ public class Rowing : MonoBehaviour
     private float distance; //트래커들 사이의 거리를 담을 변수
     [SerializeField] private float speed = 1;
 
+
+
     private float isRowing;
     //현재 거리값
     private float isRowingPre;
@@ -20,9 +22,14 @@ public class Rowing : MonoBehaviour
     private float rowRate = -0.1f;
     //Rowrate = 애니메이션을 위해 만든 수치 rowrate에 따라 당겨지는 모션인지 미는 모션인지를 결정한다.
 
+    //pouringSound
+    public AudioSource pour;
+
     private void FixedUpdate()
     {
         
+
+
         distance = Vector3.Distance(tracker01.transform.position, tracker02.transform.position);  //현 프레임의 트래거간의 위치
 
         if (distance <= 1)
@@ -44,7 +51,6 @@ public class Rowing : MonoBehaviour
         {
             //Rowrate를 조절해준다.-> 애니메이션을 위함
             rowRate -= (isRowing - isRowingPre);
-            
         }
 
         anim_boat.SetFloat("isRow", rowRate);
@@ -55,23 +61,30 @@ public class Rowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameMng.Instance.isPlaying == true)
+        if (transform.GetComponent<Rigidbody>().velocity.z < 0)
         {
-            if (transform.GetComponent<Rigidbody>().velocity.z < 0)
-            {
-                transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 50 * GameMng.Instance.currentspeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
 
+        if (GameMng.Instance.playerState == state.playing)
+        {
             //로잉기를 당기는지 확인
 
             if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
             {
                 // 이전 거리값보다 현재 거리값이 더 크다 == 로윙머신을 당기고있다.
                 transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1) * (isRowing - isRowingPre) * speed);
+                // 당기고 있을 때 pouringSound도 재생
+                if(0.2f< isRowing && isRowing < 0.3f)
+                {
+                    pour.Play();
+                    
+                }
+                
 
             }
             isRowingPre = isRowing; // 과거 프레임(다음 프레임 입장에서)
@@ -80,27 +93,6 @@ public class Rowing : MonoBehaviour
         {
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
-
         
     }
-   
-    
-    //private void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(0, 0, 300, 150), "버튼"))
-    //    {
-    //        water.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 1) * 300);
-    //    }
-    //    if (GUI.Button(new Rect(300, 0, 300, 150), "다시하기"))
-    //    {
-    //        // 다시하기(실험용)
-    //        GameMng gm = GameObject.Find("Click").GetComponent<GameMng>();
-
-
-    //        gm.SceneChange();
-    //    }
-    //}
-
-
-    
 }

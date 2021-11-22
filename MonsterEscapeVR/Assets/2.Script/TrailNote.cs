@@ -9,7 +9,7 @@ public class TrailNote : MonoBehaviour
     private void Start()
     {
         tr = this.GetComponentInChildren<TrailRenderer>();
-        ps = this.GetComponentInChildren<ParticleSystem>();     
+        ps = this.GetComponentInChildren<ParticleSystem>();
     }
     // Update is called once per frame
     void Update()
@@ -24,6 +24,7 @@ public class TrailNote : MonoBehaviour
             tr.emitting = false;
             //tr.Clear();
             ps.Pause();
+
         }
     }
 }

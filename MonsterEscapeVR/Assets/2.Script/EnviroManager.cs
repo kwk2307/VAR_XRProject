@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class EnviroManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float distance = 110;
+    public float delayTime = 0f;
+    GameObject player;
+
+    private void Start()
     {
-        
+        player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
     private void OnTriggerEnter(Collider other)
     {
-        print("오브젝트가 부딪힘");
-        other.transform.position -= Vector3.forward * 110;
+        if(other.tag != "Enemy")
+        {
+            //애니메이터가 있다면
+            /*if (other.gameObject.GetComponent<Animator>() != null)
+            {
+                //애니메이터 재생을 멈추고
+                other.gameObject.GetComponent<Animator>().Rebind();
+                other.gameObject.GetComponent<Animator>().Update(0f);
+                print("애니메이터 재생 멈춤");
+            }*/
+
+            other.transform.position -= Vector3.forward * distance;
+            //Instantiate(other);
+            //Destroy(other.gameObject);
+
+        }
     }
 
 }
