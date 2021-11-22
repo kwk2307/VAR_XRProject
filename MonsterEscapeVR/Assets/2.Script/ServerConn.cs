@@ -15,8 +15,6 @@ public class ServerConn : Singleton<ServerConn>
 
     public string[] str;
 
-    public float max = 0.8f;
-    public float min = 0.2f;
 
     public IEnumerator SendLogin(string uC)
     {

@@ -36,6 +36,10 @@ public class EnemyMove : MonoBehaviour
 
     private e_state enemyState = e_state.waiting;
 
+    public GameObject[] minionFactory;
+    public GameObject gazePointer;
+    public AudioSource gunCocking;
+
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -57,7 +61,7 @@ public class EnemyMove : MonoBehaviour
         {
             enumSpeed = 3.4f; //상어의 스피트
             angDis = -40; //angDis만큼 가면 분노모드!
-            angDuration = 10; //얼마동안 분노할 것인가?
+            angDuration = 20; //얼마동안 분노할 것인가?
             angryinterval = 70; //얼마뒤에 다시 분노할 것인가?
         }
         else
@@ -141,7 +145,12 @@ public class EnemyMove : MonoBehaviour
             
             
         }
+
+        
+
+
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -173,6 +182,15 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator AngryMode()
     {
+        //미니언 팩토리 활성화
+        minionFactory[0].SetActive(true);
+        minionFactory[1].SetActive(true);
+        minionFactory[2].SetActive(true);
+        //게이즈 포이터도 활성화
+        gazePointer.SetActive(true);
+        //처커덕 소리 재생
+        gunCocking.Play();
+
         color.a = 1;
         angImage.GetComponent<Image>().color = color;
         
@@ -192,7 +210,16 @@ public class EnemyMove : MonoBehaviour
         ani.SetBool("Angry", false); //포효 애니 중지
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
 
-        
+        //미니언 팩토리 비활성화
+        minionFactory[0].SetActive(false);
+        minionFactory[1].SetActive(false);
+        minionFactory[2].SetActive(false);
+
+        yield return new WaitForSeconds(5f);
+        //게이즈 포이터도 비활성화
+        gazePointer.SetActive(false);
+
+
     }
 
     IEnumerator GameOver()
