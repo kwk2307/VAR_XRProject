@@ -37,7 +37,7 @@ public class EnemyMove : MonoBehaviour
     private e_state enemyState = e_state.waiting;
 
     public GameObject[] minionFactory;
-    public GameObject gazePointer;
+
     public AudioSource gunCocking;
 
     void Start()
@@ -90,9 +90,7 @@ public class EnemyMove : MonoBehaviour
                 enemyState = e_state.playing;
                 //포효 소리 넣기 
                 SoundMng.Instance.Enemy_s();
-
                 
-
             }
 
             if(enemyState == e_state.playing)
@@ -179,7 +177,7 @@ public class EnemyMove : MonoBehaviour
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
         //게이즈 포이터도 활성화
-        gazePointer.SetActive(true);
+        UIMng.Instance.on_gazePointer_target();
         //처커덕 소리 재생
         gunCocking.Play();
 
@@ -206,12 +204,11 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(false);
         minionFactory[1].SetActive(false);
         minionFactory[2].SetActive(false);
-
-        //yield return new WaitForSeconds(5f);
+        
+        //잠시 기다려
+        yield return new WaitForSeconds(5f);
         //게이즈 포이터도 비활성화
-        //gazePointer.SetActive(false);
-
-
+        UIMng.Instance.off_gazePointer_target();
     }
 
     IEnumerator GameOver()
@@ -229,7 +226,7 @@ public class EnemyMove : MonoBehaviour
 
         UIMng.Instance.update_gameOverUI();
         // 게이즈 포인터 활성화 
-        UIMng.Instance.update_gazePointer();
+        UIMng.Instance.on_gazePointer_pointer();
         
     }
     

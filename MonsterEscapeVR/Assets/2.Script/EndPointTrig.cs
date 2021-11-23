@@ -16,7 +16,7 @@ public class EndPointTrig : MonoBehaviour
             GameMng.Instance.playerState = state.clear;
 
             UIMng.Instance.update_gameWinUI();
-            UIMng.Instance.update_gazePointer();
+            UIMng.Instance.on_gazePointer_pointer();
 
             SoundMng.Instance.GameWin_s();
         }

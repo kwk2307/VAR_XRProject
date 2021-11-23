@@ -13,8 +13,8 @@ public class UIMng : MonoBehaviour
     [SerializeField] private GameObject gameEndUI;
     [SerializeField] private GameObject countdown;
     public GameObject VictoryEffectBox;
-    [SerializeField] private GameObject gazePointer;
-
+    [SerializeField] private GameObject gazePointer_target;
+    [SerializeField] private GameObject gazePointer_pointer;
     //미터 알림기
     public GameObject[] disSound;
     bool fiveM = false;
@@ -131,15 +131,24 @@ public class UIMng : MonoBehaviour
         countdown.SetActive(false);
     }
 
-    public void update_gazePointer()
+    public void on_gazePointer_target()
     {
-        gazePointer.SetActive(true);
+        gazePointer_target.SetActive(true);
     }
-    public void off_gazePointer()
+    public void off_gazePointer_target()
     {
-        gazePointer.SetActive(false);
+        gazePointer_target.SetActive(false);
     }
-    
+
+    public void on_gazePointer_pointer()
+    {
+        gazePointer_pointer.SetActive(true);
+    }
+    public void off_gazePointer_pointer()
+    {
+        gazePointer_pointer.SetActive(false);
+    }
+
     private void LateUpdate()
     {
         if (SceneManager.GetActiveScene().name != "Mode1" &&
