@@ -31,7 +31,6 @@ public class EnemyMove : MonoBehaviour
     float angDuration; //분노 지속시간
 
     bool angEnter = false;
-    bool angry = false;
     float angryinterval;
     //float time;
 
@@ -55,7 +54,7 @@ public class EnemyMove : MonoBehaviour
         {
             enumSpeed = 2.8f; //악어의 스피트
             angTime = 30; //angTime만큼 시간이 흐르면 분노함
-            angDuration = 5; //얼마동안 분노할 것인가?
+            angDuration = 10; //분노 지속시간
             angryinterval = 110; //얼마뒤에 다시 분노할 것인가?
         }
         else if(GameMode == 2)
@@ -141,12 +140,8 @@ public class EnemyMove : MonoBehaviour
        if(angTime <= ttime) //분노모드에 들어가기 위한 조건
         {  StartCoroutine(AngryMode());
             angTime += angTime;
-            print("분노코루틴 활성화");
         }
-
-        
-
-
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -174,8 +169,7 @@ public class EnemyMove : MonoBehaviour
         color.a = Mathf.Lerp(0.7f, 1, 2);
         angImage.GetComponent<Image>().color = color;
         yield return new WaitForSeconds(2f);
-
-        angry = false;
+        
     }
 
     IEnumerator AngryMode()

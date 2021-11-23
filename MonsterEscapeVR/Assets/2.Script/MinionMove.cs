@@ -15,7 +15,6 @@ public class MinionMove : MonoBehaviour
 
     private void Update()
     {
-        print(transform.position);
         time += Time.deltaTime;
         if (time < 0.5f)
         {
