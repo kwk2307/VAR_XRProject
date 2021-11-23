@@ -62,6 +62,11 @@ public class Raycast : MonoBehaviour
                 {
                     Instantiate(shotEf, hit.transform.position,Quaternion.identity);
                     hit.transform.GetComponent<Animator>().SetBool("Hit", true); //죽는 애니메이션 재생
+                    if(hit.transform.Find("spear") != null) //작살이 있다면
+                    {
+                        hit.transform.Find("spear").gameObject.SetActive(true);
+                    }
+                    
                     hit.transform.GetComponent<MinionMove>().gameObject.SetActive(false); //적의 움직임 정지
                     
                     shotSound.Play(); //총소리도 실행
