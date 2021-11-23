@@ -61,10 +61,16 @@ public class Raycast : MonoBehaviour
                 if (timeElapsed >= 0.5f)//0.5초가 되면
                 {
                     Instantiate(shotEf, hit.transform.position,Quaternion.identity);
-                    //shotEf.transform.position = hit.transform.position; //그 자리에 이펙트 생성
-                    Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
+                    hit.transform.GetComponent<Animator>().SetBool("Hit", true); //죽는 애니메이션 재생
+                    hit.transform.GetComponent<MinionMove>().gameObject.SetActive(false); //적의 움직임 정지
+                    
                     shotSound.Play(); //총소리도 실행
-                    timeElapsed = 0f;
+                    if(timeElapsed >= 0.8) //0.3초 뒤에 제거
+                    {
+                        Destroy(hit.transform.gameObject);// 바라본 미니 적 삭제
+                        timeElapsed = 0f;
+                    }
+                    
                 }
             }
 
