@@ -50,6 +50,8 @@ public class RayCastRowing : MonoBehaviour
                     //버튼 onClick 이벤트 발생
                     hit.transform.GetComponent<Button>().onClick.Invoke();
 
+                    SoundMng.Instance.ToggleSound_s();
+
                 }
                 else if (hit.transform.GetComponent<Toggle>() != null)
                 {

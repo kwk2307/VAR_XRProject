@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MinionMove : MonoBehaviour
 {
      Transform Target;
     float time;
-    float speed = .7f;
+    float speed = 0.7f;
     Animator ani;
 
 
@@ -25,8 +26,6 @@ public class MinionMove : MonoBehaviour
         else //1.5초 이후 타겟으로 간다
         {
             transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime*speed);
-
-            
         }
         //플레이어를 바라보기
         Vector3 directionVec = Target.position - this.transform.position;
@@ -50,18 +49,23 @@ public class MinionMove : MonoBehaviour
     public IEnumerator DeadMinion()
     {
         //죽는 애니 재생
-        if (transform.name == "Enemy_MiniCrocodile") ani.SetBool("Hit", true);
-        if (transform.Find("spear") != null) //작살이 있다면
+        if (SceneManager.GetActiveScene().name == "Mode1")
         {
-            transform.Find("spear").gameObject.SetActive(true);
-            print("작살 소환");
-        }
-        //움직임 정지
-        speed = 0;
+            ani.SetBool("Hit", true);
 
-        if (transform.name == "Enemy_MiniCrocodile")
-        {
+            speed = 0;
+
+            transform.Find("spear").gameObject.SetActive(true);
+
             yield return new WaitForSeconds(3f);
+        }else if (SceneManager.GetActiveScene().name == "Mode2")
+        {
+
+        }
+        else if (SceneManager.GetActiveScene().name == "Mode3")
+        {
+
+
         }
         
         //3초뒤에 제거
