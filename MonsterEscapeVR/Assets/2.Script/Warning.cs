@@ -43,8 +43,6 @@ public class Warning : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         warningEffect.SetActive(false);
-        
-        yield return new WaitForSeconds(3f);
 
         warn = false;
     }

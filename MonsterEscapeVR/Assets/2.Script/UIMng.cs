@@ -15,6 +15,7 @@ public class UIMng : MonoBehaviour
     public GameObject VictoryEffectBox;
     [SerializeField] private GameObject gazePointer_target;
     [SerializeField] private GameObject gazePointer_pointer;
+    [SerializeField] private GameObject hittedUI;
     //미터 알림기
     public GameObject[] disSound;
     bool fiveM = false;
@@ -176,6 +177,13 @@ public class UIMng : MonoBehaviour
             disSound[3].SetActive(true);
             twoM = true;
         }
+    }
+
+    public IEnumerator HittedUI()
+    {
+        hittedUI.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        hittedUI.SetActive(false);
     }
 }
 

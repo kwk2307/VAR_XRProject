@@ -42,6 +42,9 @@ public class MinionMove : MonoBehaviour
             //스피드를 깍는다
             other.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5000) * Time.deltaTime);
 
+            //HittedUI 활성화
+            StartCoroutine(GameObject.Find("UIMng").GetComponent<UIMng>().HittedUI());
+
             Destroy(this.gameObject);
         }
     }
