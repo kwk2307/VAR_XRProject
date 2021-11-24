@@ -206,9 +206,9 @@ public class EnemyMove : MonoBehaviour
         minionFactory[2].SetActive(false);
         
         //잠시 기다려
-        yield return new WaitForSeconds(5f);
+        //yield return new WaitForSeconds(5f);
         //게이즈 포이터도 비활성화
-        UIMng.Instance.off_gazePointer_target();
+        //UIMng.Instance.off_gazePointer_target();
     }
 
     IEnumerator GameOver()

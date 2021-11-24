@@ -5,12 +5,14 @@ public class MinionMove : MonoBehaviour
 {
      Transform Target;
     float time;
-
+    float speed = .7f;
+    Animator ani;
 
 
     void Start()
     {
         Target = GameObject.Find("Player").transform;
+        ani = transform.GetComponent<Animator>();
     }
 
     private void Update()
@@ -22,7 +24,7 @@ public class MinionMove : MonoBehaviour
         }
         else //1.5초 이후 타겟으로 간다
         {
-            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime*.8f);
+            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime*speed);
 
             
         }
@@ -43,5 +45,26 @@ public class MinionMove : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+    }
+
+    public IEnumerator DeadMinion()
+    {
+        //죽는 애니 재생
+        if (transform.name == "Enemy_MiniCrocodile") ani.SetBool("Hit", true);
+        if (transform.Find("spear") != null) //작살이 있다면
+        {
+            transform.Find("spear").gameObject.SetActive(true);
+            print("작살 소환");
+        }
+        //움직임 정지
+        speed = 0;
+
+        if (transform.name == "Enemy_MiniCrocodile")
+        {
+            yield return new WaitForSeconds(3f);
+        }
+        
+        //3초뒤에 제거
+        Destroy(transform.gameObject);
     }
 }

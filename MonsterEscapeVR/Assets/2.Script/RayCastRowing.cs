@@ -43,7 +43,6 @@ public class RayCastRowing : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, forward, out hit, Mathf.Infinity, layerMask))
         {
-            print(hit.transform.name);
             if (gaze > 1)
             {
                 if (hit.transform.GetComponent<Button>() != null)
@@ -57,9 +56,7 @@ public class RayCastRowing : MonoBehaviour
                     hit.transform.GetComponent<Toggle>().isOn = true;
                 }
             }
-        }
-       
-        pretrackerDistance = trackerDistance;
-        
+        }       
+        pretrackerDistance = trackerDistance;        
     }
 }
