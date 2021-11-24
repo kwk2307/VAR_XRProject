@@ -176,6 +176,9 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(true);
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
+
+        //분노 느낌표 표시 
+        angImage.SetActive(true);
         //게이즈 포이터도 활성화
         UIMng.Instance.on_gazePointer_target();
         //처커덕 소리 재생
@@ -184,7 +187,6 @@ public class EnemyMove : MonoBehaviour
         color.a = 1;
         angImage.GetComponent<Image>().color = color;
         
-        //sound.Play(); //포효소리 재생
         SoundMng.Instance.Enemy_s();
         
         ani.SetBool("Angry", true); //계속 포효한다
@@ -206,9 +208,10 @@ public class EnemyMove : MonoBehaviour
         minionFactory[2].SetActive(false);
         
         //잠시 기다려
-        //yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5f);
         //게이즈 포이터도 비활성화
-        //UIMng.Instance.off_gazePointer_target();
+        UIMng.Instance.off_gazePointer_target();
+        angImage.SetActive(false);
     }
 
     IEnumerator GameOver()
@@ -226,6 +229,7 @@ public class EnemyMove : MonoBehaviour
 
         UIMng.Instance.update_gameOverUI();
         // 게이즈 포인터 활성화 
+        UIMng.Instance.off_gazePointer_target();
         UIMng.Instance.on_gazePointer_pointer();
         
     }
