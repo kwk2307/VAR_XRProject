@@ -16,6 +16,11 @@ public class UIMng : MonoBehaviour
     [SerializeField] private GameObject gazePointer_target;
     [SerializeField] private GameObject gazePointer_pointer;
     [SerializeField] private GameObject hittedUI;
+
+    [SerializeField] private GameObject gaze;
+    [SerializeField] private GameObject movement;
+    private float movementFin = 1.0f; 
+
     //미터 알림기
     public GameObject[] disSound;
     bool fiveM = false;
@@ -28,6 +33,7 @@ public class UIMng : MonoBehaviour
     public GameObject[] winExplosion;
 
     public static UIMng Instance = null;
+    
 
     private void Awake()
     {
@@ -179,11 +185,39 @@ public class UIMng : MonoBehaviour
         }
     }
 
+    public void GazeFill()
+    {
+
+        Slider slider = gaze.GetComponent<Slider>();
+        slider.value += 0.1f;
+        
+        if(slider.value >= 1)
+        {
+            while(slider.value > 0)
+            {
+                slider.value -= Time.deltaTime;
+            }
+            //여기서 이벤트 발생
+            //속도가 빨라진다거나 뭐 공격을 한다거나 어쩌구 저쩌구 
+        }
+    }
+    
+    public void SetMovement(float p)
+    {
+        Scrollbar scrollbar = movement.GetComponent<Scrollbar>();
+        scrollbar.value = p;
+
+        scrollbar.value = Mathf.Clamp(scrollbar.value, 0, 1);
+
+    }
+
     public IEnumerator HittedUI()
     {
         hittedUI.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         hittedUI.SetActive(false);
+        
     }
+
 }
 
