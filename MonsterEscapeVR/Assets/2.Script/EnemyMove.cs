@@ -287,14 +287,4 @@ public class EnemyMove : MonoBehaviour
         }
         ani.SetBool("Stun", false); //스턴 애니 끔
     }
-
-    IEnumerator SharkEvent()
-    {
-        waitSpeed = enumSpeed; //스피드 저장
-        enumSpeed = 0; //적의 스피드 감소
-
-        yield return new WaitForSeconds(3);
-
-        enumSpeed = waitSpeed; //적의 속도 원상복구
-    }
 }
