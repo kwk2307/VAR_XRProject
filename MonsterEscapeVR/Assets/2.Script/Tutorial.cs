@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] Enemy;
     public GameObject[] angry;
 
+    public GameObject cross;
 
 
     void Start()
@@ -180,6 +181,13 @@ yield return new WaitForSeconds(1.1f);
         {
             angry[i].SetActive(true);
         }
+        yield return new WaitForSeconds(7);
+        text.text = "이 때 적은 미니언을 만들어냅니다.";
+        announce[15].SetActive(true);
+        yield return new WaitForSeconds(4);
+        text.text = "화면 중앙에 생기는 조준점으로 응시하면 물리칠 수 있습니다.";
+        announce[16].SetActive(true);
+        cross.SetActive(true);
         yield return new WaitForSeconds(7);
         StartCoroutine(QuitTuto());
 
