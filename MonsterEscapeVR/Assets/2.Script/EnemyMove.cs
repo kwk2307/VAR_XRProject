@@ -177,6 +177,9 @@ public class EnemyMove : MonoBehaviour
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
 
+        //미니언 안내 음성 출력 
+        SoundMng.Instance.MinionWarn();
+
         //분노 느낌표 표시 
         angImage.SetActive(true);
         //게이즈 포이터도 활성화
