@@ -19,6 +19,12 @@ public class UIMng : MonoBehaviour
     [SerializeField] private GameObject EndPoint;
     //미터 알림기
     public GameObject[] disSound;
+
+    [SerializeField] private Scrollbar movement;
+    [SerializeField] private Slider gaze;
+    [SerializeField] private GameObject movechk_0;
+    [SerializeField] private GameObject movechk_1;
+
     bool fiveM = false;
     bool fourM = false;
     bool treeM = false;
@@ -185,6 +191,35 @@ public class UIMng : MonoBehaviour
         hittedUI.SetActive(true);
         yield return new WaitForSeconds(3f);
         hittedUI.SetActive(false);
+    }
+
+    public float gazevalue = 0;
+    public void gazefill()
+    {
+        gazevalue += 0.1f;
+        if (gazevalue > 1.0)
+        {
+            gazevalue = 1;
+        }
+    }
+
+    private bool move_chk = true;
+
+    public void Movement(float value)
+    {
+        movechk_1.SetActive(!move_chk);
+        movechk_0.SetActive(move_chk);
+
+        value = Mathf.InverseLerp(ServerConn.Instance.min, ServerConn.Instance.max, value);
+        movement.value = value;
+
+        int boolInt = move_chk ? 1 : 0;
+
+        if (movement.value == boolInt)
+        {
+            gazefill();
+            move_chk = !move_chk;
+        }
     }
 }
 
