@@ -16,6 +16,7 @@ public class UIMng : MonoBehaviour
     [SerializeField] private GameObject gazePointer_target;
     [SerializeField] private GameObject gazePointer_pointer;
     [SerializeField] private GameObject hittedUI;
+    [SerializeField] private GameObject EndPoint;
     //미터 알림기
     public GameObject[] disSound;
     bool fiveM = false;
@@ -46,7 +47,7 @@ public class UIMng : MonoBehaviour
 
     public void update_distance()
     {
-        ui_distance.text = (-1 * (int)GameMng.Instance.currentdistance) + "M";
+        ui_distance.text = (-1*(EndPoint.transform.position.z))+((int)GameMng.Instance.currentdistance) + "M";
         
     }
 
