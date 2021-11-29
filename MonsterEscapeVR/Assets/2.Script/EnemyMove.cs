@@ -40,6 +40,12 @@ public class EnemyMove : MonoBehaviour
 
     public AudioSource gunCocking;
 
+    //악어 딱콩이 위한 변수
+    public GameObject sphere;
+    public GameObject[] pos;
+    public GameObject E;
+    GameObject ob;
+
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -237,4 +243,15 @@ public class EnemyMove : MonoBehaviour
         
     }
     
+    //악어 딱콩이
+    public void CrocoEvent()
+    {
+        ani.SetBool("Stun", true);
+        for (int i = 0; i < 3; i++)
+        {
+            ob = Instantiate(sphere, pos[i].transform.position, pos[i].transform.rotation) as GameObject;
+            ob.transform.LookAt(E.transform);
+            ob.transform.SetParent(GameObject.Find("Enemy").transform);
+        }
+    }
 }
