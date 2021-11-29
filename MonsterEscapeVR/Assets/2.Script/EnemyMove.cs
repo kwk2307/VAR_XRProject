@@ -244,14 +244,21 @@ public class EnemyMove : MonoBehaviour
     }
     
     //악어 딱콩이
-    public void CrocoEvent()
+    IEnumerator CrocoEvent()
     {
+        enumSpeed = enumSpeed / 1.2f; //적의 스피드 감소
         ani.SetBool("Stun", true);
         for (int i = 0; i < 3; i++)
         {
             ob = Instantiate(sphere, pos[i].transform.position, pos[i].transform.rotation) as GameObject;
             ob.transform.LookAt(E.transform);
             ob.transform.SetParent(GameObject.Find("Enemy").transform);
+        }
+        yield return new WaitForSeconds(3);
+        enumSpeed = enumSpeed * 1.2f; //적의 속도 원상복구
+        for (int i = 0; i < 3; i++)
+        {
+            Destroy(GameObject.Find("Spear(Clone)")); //악어한테 꽂혀있는 창들 제거
         }
     }
 }

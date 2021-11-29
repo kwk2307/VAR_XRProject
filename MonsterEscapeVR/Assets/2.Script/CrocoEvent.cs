@@ -18,6 +18,7 @@ public class CrocoEvent : MonoBehaviour
             ob.transform.LookAt(E.transform);
             ob.transform.SetParent(GameObject.Find("Enemy").transform);
         }
+        Destroy(GameObject.Find("Spear(Clone)"));
     }
 
     // Update is called once per frame
