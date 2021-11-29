@@ -52,7 +52,7 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 2.8f; //악어의 스피트
+            enumSpeed = 2.8f; //악어의 스피트 2.8
             angTime = 30; //angTime만큼 시간이 흐르면 분노함
             angDuration = 10; //분노 지속시간
             angryinterval = 110; //얼마뒤에 다시 분노할 것인가?
@@ -176,6 +176,9 @@ public class EnemyMove : MonoBehaviour
         minionFactory[0].SetActive(true);
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
+
+        //안내 음성 출력
+        SoundMng.Instance.MinionWarn();
 
         //분노 느낌표 표시 
         angImage.SetActive(true);
