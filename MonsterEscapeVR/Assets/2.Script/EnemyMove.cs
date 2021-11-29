@@ -22,6 +22,7 @@ public class EnemyMove : MonoBehaviour
     Light lit;
    
     private float enumSpeed; //적의 속도
+    private float waitSpeed; //적의 속도를 임시로 저장해 둘 그릇
 
     private GameObject angImage;
     private Color color;
@@ -82,6 +83,7 @@ public class EnemyMove : MonoBehaviour
         color.a = 0f;
         angImage.GetComponent<Image>().color = color;
         angImage.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -246,19 +248,43 @@ public class EnemyMove : MonoBehaviour
     //악어 딱콩이
     IEnumerator CrocoEvent()
     {
-        enumSpeed = enumSpeed / 1.2f; //적의 스피드 감소
-        ani.SetBool("Stun", true);
-        for (int i = 0; i < 3; i++)
+        waitSpeed = enumSpeed; //스피드 저장
+        enumSpeed =  0; //적의 스피드 감소
+        ani.SetBool("Stun", true); //스턴 애니
+        for (int i = 0; i < 3; i++) //스턴 이펙트
         {
             ob = Instantiate(sphere, pos[i].transform.position, pos[i].transform.rotation) as GameObject;
             ob.transform.LookAt(E.transform);
             ob.transform.SetParent(GameObject.Find("Enemy").transform);
         }
+
         yield return new WaitForSeconds(3);
-        enumSpeed = enumSpeed * 1.2f; //적의 속도 원상복구
+
+        enumSpeed = waitSpeed; //적의 속도 원상복구
         for (int i = 0; i < 3; i++)
         {
             Destroy(GameObject.Find("Spear(Clone)")); //악어한테 꽂혀있는 창들 제거
         }
+        ani.SetBool("Stun", false); //스턴 애니 끔
+    }
+
+    IEnumerator KrakenEvent()
+    {
+        waitSpeed = enumSpeed; //스피드 저장
+        enumSpeed = 0; //적의 스피드 감소
+        ani.SetBool("Stun", true); //스턴 애니
+        for (int i = 0; i < 6; i++)
+        {
+            UIMng.Instance.winExplosion[i].SetActive(true); //스턴 이펙트
+        }
+
+        yield return new WaitForSeconds(3);
+
+        enumSpeed = waitSpeed; //적의 속도 원상복구
+        for (int i = 0; i < 6; i++)
+        {
+            UIMng.Instance.winExplosion[i].SetActive(false); //스턴 이펙트 비활성화
+        }
+        ani.SetBool("Stun", false); //스턴 애니 끔
     }
 }
