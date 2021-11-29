@@ -52,8 +52,8 @@ public class EnemyMove : MonoBehaviour
 
         if (GameMode == 1)
         {
-            enumSpeed = 2.8f; //악어의 스피트
-            angTime = 30; //angTime만큼 시간이 흐르면 분노함
+            enumSpeed = 2.8f; //악어의 스피트 2.8
+            angTime = 30; //angTime만큼 시간이 흐르면 분노함 30
             angDuration = 10; //분노 지속시간
             angryinterval = 110; //얼마뒤에 다시 분노할 것인가?
         }
@@ -192,12 +192,12 @@ public class EnemyMove : MonoBehaviour
         ani.SetBool("Angry", true); //계속 포효한다
         
         enumSpeed = enumSpeed *1.2f; //적의 속도도 높인다.
-        StartCoroutine(AngryAlpha());
+        //StartCoroutine(AngryAlpha()); //느낌표 깜빡거리기
 
         yield return new WaitForSeconds(angDuration);
         
 
-        color.a = 0;
+        color.a = 0; //느낌표 제거
         angImage.GetComponent<Image>().color = color;
         ani.SetBool("Angry", false); //포효 애니 중지
         enumSpeed = enumSpeed/1.2f; //적의 속도 다시 원상복구
@@ -208,7 +208,7 @@ public class EnemyMove : MonoBehaviour
         minionFactory[2].SetActive(false);
         
         //잠시 기다려
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         //게이즈 포이터도 비활성화
         UIMng.Instance.off_gazePointer_target();
         angImage.SetActive(false);

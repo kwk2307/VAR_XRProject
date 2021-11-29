@@ -23,9 +23,11 @@ public class MinionMove : MonoBehaviour
         {
             transform.Translate(Vector3.forward * Time.deltaTime * 20);
         }
-        else //1.5초 이후 타겟으로 간다
+        else 
         {
-            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, Time.deltaTime*speed);
+            //1초만에 무조건 플레이어에 닿음
+            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, time);
+            //transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, speed * Time.deltaTime);
         }
         //플레이어를 바라보기
         Vector3 directionVec = Target.position - this.transform.position;
@@ -42,8 +44,7 @@ public class MinionMove : MonoBehaviour
             //스피드를 깍는다
             other.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5000) * Time.deltaTime);
 
-            //HittedUI 활성화
-            StartCoroutine(GameObject.Find("UIMng").GetComponent<UIMng>().HittedUI());
+            
 
             Destroy(this.gameObject);
         }
