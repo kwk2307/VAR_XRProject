@@ -12,6 +12,7 @@ public class SoundMng : MonoBehaviour
     private AudioSource ToggleSound;
     private AudioSource GameWinSound;
     private AudioSource shoutSound;
+    private AudioSource minionWarn;
 
     public int gameMode;
 
@@ -66,6 +67,7 @@ public class SoundMng : MonoBehaviour
         ToggleSound = GameObject.Find("ToggleSound").GetComponent<AudioSource>();
         GameWinSound = GameObject.Find("GameWinSound").GetComponent<AudioSource>();
         shoutSound = GameObject.Find("ShotSound").GetComponent<AudioSource>();
+        minionWarn = GameObject.Find("MinionWarn").GetComponent<AudioSource>();
 
     }
 
@@ -103,5 +105,9 @@ public class SoundMng : MonoBehaviour
     public void ShoutSound_s()
     {
         shoutSound.Play();
+    }
+    public void MinionWarn()
+    {
+        minionWarn.Play();
     }
 }
