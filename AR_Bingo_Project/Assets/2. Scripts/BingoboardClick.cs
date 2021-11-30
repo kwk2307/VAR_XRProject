@@ -7,21 +7,19 @@ public class BingoboardClick : MonoBehaviour
 {
     public Image TestImage;
     public Sprite TestSprite;
+    private Button btn;
 
     private void Start()
     {
-        Button btn = this.GetComponent<Button>();
-        btn.onClick.AddListener(ChangeImage);
-        btn.onClick.AddListener(updateGameMng);
-    }
-
-    public void ChangeImage()
-    {
-        TestImage.sprite = TestSprite;
-    }
-
-    public void updateGameMng() {
-        GameMng.instance.Add_bingo(this.transform.Find("Text").GetComponent<Text>().text);
+        btn = this.GetComponent<Button>();
+        btn.onClick.AddListener(Clicked);    
     }
     
+    public void Clicked()
+    {
+        TestImage.sprite = TestSprite;
+        GameMng.instance.Add_bingo(this.transform.Find("Text").GetComponent<Text>().text);
+        
+        btn.onClick.RemoveAllListeners();
+    }
 }
