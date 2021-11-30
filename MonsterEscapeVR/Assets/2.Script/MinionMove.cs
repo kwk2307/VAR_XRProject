@@ -26,7 +26,7 @@ public class MinionMove : MonoBehaviour
         else 
         {
             //1초만에 무조건 플레이어에 닿음
-            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, time);
+            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, time / 10);
             //transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, speed * Time.deltaTime);
         }
         //플레이어를 바라보기
