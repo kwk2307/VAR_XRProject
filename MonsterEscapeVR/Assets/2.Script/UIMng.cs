@@ -37,6 +37,10 @@ public class UIMng : MonoBehaviour
 
     public static UIMng Instance = null;
 
+    //자세교정 슬라이더바에 만들 이펙트
+    public GameObject ef0;
+    public GameObject ef1;
+
     private void Awake()
     {
         if(Instance == null)
@@ -220,6 +224,16 @@ public class UIMng : MonoBehaviour
         {
             gazefill();
             move_chk = !move_chk;
+            SoundMng.Instance.Dding_s();
+            if(boolInt == 1)
+            {
+                ef1.SetActive(true);
+            }
+            else
+            {
+                ef0.SetActive(false);
+            }
+
         }
     }
 }
