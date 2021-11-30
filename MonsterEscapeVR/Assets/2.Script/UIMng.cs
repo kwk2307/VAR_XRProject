@@ -31,6 +31,7 @@ public class UIMng : MonoBehaviour
     bool twoM = false;
     bool firstM = false;
 
+    public bool survival = true;
     // ½Â¸® ½Ã Æø¹ß ÀÌÆÑÆ®
     public GameObject[] winExplosion;
 
@@ -53,8 +54,8 @@ public class UIMng : MonoBehaviour
 
     public void update_distance()
     {
-        ui_distance.text = (-1*(EndPoint.transform.position.z))+((int)GameMng.Instance.currentdistance) + "M";
-        
+        if (survival == true) ui_distance.text = (-1 * (EndPoint.transform.position.z)) + ((int)GameMng.Instance.currentdistance) + "M";
+        else ui_distance.text = -1 * ((int)GameMng.Instance.currentdistance) + "M";
     }
 
     public void update_time()
