@@ -13,6 +13,7 @@ public class SoundMng : MonoBehaviour
     private AudioSource GameWinSound;
     private AudioSource shoutSound;
     private AudioSource minionWarn;
+    private AudioSource dding;
 
     public int gameMode;
 
@@ -68,6 +69,7 @@ public class SoundMng : MonoBehaviour
         GameWinSound = GameObject.Find("GameWinSound").GetComponent<AudioSource>();
         shoutSound = GameObject.Find("ShotSound").GetComponent<AudioSource>();
         minionWarn = GameObject.Find("MinionWarn").GetComponent<AudioSource>();
+        dding = GameObject.Find("Dding").GetComponent<AudioSource>();
 
     }
 
@@ -109,5 +111,10 @@ public class SoundMng : MonoBehaviour
     public void MinionWarn()
     {
         minionWarn.Play();
+    }
+    public void Dding_s()
+    {
+        dding.Stop();
+        dding.Play();
     }
 }
