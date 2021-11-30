@@ -134,6 +134,10 @@ public class NetworkMng : MonoBehaviourPunCallbacks
     }
     public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
+    public void RoomQuit() => PhotonNetwork.LeaveRoom();
+
+    public void JoinRoom(string roomname) => PhotonNetwork.JoinRoom(roomname);
+    
     #endregion
 
     #region CALLBACK
@@ -189,6 +193,7 @@ public class NetworkMng : MonoBehaviourPunCallbacks
         print("OnJoinedRoom");
 
         MyRoomRenawal();
+        roomListPanel.SetActive(false);
         roomPanel.SetActive(true);
         
     }
