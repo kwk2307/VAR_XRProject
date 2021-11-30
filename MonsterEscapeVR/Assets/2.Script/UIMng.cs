@@ -228,10 +228,12 @@ public class UIMng : MonoBehaviour
             if(boolInt == 1)
             {
                 ef1.SetActive(true);
+                ef0.SetActive(false);
             }
             else
             {
                 ef0.SetActive(false);
+                ef1.SetActive(true);
             }
 
         }
