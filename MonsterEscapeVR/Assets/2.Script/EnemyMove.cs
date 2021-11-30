@@ -47,6 +47,8 @@ public class EnemyMove : MonoBehaviour
     public GameObject E;
     GameObject ob;
 
+    public GameObject star;
+
     void Start()
     {
         //플레이어를 찾아서 담는다
@@ -251,6 +253,7 @@ public class EnemyMove : MonoBehaviour
         waitSpeed = enumSpeed; //스피드 저장
         enumSpeed =  0; //적의 스피드 감소
         ani.SetBool("Stun", true); //스턴 애니
+        star.SetActive(true); //별뺑뺑이
         for (int i = 0; i < 3; i++) //스턴 이펙트
         {
             ob = Instantiate(sphere, pos[i].transform.position, pos[i].transform.rotation) as GameObject;
@@ -266,6 +269,7 @@ public class EnemyMove : MonoBehaviour
             Destroy(GameObject.Find("Spear(Clone)")); //악어한테 꽂혀있는 창들 제거
         }
         ani.SetBool("Stun", false); //스턴 애니 끔
+        star.SetActive(false); //별뺑뺑이 끔
     }
 
     IEnumerator KrakenEvent()
@@ -273,6 +277,7 @@ public class EnemyMove : MonoBehaviour
         waitSpeed = enumSpeed; //스피드 저장
         enumSpeed = 0; //적의 스피드 감소
         ani.SetBool("Stun", true); //스턴 애니
+        star.SetActive(true); //별뺑뺑이
         for (int i = 0; i < 6; i++)
         {
             UIMng.Instance.winExplosion[i].SetActive(true); //스턴 이펙트
@@ -286,15 +291,18 @@ public class EnemyMove : MonoBehaviour
             UIMng.Instance.winExplosion[i].SetActive(false); //스턴 이펙트 비활성화
         }
         ani.SetBool("Stun", false); //스턴 애니 끔
+        star.SetActive(false); //별뺑뺑이 끔
     }
 
     IEnumerator SharkEvent()
     {
         waitSpeed = enumSpeed; //스피드 저장
         enumSpeed = 0; //적의 스피드 감소
+        star.SetActive(true); //별뺑뺑이
 
         yield return new WaitForSeconds(3);
 
         enumSpeed = waitSpeed; //적의 속도 원상복구
+        star.SetActive(false); //별뺑뺑이 끔
     }
 }
