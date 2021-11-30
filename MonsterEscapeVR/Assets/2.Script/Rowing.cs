@@ -72,6 +72,7 @@ public class Rowing : MonoBehaviour
         if (GameMng.Instance.playerState == state.playing)
         {
             //로잉기를 당기는지 확인
+            UIMng.Instance.Movement(isRowing);
 
             if ((isRowing - isRowingPre) > 0 && transform.GetComponent<Rigidbody>().velocity.magnitude < 15)
             {

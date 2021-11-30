@@ -212,8 +212,8 @@ public class UIMng : MonoBehaviour
 
     public void Movement(float value)
     {
-        movechk_1.SetActive(!move_chk);
-        movechk_0.SetActive(move_chk);
+        movechk_1.SetActive(move_chk);
+        movechk_0.SetActive(!move_chk);
 
         value = Mathf.InverseLerp(ServerConn.Instance.min, ServerConn.Instance.max, value);
         movement.value = value;
@@ -225,13 +225,16 @@ public class UIMng : MonoBehaviour
             gazefill();
             move_chk = !move_chk;
             SoundMng.Instance.Dding_s();
-            if(boolInt == 1)
+
+            if (boolInt == 1)
             {
                 ef1.SetActive(true);
+                ef0.SetActive(false);
             }
             else
             {
-                ef0.SetActive(false);
+                ef1.SetActive(false);
+                ef0.SetActive(true);
             }
 
         }

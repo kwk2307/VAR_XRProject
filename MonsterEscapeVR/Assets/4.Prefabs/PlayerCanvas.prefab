@@ -228,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4457156100062481091}
   - component: {fileID: 2702586498931691715}
+  - component: {fileID: 6443690704037700389}
   m_Layer: 5
   m_Name: Gaze
   m_TagString: Untagged
@@ -307,6 +308,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6443690704037700389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811294110731102281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3df5d89c25c88349a9aeb8ed65280b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2312049120815834067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,14 +1991,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d6d7d9c5b4160a47864fe2ef3f6a9b8, type: 3}
---- !u!224 &1870164497456049890 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1798828735627860292, guid: 1d6d7d9c5b4160a47864fe2ef3f6a9b8, type: 3}
-  m_PrefabInstance: {fileID: 72780557170718630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5440092546159939480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5367594623091488830, guid: 1d6d7d9c5b4160a47864fe2ef3f6a9b8, type: 3}
+  m_PrefabInstance: {fileID: 72780557170718630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1870164497456049890 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1798828735627860292, guid: 1d6d7d9c5b4160a47864fe2ef3f6a9b8, type: 3}
   m_PrefabInstance: {fileID: 72780557170718630}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2024319006669117888
