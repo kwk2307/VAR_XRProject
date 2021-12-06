@@ -11,25 +11,25 @@ public enum e_state
 
 public class EnemyMove : MonoBehaviour
 {
-    public int GameMode; //1¹ø - ¾Ç¾î, 2¹ø - »ó¾î, 3¹ø - Å©¶óÄË
+    public int GameMode; //1ï¿½ï¿½ - ï¿½Ç¾ï¿½, 2ï¿½ï¿½ - ï¿½ï¿½ï¿½, 3ï¿½ï¿½ - Å©ï¿½ï¿½ï¿½ï¿½
     
     public float delayCount;
 
-    private GameObject player; //ÇÃ·¹ÀÌ¾î¸¦ ´ãÀ» º¯¼ö
+    private GameObject player; //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    Animator ani; //ÀûÀÇ ¾Ö´Ï ÄÁÆ®·Ñ·¯
+    Animator ani; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
     
     Light lit;
    
-    private float enumSpeed; //ÀûÀÇ ¼Óµµ
-    private float waitSpeed; //ÀûÀÇ ¼Óµµ¸¦ ÀÓ½Ã·Î ÀúÀåÇØ µÑ ±×¸©
+    private float enumSpeed; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    private float waitSpeed; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½
 
     private GameObject angImage;
     private Color color;
     
-    float angTime; //ºÐ³ë¸ðµå¿¡ ÁøÀÔÇÏ´Â ½Ã°£ ±âÁØ
+    float angTime; //ï¿½Ð³ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
     float ttime;
-    float angDuration; //ºÐ³ë Áö¼Ó½Ã°£
+    float angDuration; //ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½
 
     bool angEnter = false;
     float angryinterval;
@@ -41,44 +41,43 @@ public class EnemyMove : MonoBehaviour
 
     public AudioSource gunCocking;
 
-    //¾Ç¾î µüÄáÀÌ À§ÇÑ º¯¼ö
+    //ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject sphere;
     public GameObject[] pos;
-    public GameObject E;
     GameObject ob;
 
     public GameObject star;
 
     void Start()
     {
-        //ÇÃ·¹ÀÌ¾î¸¦ Ã£¾Æ¼­ ´ã´Â´Ù
+        //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½Â´ï¿½
         player = GameObject.Find("Player");
 
         //GameOverUI_player = GameObject.Find("PlayerCanvas").transform.Find("GameOverUI_Fail").gameObject;
-        ani = GetComponent<Animator>(); //¾Ö´Ï¸ÅÀÌÅÍ ´ã±â
+        ani = GetComponent<Animator>(); //ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-        lit = GameObject.Find("Directional Light").GetComponent<Light>(); //ºûÀ» Ã£¾Æ ´ã´Â´Ù
+        lit = GameObject.Find("Directional Light").GetComponent<Light>(); //ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½Â´ï¿½
 
         if (GameMode == 1)
         {
-            enumSpeed = 2.8f; //¾Ç¾îÀÇ ½ºÇÇÆ® 2.8
-            angTime = 30; //angTime¸¸Å­ ½Ã°£ÀÌ Èå¸£¸é ºÐ³ëÇÔ 30
-            angDuration = 10; //ºÐ³ë Áö¼Ó½Ã°£
-            angryinterval = 110; //¾ó¸¶µÚ¿¡ ´Ù½Ã ºÐ³ëÇÒ °ÍÀÎ°¡?
+            enumSpeed = 4.8f; //ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 2.8
+            angTime = 30; //angTimeï¿½ï¿½Å­ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½å¸£ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ 30
+            angDuration = 10; //ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½
+            angryinterval = 110; //ï¿½ó¸¶µÚ¿ï¿½ ï¿½Ù½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
         }
         else if(GameMode == 2)
         {
-            enumSpeed = 3.4f; //»ó¾îÀÇ ½ºÇÇÆ®
+            enumSpeed = 5.4f; //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
             angTime = 25; 
-            angDuration = 20; //¾ó¸¶µ¿¾È ºÐ³ëÇÒ °ÍÀÎ°¡?
-            angryinterval = 80; //¾ó¸¶µÚ¿¡ ´Ù½Ã ºÐ³ëÇÒ °ÍÀÎ°¡?
+            angDuration = 20; //ï¿½ó¸¶µï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
+            angryinterval = 80; //ï¿½ó¸¶µÚ¿ï¿½ ï¿½Ù½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
         }
         else
         {
-            enumSpeed = 3.8f; // Å©¶óÄËÀÇ ½ºÇÇµå
+            enumSpeed = 5.8f; // Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½
             angTime = 20;
             angDuration = 15;
-            angryinterval = 70; //¾ó¸¶µÚ¿¡ ´Ù½Ã ºÐ³ëÇÒ °ÍÀÎ°¡?
+            angryinterval = 70; //ï¿½ó¸¶µÚ¿ï¿½ ï¿½Ù½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
         }
         angImage = GameObject.Find("Angry");
         color = angImage.GetComponent<Image>().color;
@@ -98,45 +97,45 @@ public class EnemyMove : MonoBehaviour
             if(enemyState == e_state.waiting)
             {
                 enemyState = e_state.playing;
-                //Æ÷È¿ ¼Ò¸® ³Ö±â 
+                //ï¿½ï¿½È¿ ï¿½Ò¸ï¿½ ï¿½Ö±ï¿½ 
                 SoundMng.Instance.Enemy_s();
                 
             }
 
             if(enemyState == e_state.playing)
             {
-                //ºÐ³ë ¾Ö´Ï 
+                //ï¿½Ð³ï¿½ ï¿½Ö´ï¿½ 
                 ani.SetBool("Start", true);
 
-                if (GameMode == 1) //¾Ç¾î 
+                if (GameMode == 1) //ï¿½Ç¾ï¿½ 
                 {
                     if (GameMng.Instance.time >= 6)
                     {
                         
 
-                        //ÇÃ·¹ÀÌ¾î¸¦ ÂÑ¾Æ°£´Ù.
+                        //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½Ñ¾Æ°ï¿½ï¿½ï¿½.
                         transform.position -= Vector3.forward * enumSpeed * Time.deltaTime;
                         
                     }
 
                 }
-                else if (GameMode == 2) //»ó¾î 
+                else if (GameMode == 2) //ï¿½ï¿½ï¿½ 
                 {
 
                     if (GameMng.Instance.time >= 6)
                     {
-                        //ÇÃ·¹ÀÌ¾î¸¦ ÂÑ¾Æ°£´Ù.
-                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ¿¡ µû¶ó ¾Õ,µÚ·Î ÀÌµ¿ÇÑ´Ù.
+                        //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½Ñ¾Æ°ï¿½ï¿½ï¿½.
+                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½,ï¿½Ú·ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½.
                         
                     }
 
                 }
-                if (GameMode == 3) //Å©¶óÄË
+                if (GameMode == 3) //Å©ï¿½ï¿½ï¿½ï¿½
                 {
                     if (GameMng.Instance.time >= 6)
                     {
-                        //ÇÃ·¹ÀÌ¾î¸¦ ÂÑ¾Æ°£´Ù.
-                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //ÇÃ·¹ÀÌ¾îÀÇ ¼Óµµ¿¡ µû¶ó ¾Õ,µÚ·Î ÀÌµ¿ÇÑ´Ù.
+                        //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½Ñ¾Æ°ï¿½ï¿½ï¿½.
+                        transform.position -= Vector3.forward * enumSpeed * Time.deltaTime; ; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½,ï¿½Ú·ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½.
                         
 
                     }
@@ -144,8 +143,8 @@ public class EnemyMove : MonoBehaviour
             }
         }
 
-       //print("ÇÃ·¹ÀÌ¾îÀÇ °Å¸®" + GameMng.Instance.currentdistance);
-       if(angTime <= ttime) //ºÐ³ë¸ðµå¿¡ µé¾î°¡±â À§ÇÑ Á¶°Ç
+       //print("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½" + GameMng.Instance.currentdistance);
+       if(angTime <= ttime) //ï¿½Ð³ï¿½ï¿½å¿¡ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {  StartCoroutine(AngryMode());
             angTime += angTime;
         }
@@ -169,7 +168,7 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    IEnumerator AngryAlpha() //ºÐ³ë¸ðµå ÀÌ¹ÌÁö ¾ËÆÄ°ª ¿Ô´Ù°¬´Ù
+    IEnumerator AngryAlpha() //ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ ï¿½Ô´Ù°ï¿½ï¿½ï¿½
     {
         color.a = Mathf.Lerp(1, 0.7f, 2);
         angImage.GetComponent<Image>().color = color;
@@ -182,19 +181,19 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator AngryMode()
     {
-        //¹Ì´Ï¾ð ÆÑÅä¸® È°¼ºÈ­
+        //ï¿½Ì´Ï¾ï¿½ ï¿½ï¿½ï¿½ä¸® È°ï¿½ï¿½È­
         minionFactory[0].SetActive(true);
         minionFactory[1].SetActive(true);
         minionFactory[2].SetActive(true);
 
-        //¹Ì´Ï¾ð ¾È³» À½¼º Ãâ·Â 
+        //ï¿½Ì´Ï¾ï¿½ ï¿½È³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
         SoundMng.Instance.MinionWarn();
 
-        //ºÐ³ë ´À³¦Ç¥ Ç¥½Ã 
+        //ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ Ç¥ï¿½ï¿½ 
         angImage.SetActive(true);
-        //°ÔÀÌÁî Æ÷ÀÌÅÍµµ È°¼ºÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ È°ï¿½ï¿½È­
         UIMng.Instance.on_gazePointer_target();
-        //Ã³Ä¿´ö ¼Ò¸® Àç»ý
+        //Ã³Ä¿ï¿½ï¿½ ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½
         gunCocking.Play();
 
         color.a = 1;
@@ -202,27 +201,27 @@ public class EnemyMove : MonoBehaviour
         
         SoundMng.Instance.Enemy_s();
         
-        ani.SetBool("Angry", true); //°è¼Ó Æ÷È¿ÇÑ´Ù
+        ani.SetBool("Angry", true); //ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ñ´ï¿½
         
-        enumSpeed = enumSpeed *1.2f; //ÀûÀÇ ¼Óµµµµ ³ôÀÎ´Ù.
-        //StartCoroutine(AngryAlpha()); //´À³¦Ç¥ ±ôºý°Å¸®±â
+        enumSpeed = enumSpeed *1.2f; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
+        //StartCoroutine(AngryAlpha()); //ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
 
         yield return new WaitForSeconds(angDuration);
         
 
-        color.a = 0; //´À³¦Ç¥ Á¦°Å
+        color.a = 0; //ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
         angImage.GetComponent<Image>().color = color;
-        ani.SetBool("Angry", false); //Æ÷È¿ ¾Ö´Ï ÁßÁö
-        enumSpeed = enumSpeed/1.2f; //ÀûÀÇ ¼Óµµ ´Ù½Ã ¿ø»óº¹±¸
+        ani.SetBool("Angry", false); //ï¿½ï¿½È¿ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+        enumSpeed = enumSpeed/1.2f; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½óº¹±ï¿½
 
-        //¹Ì´Ï¾ð ÆÑÅä¸® ºñÈ°¼ºÈ­
+        //ï¿½Ì´Ï¾ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½È°ï¿½ï¿½È­
         minionFactory[0].SetActive(false);
         minionFactory[1].SetActive(false);
         minionFactory[2].SetActive(false);
         
-        //Àá½Ã ±â´Ù·Á
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½Ù·ï¿½
         yield return new WaitForSeconds(3f);
-        //°ÔÀÌÁî Æ÷ÀÌÅÍµµ ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         UIMng.Instance.off_gazePointer_target();
         angImage.SetActive(false);
     }
@@ -233,76 +232,73 @@ public class EnemyMove : MonoBehaviour
         GameMng.Instance.CalcKcal();
         GameMng.Instance.playerState = state.die;
         enemyState = e_state.waiting;
-        //gameoversound Àç»ý
+        //gameoversound ï¿½ï¿½ï¿½
         SoundMng.Instance.GameOver_s();
-        ani.SetBool("Byte", true); //°ÔÀÓÀÌ ³¡³ª¸é ÀûÀÌ ÀÔÀ» ¾Ó¾Ó°Å¸°´Ù.
+        ani.SetBool("Byte", true); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¾Ó°Å¸ï¿½ï¿½ï¿½.
         StartCoroutine(Fadeout());
 
         yield return new WaitForSeconds(3);
 
         UIMng.Instance.update_gameOverUI();
-        // °ÔÀÌÁî Æ÷ÀÎÅÍ È°¼ºÈ­ 
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ 
         UIMng.Instance.off_gazePointer_target();
         UIMng.Instance.on_gazePointer_pointer();
         
     }
     
-    //¾Ç¾î µüÄáÀÌ
-    IEnumerator CrocoEvent()
+    //ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public IEnumerator CrocoEvent()
     {
-        waitSpeed = enumSpeed; //½ºÇÇµå ÀúÀå
-        enumSpeed =  0; //ÀûÀÇ ½ºÇÇµå °¨¼Ò
-        ani.SetBool("Stun", true); //½ºÅÏ ¾Ö´Ï
-        star.SetActive(true); //º°»±»±ÀÌ
-        for (int i = 0; i < 3; i++) //½ºÅÏ ÀÌÆåÆ®
+        waitSpeed = enumSpeed; //ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        enumSpeed =  0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        ani.SetBool("Stun", true); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½
+        star.SetActive(true); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        for (int i = 0; i < 3; i++) //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         {
             ob = Instantiate(sphere, pos[i].transform.position, pos[i].transform.rotation) as GameObject;
-            ob.transform.LookAt(E.transform);
+            ob.transform.LookAt(this.transform);
             ob.transform.SetParent(GameObject.Find("Enemy").transform);
         }
 
         yield return new WaitForSeconds(3);
 
-        enumSpeed = waitSpeed; //ÀûÀÇ ¼Óµµ ¿ø»óº¹±¸
-        for (int i = 0; i < 3; i++)
-        {
-            Destroy(GameObject.Find("Spear(Clone)")); //¾Ç¾îÇÑÅ× ²ÈÇôÀÖ´Â Ã¢µé Á¦°Å
-        }
-        ani.SetBool("Stun", false); //½ºÅÏ ¾Ö´Ï ²û
-        star.SetActive(false); //º°»±»±ÀÌ ²û
+        enumSpeed = waitSpeed; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½óº¹±ï¿½
+        
+        ani.SetBool("Stun", false); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½
+        star.SetActive(false); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 
-    IEnumerator KrakenEvent()
+    public IEnumerator KrakenEvent()
     {
-        waitSpeed = enumSpeed; //½ºÇÇµå ÀúÀå
-        enumSpeed = 0; //ÀûÀÇ ½ºÇÇµå °¨¼Ò
-        ani.SetBool("Stun", true); //½ºÅÏ ¾Ö´Ï
-        star.SetActive(true); //º°»±»±ÀÌ
+        waitSpeed = enumSpeed; //ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        enumSpeed = 0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        ani.SetBool("Stun", true); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½
+        star.SetActive(true); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < 6; i++)
         {
-            UIMng.Instance.winExplosion[i].SetActive(true); //½ºÅÏ ÀÌÆåÆ®
+            UIMng.Instance.winExplosion[i].SetActive(true); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         }
 
         yield return new WaitForSeconds(3);
 
-        enumSpeed = waitSpeed; //ÀûÀÇ ¼Óµµ ¿ø»óº¹±¸
+        enumSpeed = waitSpeed; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½óº¹±ï¿½
         for (int i = 0; i < 6; i++)
         {
-            UIMng.Instance.winExplosion[i].SetActive(false); //½ºÅÏ ÀÌÆåÆ® ºñÈ°¼ºÈ­
+            UIMng.Instance.winExplosion[i].SetActive(false); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È°ï¿½ï¿½È­
         }
-        ani.SetBool("Stun", false); //½ºÅÏ ¾Ö´Ï ²û
-        star.SetActive(false); //º°»±»±ÀÌ ²û
+        ani.SetBool("Stun", false); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½
+        star.SetActive(false); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 
-    IEnumerator SharkEvent()
+    public IEnumerator SharkEvent()
     {
-        waitSpeed = enumSpeed; //½ºÇÇµå ÀúÀå
-        enumSpeed = 0; //ÀûÀÇ ½ºÇÇµå °¨¼Ò
-        star.SetActive(true); //º°»±»±ÀÌ
+        waitSpeed = enumSpeed; //ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        enumSpeed = 0; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½
+        star.SetActive(true); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         yield return new WaitForSeconds(3);
 
-        enumSpeed = waitSpeed; //ÀûÀÇ ¼Óµµ ¿ø»óº¹±¸
-        star.SetActive(false); //º°»±»±ÀÌ ²û
+        enumSpeed = waitSpeed; //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½óº¹±ï¿½
+        star.SetActive(false); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 }

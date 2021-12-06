@@ -8,7 +8,7 @@ public class MinionMove : MonoBehaviour
     float time;
     float speed = 0.7f;
     Animator ani;
-
+    bool die = false;
 
     void Start()
     {
@@ -18,21 +18,25 @@ public class MinionMove : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
-        if (time < 0.5f)
+        if(!die)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * 20);
+            time += Time.deltaTime;
+            if (time < 0.5f)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * 20);
+            }
+            else
+            {
+                //1초만에 무조건 플레이어에 닿음
+                transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, time / 100);
+                //transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, speed * Time.deltaTime);
+            }
+            //플레이어를 바라보기
+            Vector3 directionVec = Target.position - this.transform.position;
+            Quaternion qua = Quaternion.LookRotation(directionVec);
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, qua, Time.deltaTime * 2f);
         }
-        else 
-        {
-            //1초만에 무조건 플레이어에 닿음
-            transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, time / 10);
-            //transform.position = Vector3.LerpUnclamped(transform.position, Target.transform.position, speed * Time.deltaTime);
-        }
-        //플레이어를 바라보기
-        Vector3 directionVec = Target.position - this.transform.position;
-        Quaternion qua = Quaternion.LookRotation(directionVec);
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, qua, Time.deltaTime*2f);
+        
 
     }
 
@@ -52,26 +56,29 @@ public class MinionMove : MonoBehaviour
 
     public IEnumerator DeadMinion()
     {
+        die = true;
         //죽는 애니 재생
         if (SceneManager.GetActiveScene().name == "Mode1")
         {
             ani.SetBool("Hit", true);
 
-            speed = 0;
-
+            
             transform.Find("spear").gameObject.SetActive(true);
-
+            
+            
+            time = 0;
             yield return new WaitForSeconds(3f);
-        }else if (SceneManager.GetActiveScene().name == "Mode2")
+
+        }
+        else if (SceneManager.GetActiveScene().name == "Mode2")
         {
 
         }
         else if (SceneManager.GetActiveScene().name == "Mode3")
         {
-
-
+            
         }
-        
+
         //3초뒤에 제거
         Destroy(transform.gameObject);
     }

@@ -5,21 +5,20 @@ using UnityEngine.UI;
 
 public class BingoboardClick : MonoBehaviour
 {
-    public Image TestImage;
-    public Sprite TestSprite;
     private Button btn;
 
     private void Start()
     {
         btn = this.GetComponent<Button>();
-        btn.onClick.AddListener(Clicked);    
+        btn.onClick.AddListener(Clicked);
     }
     
     public void Clicked()
     {
-        TestImage.sprite = TestSprite;
-        GameMng.instance.Add_bingo(this.transform.Find("Text").GetComponent<Text>().text);
-        
-        btn.onClick.RemoveAllListeners();
+        if (this.gameObject.tag != "Clicked")
+        {
+            GameMng.instance.Add_bingo(this.transform.Find("Text").GetComponent<Text>().text);
+
+        }
     }
 }

@@ -195,10 +195,10 @@ yield return new WaitForSeconds(1.1f);
 
     IEnumerator QuitTuto()
     {
-        text.text = "괴물들에게서 쫓기는 긴박함이 싫으신 분들을 위한 관광모드도 있습니다.";
+        text.text = "괴물들에게서 쫓기는 긴박함이 싫으신 분들을 위한 힐링모드도 있습니다.";
         announce[11].SetActive(true);
         yield return new WaitForSeconds(6);
-        text.text = "관광모드 또한 메인화면에서 선택하여 들어가실 수 있습니다";
+        text.text = "힐링모드 또한 메인화면에서 선택하여 들어가실 수 있습니다";
         announce[12].SetActive(true);
         yield return new WaitForSeconds(5);
         text.text = "이것으로 튜토리얼을 마치겠습니다.";
